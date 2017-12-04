@@ -7,12 +7,10 @@ MathJax.Hub.Config({
 });
 </script>
 
-## Data Collection and Preprocessing  
+## Data Preprocessing  
 
-## Models  
-
-### Feature Extraction   
-### Sentiment Extraction and Aggregation  
+## Topic Extraction   
+## Sentiment Extraction and Aggregation  
 
 \TeX\ is the best way to typeset mathematics. Donald Knuth designed \TeX\ when he got frustrated at how long it was taking the typesetters to finish his book, which contained a lot of mathematics.  One nice feature of _R Markdown_ is its ability to read LaTeX code directly.
 

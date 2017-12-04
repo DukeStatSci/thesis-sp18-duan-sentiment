@@ -77,10 +77,5 @@ and 00-abstract.Rmd since they are handled in the YAML above differently for the
 on chapters.
 -->
 
-# Introduction {.unnumbered}
-
-Overall introduction of the project.  
-
-    - The ultimate goal of this thesis is to suggest a personalization tool/framework using aspect-based sentiment analysis of user-generated text.  
-    - I expect to determine and implement a final model for the purpose and create a sketch of the personalization tool.  
-    - By 12/7 at 9am: introduction, literature review, methodology.
+# Check-in {.unnumbered}
+2017-12-7: This is the check point for Fall 2017. Current version includes a completed **Introduction**, completed sections in **Methodology** (*Data Preprocessing*, *Topic Extraction with LDA*), and correspondong sections in **Results** (*EDA*, *Topic Extraction with LDA*).  
