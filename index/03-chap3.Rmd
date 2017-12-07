@@ -16,7 +16,9 @@ if(!require(thesisdowndss)){
   devtools::install_github("mine-cetinkaya-rundel/thesisdowndss")
   }
 library(thesisdowndss)
-flights <- read.csv("data/flights.csv")
+# flights <- read.csv("data/flights.csv")
+library(topicmodels)
+lda <- readRDS("data/LDA_all_ngrammed.rds")
 ```
 
 
@@ -77,7 +79,20 @@ Table: (\#tab:bigram) Top Context-Specific Bigrams and Trigrams
 Notes on the Bigram Trigram table:  
 1. (\*) Similar bigrams including *“good/great_food/servic/place”* are also common with significant p-values. Same as in the case of trigrams: *“food/servic.pretti/realli/super_good/great”*.  
 2. (\*\*) Refers to “White Castle”, a fast-food chain in Midwestern and Mid-Atlantic regions of the United States. As previously mentioned, the high occurrence of this bigram is likely due to the state distribution of the reviewed restaurants in our corpus.  
-3. (\*\*\*) Name of a reviewed restaurant in Phoenix, AZ. Same as above, the high occurrence and significance of p-value of this trigram is also related to our corpus-specific restaurant distributions. But in both cases, identifying the word sequence as one token would carry the right meaningful information and thus beneficial for the analysis.  
+3. (\*\*\*) Name of a reviewed restaurant in Phoenix, AZ. Same as above, the high occurrence and significance of p-value of this trigram is also related to our corpus-specific restaurant distributions. But in both cases, identifying the word sequence as one token would carry the right meaningful information and thus beneficial for the analysis.   
+
+## Topic Extraction   
+Regardless of the method used for identifying common topics in the corpus, we may first set our intuitive expectations for the output as a qualitative sanity check. Given that our corpus is a set of reviews on restaurants, commonly reviewed aspects may include food (eg. taste, portion, price), service (eg. timeliness, friendliness), ambience (eg. noise level, suitable occasion), location, etc.. We will see if these targeted aspects can be recovered automatically.   
+
+### LDA   
+With number of topics manually set at 5 and Gibbs sampling control slots set at default level (again, a future step could be optimizing these parameters automatically), the topics identified by the LDA model from our corpus along with top words/tokens in each topic is listed below:   
+
+```{r LDA-result, warning=FALSE, message=FALSE, echo=FALSE}
+knitr::kable(terms(lda,10), format = "html",
+             caption = "LDA topics and associated top terms (entire corpus, stemmed)")
+```   
+The above topics are approximately about restaurant - location and type (Topic 1), food - variety and taste (Topic 2), food - type and price (Topic 3), food - taste and variety (Topic 4), service (Topic 5). While Topic 2 and Topic 4 seems to focus on approximately the same aspects, the former is more about fast-food type of food while the latter seems to be about fine dining.
+
 
 <!-- ## Tables -->
 
@@ -88,7 +103,7 @@ Notes on the Bigram Trigram table:
 <!-- ------------------------- ----------------------------------------- -------------- -->
 <!--   Education                                -0.49                         Yes -->
 
-<!--   Socio-Economic Status                     0.28                        Slight    -->
+<!--   Socio-Economic Status                     0.28                        Slight -->
 
 <!--   Income                                    0.08                          No -->
 
@@ -96,16 +111,16 @@ Notes on the Bigram Trigram table:
 
 <!--   Occupational Prestige                     0.21                        Slight -->
 <!-- ------------------------- ----------------------------------------- -------------- -->
-<!-- Table: (\#tab:inher) Correlation of Inheritance Factors for Parents and Child  -->
+<!-- Table: (\#tab:inher) Correlation of Inheritance Factors for Parents and Child -->
 
-<!-- We can also create a link to the table by doing the following: Table \@ref(tab:inher).  If you go back to [Loading and exploring data] and look at the `kable` table, we can create a reference to this max delays table too: Table \@ref(tab:maxdelays). The addition of the `(\#tab:inher)` option to the end of the table caption allows us to then make a reference to Table `\@ref(tab:label)`. Note that this reference could appear anywhere throughout the document after the table has appeared.   -->
+<!-- We can also create a link to the table by doing the following: Table \@ref(tab:inher).  If you go back to [Loading and exploring data] and look at the `kable` table, we can create a reference to this max delays table too: Table \@ref(tab:maxdelays). The addition of the `(\#tab:inher)` option to the end of the table caption allows us to then make a reference to Table `\@ref(tab:label)`. Note that this reference could appear anywhere throughout the document after the table has appeared. -->
 
-<!-- <!-- We will next explore ways to create this label-ref link using figures. --> -->
+<!-- <!-- We will next explore ways to create this label-ref link using figures. --> 
 
 <!-- \clearpage -->
 
 <!-- <!-- clearpage ends the page, and also dumps out all floats. -->
-<!--   Floats are things like tables and figures. --> -->
+<!--   Floats are things like tables and figures. -->
 
 
 <!-- ## Figures -->
@@ -116,7 +131,7 @@ Notes on the Bigram Trigram table:
 <!-- One thing that may be annoying is the way _R Markdown_ handles "floats" like tables and figures (it's really \LaTeX's fault). \LaTeX\ will try to find the best place to put your object based on the text around it and until you're really, truly done writing you should just leave it where it lies. There are some optional arguments specified in the options parameter of the `label` function.  If you need to shift your figure around, it might be good to look here on tweaking the options argument:  <https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions> -->
 
 <!-- If you need a graphic or tabular material to be part of the text, you can just put it inline. If you need it to appear in the list of figures or tables, it should be placed in a code chunk. -->
-<!-- --> -->
+<!-- -->
 
 
 <!-- In the **R** chunk below, we will load in a picture stored as `duke.png` in our main directory.  We then give it the caption of "Duke logo", the label of "dukelogo", and specify that this is a figure.  Make note of the different **R** chunk options that are given in the R Markdown file (not shown in the knitted document). -->
@@ -127,9 +142,9 @@ Notes on the Bigram Trigram table:
 
 <!-- Here is a reference to the Duke logo: Figure \@ref(fig:dukelogo).  Note the use of the `fig:` code here.  By naming the **R** chunk that contains the figure, we can then reference that figure later as done in the first sentence here.  We can also specify the caption for the figure via the R chunk option `fig.cap`. -->
 
-<!-- \clearpage  -->
+<!-- \clearpage -->
 
-<!-- <!-- starts a new page and stops trying to place floats such as tables and figures --> -->
+<!-- <!-- starts a new page and stops trying to place floats such as tables and figures -->
 
 <!-- Below we will investigate how to save the output of an **R** plot and label it in a way similar to that done above.  Recall the `flights` dataset from Chapter \@ref(rmd-basics).  (Note that we've shown a different way to reference a section or chapter here.)  We will next explore a bar graph with the mean flight departure delays by airline from Portland for 2014.  Note also the use of the `scale` parameter which is discussed on the next page. -->
 
@@ -162,7 +177,7 @@ Notes on the Bigram Trigram table:
 <!-- include_graphics("figure/subdivision.pdf") -->
 <!-- ``` -->
 
-<!-- As another example, here is a reference: Figure \@ref(fig:subd2).   -->
+<!-- As another example, here is a reference: Figure \@ref(fig:subd2). -->
 
 <!-- ## Footnotes and Endnotes -->
 
@@ -172,7 +187,7 @@ Notes on the Bigram Trigram table:
 
 <!-- Of course you will need to cite things, and you will probably accumulate an armful of sources. There are a variety of tools available for creating a bibliography database (stored with the .bib extension).  In addition to BibTeX suggested below, you may want to consider using the free and easy-to-use tool called Zotero.  The Duke librarians have created Zotero documentation at <https://library.duke.edu/research/zotero>.  In addition, a tutorial is available from Middlebury College at <http://sites.middlebury.edu/zoteromiddlebury/>. -->
 
-<!-- _R Markdown_ uses _pandoc_ (<http://pandoc.org/>) to build its bibliographies.  One nice caveat of this is that you won't have to do a second compile to load in references as standard LaTeX requires. To cite references in your thesis (after creating your bibliography database), place the reference name inside square brackets and precede it by the "at" symbol.  For example, here's a reference to a book about worrying:  [@Molina1994].  This `Molina1994` entry appears in a file called `thesis.bib` in the `bib` folder.  This bibliography database file was created by a program called BibTeX.  You can call this file something else if you like (look at the YAML header in the main .Rmd file) and, by default, is to placed in the `bib` folder.   -->
+<!-- _R Markdown_ uses _pandoc_ (<http://pandoc.org/>) to build its bibliographies.  One nice caveat of this is that you won't have to do a second compile to load in references as standard LaTeX requires. To cite references in your thesis (after creating your bibliography database), place the reference name inside square brackets and precede it by the "at" symbol.  For example, here's a reference to a book about worrying:  [@Molina1994].  This `Molina1994` entry appears in a file called `thesis.bib` in the `bib` folder.  This bibliography database file was created by a program called BibTeX.  You can call this file something else if you like (look at the YAML header in the main .Rmd file) and, by default, is to placed in the `bib` folder. -->
 
 <!-- For more information about BibTeX and bibliographies, see the following documentation from Reed College at (<http://web.reed.edu/cis/help/latex/index.html>)^[@reedweb2007]. There are three pages on this topic:  _bibtex_ (which talks about using BibTeX, at <http://web.reed.edu/cis/help/latex/bibtex.html>), _bibtexstyles_ (about how to find and use the bibliography style that best suits your needs, at <http://web.reed.edu/cis/help/latex/bibtexstyles.html>) and _bibman_ (which covers how to make and maintain a bibliography by hand, without BibTeX, at <http://web.reed.edu/cis/help/latex/bibman.html>). The last page will not be useful unless you have only a few sources. -->
 

@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Personalization with Aspect-based Sentiment Analysis</title>
-  <meta name="description" content="Personalization with Aspect-based Sentiment Analysis">
+  <title>Providing Aspect-specific Subscore for Restaurants with Topic Modeling and Sentiment Analysis</title>
+  <meta name="description" content="Providing Aspect-specific Subscore for Restaurants with Topic Modeling and Sentiment Analysis">
   <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Personalization with Aspect-based Sentiment Analysis" />
+  <meta property="og:title" content="Providing Aspect-specific Subscore for Restaurants with Topic Modeling and Sentiment Analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Personalization with Aspect-based Sentiment Analysis" />
+  <meta name="twitter:title" content="Providing Aspect-specific Subscore for Restaurants with Topic Modeling and Sentiment Analysis" />
   
   
   
@@ -105,12 +105,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2" data-path="2-methods.html"><a href="2-methods.html"><i class="fa fa-check"></i><b>2</b> Methodology</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-methods.html"><a href="2-methods.html#data-preprocessing"><i class="fa fa-check"></i><b>2.1</b> Data Preprocessing</a></li>
 <li class="chapter" data-level="2.2" data-path="2-methods.html"><a href="2-methods.html#n-gramming"><i class="fa fa-check"></i><b>2.2</b> N-Gramming</a></li>
-<li class="chapter" data-level="2.3" data-path="2-methods.html"><a href="2-methods.html#topic-extraction"><i class="fa fa-check"></i><b>2.3</b> Topic Extraction</a></li>
+<li class="chapter" data-level="2.3" data-path="2-methods.html"><a href="2-methods.html#topic-extraction"><i class="fa fa-check"></i><b>2.3</b> Topic Extraction</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="2-methods.html"><a href="2-methods.html#latent-dirichlet-allocation-lda"><i class="fa fa-check"></i><b>2.3.1</b> Latent Dirichlet Allocation (LDA)</a></li>
+</ul></li>
 <li class="chapter" data-level="2.4" data-path="2-methods.html"><a href="2-methods.html#sentiment-extraction-and-aggregation-spring-semester"><i class="fa fa-check"></i><b>2.4</b> Sentiment Extraction and Aggregation (Spring Semester)</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="3-results.html"><a href="3-results.html"><i class="fa fa-check"></i><b>3</b> Results</a><ul>
 <li class="chapter" data-level="3.1" data-path="3-results.html"><a href="3-results.html#exploratory-data-analysis"><i class="fa fa-check"></i><b>3.1</b> Exploratory Data Analysis</a></li>
 <li class="chapter" data-level="3.2" data-path="3-results.html"><a href="3-results.html#n-gramming-1"><i class="fa fa-check"></i><b>3.2</b> N-Gramming</a></li>
+<li class="chapter" data-level="3.3" data-path="3-results.html"><a href="3-results.html#topic-extraction-1"><i class="fa fa-check"></i><b>3.3</b> Topic Extraction</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="3-results.html"><a href="3-results.html#lda"><i class="fa fa-check"></i><b>3.3.1</b> LDA</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="4-discussion.html"><a href="4-discussion.html"><i class="fa fa-check"></i><b>4</b> Discussion</a></li>
 <li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i>Conclusion</a></li>
@@ -129,7 +134,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Personalization with Aspect-based Sentiment Analysis</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Providing Aspect-specific Subscore for Restaurants with Topic Modeling and Sentiment Analysis</a>
           </h1>
         </div>
 
@@ -152,18 +157,56 @@ MathJax.Hub.Config({
 <div id="n-gramming" class="section level2">
 <h2><span class="header-section-number">2.2</span> N-Gramming</h2>
 <p>One optional yet particularly helpful preprocessing step was n-gramming. It captures word sequences that are better perceived or carry more meaningful information as a whole. For example, “White House” should be perceived as a single token instead of separately as “white” and “house”, and similarly “President of the United States” makes more sense as a whole. N-gramming is especially helpful when identifying word sequences that are specific to the context of the corpus. In the previous example, it would be crucial to identify “White House” and “President of the United States” as n-grams in a corpus consists of political blogs. In our case where we have a corpus of restaurant reviews, we can expect to see context-specific n-grams such as “Mac ‘n Cheese”, “highly recommend”, “great service”, and even “can’t wait to go back”.</p>
-<p>We adopted the probabilistic approach for identifying these n-grams where the conditional probability of seeing the ith word given the (i-1)th word. The n-gramming implementation code was modified based on the NGramming Processing Script (c) by Teague Henry. The procedure in this code is for each consecutive bigram sequence (word1, word2):<br />
-* Calculate count1 = number of appearances of word1 in the corpus;<br />
-* Calculate prop2 = appearance rate of word2 in all non-word1 words in the corpus;<br />
-* Calculate count_bi = number of appearance of bigram word1_word2 in the corpus;<br />
-* Compute p_value = Pr(N count_bi) where N is the total number of consecutive co-occurrences of word1_word2, N ~ Binomial(count1, prop2);<br />
-* If p-value &lt; 0.01, then we reject the null hypothesis that the co-occurrences happened by random and identify word1_word2 as a meaningful bigram.</p>
+<p>We adopted the probabilistic approach for identifying these n-grams where the conditional probability of seeing the ith word given the (i-1)th word. The n-gramming implementation code was modified based on the NGramming Processing Script (c) by Teague Henry. The procedure in this code is for each consecutive bigram sequence (word1, word2):</p>
+<ol style="list-style-type: decimal">
+<li>Calculate count1 = number of appearances of word1 in the corpus;<br />
+</li>
+<li>Calculate prop2 = appearance rate of word2 in all non-word1 words in the corpus;<br />
+</li>
+<li>Calculate count_bi = number of appearance of bigram word1_word2 in the corpus;<br />
+</li>
+<li>Compute p_value = Pr(N count_bi) where N is the total number of consecutive co-occurrences of word1_word2, N ~ Binomial(count1, prop2);<br />
+</li>
+<li>If p-value &lt; 0.01, then we reject the null hypothesis that the co-occurrences happened by random and identify word1_word2 as a meaningful bigram.</li>
+</ol>
 <p>The above procedure is repeated again after first run to identify trigrams and larger n-grams.</p>
 <p>In terms of the cutoff threshold for identifying meaningful n-grams, both count and p-values were considered. While p-value cutoff has comparatively more consistent performance, it alone would include bigrams with neglectable occurrences (eg. appeared only 2 times in the entire corpus) and thus contribute minimal information. As a result, a hybrid cutoff using both a p-value cutoff of 0.01 and empirically-set count cutoffs of 100 for bigrams and 40 for trigrams was adopted for our corpus.</p>
 <p>All identified n-grams will be replaced by an integrated token of the original words in the corpus, where bigrams are connected with “_” in between and trigrams with “.”. For example, after all pre-processing steps and n-gramming, “White House” would become “white_hous”, and “Mac ‘n Cheese” would be “mac_n.chees.”</p>
 </div>
 <div id="topic-extraction" class="section level2">
 <h2><span class="header-section-number">2.3</span> Topic Extraction</h2>
+<div id="latent-dirichlet-allocation-lda" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Latent Dirichlet Allocation (LDA)</h3>
+<p>To identify common topics in our corpus, we will first experiment with the topic modeling approach, or more specifically Latent Dirichlet Allocation (LDA). LDA is a Bayesian generative topic model based on the assumption that each document, as a collection of words, is a mixture of a certain number of topics, and that the occurrence of each word in that document can be attributed to one of its topics. In terms of denotations, the entire corpus is a set of documents <span class="math inline">\(\{D_1, ..., Dm\}\)</span>, and the words within a document are denoted as <span class="math inline">\(D_i=\{w_{i1},...,w_{in_i}\}\)</span>, <span class="math inline">\(w_ij \in W\)</span> where W is a finite vocabulary set of size <span class="math inline">\(V\)</span>. Suppose we assume the entire corpus is a mixture of <span class="math inline">\(K\)</span> topics, the data generative process with LDA is as follows:</p>
+<ol style="list-style-type: decimal">
+<li>For each topic <span class="math inline">\(k \in \{1,...,K\}\)</span>,<br />
+</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Draw a topic-word proportion vector <span class="math inline">\(\phi_k \sim Dirichlet(\alpha)\)</span><br />
+</li>
+</ol>
+<ol start="2" style="list-style-type: decimal">
+<li>For each document <span class="math inline">\(D_i\)</span>,</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Draw a document-topic proportion vector <span class="math inline">\(\theta_i \sim Dirichlet(\beta)\)</span><br />
+</li>
+<li>For each word <span class="math inline">\(w_{ij}\)</span>,
+<ol style="list-style-type: lower-roman">
+<li>Draw a topic assignment <span class="math inline">\(z_j \sim Multinomial(\theta_i), z_j \in \{1,...,K\}\)</span><br />
+</li>
+<li>Draw a word from this topic <span class="math inline">\(w_{ij} \sim Multinomial(\phi_k), w_{ij} \in \{1,...,V\}\)</span></li>
+</ol></li>
+</ol>
+<div class="figure" style="text-align: center"><span id="fig:LDA"></span>
+<img src="figure/LDA.png" alt="LDA data generative process (Wikipedia)"  />
+<p class="caption">
+Figure 2.1: LDA data generative process (Wikipedia)
+</p>
+</div>
+<p>For our corpus, currently the number of topics is manually set at 5, so a future step would be determining the best number of topics for the corpus.</p>
+</div>
 </div>
 <div id="sentiment-extraction-and-aggregation-spring-semester" class="section level2">
 <h2><span class="header-section-number">2.4</span> Sentiment Extraction and Aggregation (Spring Semester)</h2>
@@ -255,6 +298,17 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

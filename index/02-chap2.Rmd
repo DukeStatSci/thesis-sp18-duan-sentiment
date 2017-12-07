@@ -14,11 +14,12 @@ Standard text data cleaning procedure was followed for the preprocessing of the 
 One optional yet particularly helpful preprocessing step was n-gramming. It captures word sequences that are better perceived or carry more meaningful information as a whole. For example, “White House” should be perceived as a single token instead of separately as “white” and “house”, and similarly “President of the United States” makes more sense as a whole. N-gramming is especially helpful when identifying word sequences that are specific to the context of the corpus. In the previous example, it would be crucial to identify “White House” and “President of the United States” as n-grams in a corpus consists of political blogs. In our case where we have a corpus of restaurant reviews, we can expect to see context-specific n-grams such as “Mac ‘n Cheese”, “highly recommend”, “great service”, and even “can’t wait to go back”.  
 
 We adopted the probabilistic approach for identifying these n-grams where the conditional probability of seeing the ith word given the (i-1)th word. The n-gramming implementation code was modified based on the NGramming Processing Script (c) by Teague Henry. The procedure in this code is for each consecutive bigram sequence (word1, word2):  
-* Calculate count1 = number of appearances of word1 in the corpus;  
-* Calculate prop2 = appearance rate of word2 in all non-word1 words in the corpus;  
-* Calculate count_bi = number of appearance of bigram word1_word2 in the corpus;  
-* Compute p_value = Pr(N  count_bi) where N is the total number of consecutive co-occurrences of word1_word2, N ~ Binomial(count1, prop2);  
-* If p-value < 0.01, then we reject the null hypothesis that the co-occurrences happened by random and identify word1_word2 as a meaningful bigram.  
+
+1. Calculate count1 = number of appearances of word1 in the corpus;    
+2. Calculate prop2 = appearance rate of word2 in all non-word1 words in the corpus;    
+3. Calculate count_bi = number of appearance of bigram word1_word2 in the corpus;    
+4. Compute p_value = Pr(N  count_bi) where N is the total number of consecutive co-occurrences of word1_word2, N ~ Binomial(count1, prop2);    
+5. If p-value < 0.01, then we reject the null hypothesis that the co-occurrences happened by random and identify word1_word2 as a meaningful bigram.    
 
 The above procedure is repeated again after first run to identify trigrams and larger n-grams.  
 
@@ -27,6 +28,23 @@ In terms of the cutoff threshold for identifying meaningful n-grams, both count 
 All identified n-grams will be replaced by an integrated token of the original words in the corpus, where bigrams are connected with “_” in between and trigrams with “.”. For example, after all pre-processing steps and n-gramming, “White House” would become “white_hous”, and “Mac ‘n Cheese” would be “mac_n.chees.”  
 
 ## Topic Extraction   
+### Latent Dirichlet Allocation (LDA)  
+To identify common topics in our corpus, we will first experiment with the topic modeling approach, or more specifically Latent Dirichlet Allocation (LDA). LDA is a Bayesian generative topic model based on the assumption that each document, as a collection of words, is a mixture of a certain number of topics, and that the occurrence of each word in that document can be attributed to one of its topics. In terms of denotations, the entire corpus is a set of documents $\{D_1, ..., Dm\}$, and the words within a document are denoted as $D_i=\{w_{i1},...,w_{in_i}\}$, $w_ij \in W$ where W is a finite vocabulary set of size $V$. Suppose we assume the entire corpus is a mixture of $K$ topics, the data generative process with LDA is as follows:
+
+1. For each topic $k \in \{1,...,K\}$,  
+   a. Draw a topic-word proportion vector $\phi_k \sim Dirichlet(\alpha)$  
+2. For each document $D_i$,
+   a. Draw a document-topic proportion vector $\theta_i \sim Dirichlet(\beta)$  
+   b. For each word $w_{ij}$,  
+      i. Draw a topic assignment $z_j \sim Multinomial(\theta_i), z_j \in \{1,...,K\}$  
+      ii. Draw a word from this topic $w_{ij} \sim Multinomial(\phi_k), w_{ij} \in \{1,...,V\}$   
+      
+      
+```{r LDA, fig.cap="LDA data generative process (Wikipedia)", echo=FALSE}
+include_graphics(path = "figure/LDA.png")
+```  
+
+For our corpus, currently the number of topics is manually set at 5, so a future step would be determining the best number of topics for the corpus.  
 
 ## Sentiment Extraction and Aggregation (Spring Semester)  
 

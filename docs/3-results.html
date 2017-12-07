@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Personalization with Aspect-based Sentiment Analysis</title>
-  <meta name="description" content="Personalization with Aspect-based Sentiment Analysis">
+  <title>Providing Aspect-specific Subscore for Restaurants with Topic Modeling and Sentiment Analysis</title>
+  <meta name="description" content="Providing Aspect-specific Subscore for Restaurants with Topic Modeling and Sentiment Analysis">
   <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Personalization with Aspect-based Sentiment Analysis" />
+  <meta property="og:title" content="Providing Aspect-specific Subscore for Restaurants with Topic Modeling and Sentiment Analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Personalization with Aspect-based Sentiment Analysis" />
+  <meta name="twitter:title" content="Providing Aspect-specific Subscore for Restaurants with Topic Modeling and Sentiment Analysis" />
   
   
   
@@ -105,12 +105,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2" data-path="2-methods.html"><a href="2-methods.html"><i class="fa fa-check"></i><b>2</b> Methodology</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-methods.html"><a href="2-methods.html#data-preprocessing"><i class="fa fa-check"></i><b>2.1</b> Data Preprocessing</a></li>
 <li class="chapter" data-level="2.2" data-path="2-methods.html"><a href="2-methods.html#n-gramming"><i class="fa fa-check"></i><b>2.2</b> N-Gramming</a></li>
-<li class="chapter" data-level="2.3" data-path="2-methods.html"><a href="2-methods.html#topic-extraction"><i class="fa fa-check"></i><b>2.3</b> Topic Extraction</a></li>
+<li class="chapter" data-level="2.3" data-path="2-methods.html"><a href="2-methods.html#topic-extraction"><i class="fa fa-check"></i><b>2.3</b> Topic Extraction</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="2-methods.html"><a href="2-methods.html#latent-dirichlet-allocation-lda"><i class="fa fa-check"></i><b>2.3.1</b> Latent Dirichlet Allocation (LDA)</a></li>
+</ul></li>
 <li class="chapter" data-level="2.4" data-path="2-methods.html"><a href="2-methods.html#sentiment-extraction-and-aggregation-spring-semester"><i class="fa fa-check"></i><b>2.4</b> Sentiment Extraction and Aggregation (Spring Semester)</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="3-results.html"><a href="3-results.html"><i class="fa fa-check"></i><b>3</b> Results</a><ul>
 <li class="chapter" data-level="3.1" data-path="3-results.html"><a href="3-results.html#exploratory-data-analysis"><i class="fa fa-check"></i><b>3.1</b> Exploratory Data Analysis</a></li>
 <li class="chapter" data-level="3.2" data-path="3-results.html"><a href="3-results.html#n-gramming-1"><i class="fa fa-check"></i><b>3.2</b> N-Gramming</a></li>
+<li class="chapter" data-level="3.3" data-path="3-results.html"><a href="3-results.html#topic-extraction-1"><i class="fa fa-check"></i><b>3.3</b> Topic Extraction</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="3-results.html"><a href="3-results.html#lda"><i class="fa fa-check"></i><b>3.3.1</b> LDA</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="4-discussion.html"><a href="4-discussion.html"><i class="fa fa-check"></i><b>4</b> Discussion</a></li>
 <li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i>Conclusion</a></li>
@@ -129,7 +134,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Personalization with Aspect-based Sentiment Analysis</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Providing Aspect-specific Subscore for Restaurants with Topic Modeling and Sentiment Analysis</a>
           </h1>
         </div>
 
@@ -256,40 +261,240 @@ Figure 3.2: Word cloud of 50 most frequent words in corpus (pre-stemming)
 1. (*) Similar bigrams including <em>“good/great_food/servic/place”</em> are also common with significant p-values. Same as in the case of trigrams: <em>“food/servic.pretti/realli/super_good/great”</em>.<br />
 2. (**) Refers to “White Castle”, a fast-food chain in Midwestern and Mid-Atlantic regions of the United States. As previously mentioned, the high occurrence of this bigram is likely due to the state distribution of the reviewed restaurants in our corpus.<br />
 3. (***) Name of a reviewed restaurant in Phoenix, AZ. Same as above, the high occurrence and significance of p-value of this trigram is also related to our corpus-specific restaurant distributions. But in both cases, identifying the word sequence as one token would carry the right meaningful information and thus beneficial for the analysis.</p>
+</div>
+<div id="topic-extraction-1" class="section level2">
+<h2><span class="header-section-number">3.3</span> Topic Extraction</h2>
+<p>Regardless of the method used for identifying common topics in the corpus, we may first set our intuitive expectations for the output as a qualitative sanity check. Given that our corpus is a set of reviews on restaurants, commonly reviewed aspects may include food (eg. taste, portion, price), service (eg. timeliness, friendliness), ambience (eg. noise level, suitable occasion), location, etc.. We will see if these targeted aspects can be recovered automatically.</p>
+<div id="lda" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> LDA</h3>
+<p>With number of topics manually set at 5 and Gibbs sampling control slots set at default level (again, a future step could be optimizing these parameters automatically), the topics identified by the LDA model from our corpus along with top words/tokens in each topic is listed below:</p>
+<table>
+<caption>
+<span id="tab:LDA-result">Table 3.2: </span>LDA topics and associated top terms (entire corpus, stemmed)
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Topic 1
+</th>
+<th style="text-align:left;">
+Topic 2
+</th>
+<th style="text-align:left;">
+Topic 3
+</th>
+<th style="text-align:left;">
+Topic 4
+</th>
+<th style="text-align:left;">
+Topic 5
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+place
+</td>
+<td style="text-align:left;">
+burger
+</td>
+<td style="text-align:left;">
+just
+</td>
+<td style="text-align:left;">
+restaur
+</td>
+<td style="text-align:left;">
+tabl
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+locat
+</td>
+<td style="text-align:left;">
+chicken
+</td>
+<td style="text-align:left;">
+pizza
+</td>
+<td style="text-align:left;">
+delici
+</td>
+<td style="text-align:left;">
+order
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sandwich
+</td>
+<td style="text-align:left;">
+sauc
+</td>
+<td style="text-align:left;">
+get
+</td>
+<td style="text-align:left;">
+meal
+</td>
+<td style="text-align:left;">
+ask
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+day
+</td>
+<td style="text-align:left;">
+flavor
+</td>
+<td style="text-align:left;">
+eat
+</td>
+<td style="text-align:left;">
+salad
+</td>
+<td style="text-align:left;">
+us
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bar
+</td>
+<td style="text-align:left;">
+fri
+</td>
+<td style="text-align:left;">
+like
+</td>
+<td style="text-align:left;">
+menu
+</td>
+<td style="text-align:left;">
+said
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+alway
+</td>
+<td style="text-align:left;">
+order
+</td>
+<td style="text-align:left;">
+place
+</td>
+<td style="text-align:left;">
+amaz
+</td>
+<td style="text-align:left;">
+server
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+beer
+</td>
+<td style="text-align:left;">
+tast
+</td>
+<td style="text-align:left;">
+think
+</td>
+<td style="text-align:left;">
+dinner
+</td>
+<td style="text-align:left;">
+servic
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+love
+</td>
+<td style="text-align:left;">
+good
+</td>
+<td style="text-align:left;">
+im
+</td>
+<td style="text-align:left;">
+steak
+</td>
+<td style="text-align:left;">
+time
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+friend
+</td>
+<td style="text-align:left;">
+meat
+</td>
+<td style="text-align:left;">
+price
+</td>
+<td style="text-align:left;">
+great
+</td>
+<td style="text-align:left;">
+went
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+great
+</td>
+<td style="text-align:left;">
+like
+</td>
+<td style="text-align:left;">
+realli
+</td>
+<td style="text-align:left;">
+bread
+</td>
+<td style="text-align:left;">
+one
+</td>
+</tr>
+</tbody>
+</table>
+<p>The above topics are approximately about restaurant - location and type (Topic 1), food - variety and taste (Topic 2), food - type and price (Topic 3), food - taste and variety (Topic 4), service (Topic 5). While Topic 2 and Topic 4 seems to focus on approximately the same aspects, the former is more about fast-food type of food while the latter seems to be about fine dining.</p>
 <!-- ## Tables -->
 <!-- In addition to the tables that can be automatically generated from a data frame in **R** that you saw in [R Markdown Basics] using the `kable` function, you can also create tables using _pandoc_. (More information is available at <http://pandoc.org/README.html#tables>.)  This might be useful if you don't have values specifically stored in **R**, but you'd like to display them in table form.  Below is an example.  Pay careful attention to the alignment in the table and hyphens to create the rows and columns. -->
 <!-- ---------------------------------------------------------------------------------- -->
 <!--   Factors                    Correlation between Parents & Child      Inherited -->
 <!-- ------------------------- ----------------------------------------- -------------- -->
 <!--   Education                                -0.49                         Yes -->
-<!--   Socio-Economic Status                     0.28                        Slight    -->
+<!--   Socio-Economic Status                     0.28                        Slight -->
 <!--   Income                                    0.08                          No -->
 <!--   Family Size                               0.18                        Slight -->
 <!--   Occupational Prestige                     0.21                        Slight -->
 <!-- ------------------------- ----------------------------------------- -------------- -->
-<!-- Table: (\#tab:inher) Correlation of Inheritance Factors for Parents and Child  -->
-<!-- We can also create a link to the table by doing the following: Table \@ref(tab:inher).  If you go back to [Loading and exploring data] and look at the `kable` table, we can create a reference to this max delays table too: Table \@ref(tab:maxdelays). The addition of the `(\#tab:inher)` option to the end of the table caption allows us to then make a reference to Table `\@ref(tab:label)`. Note that this reference could appear anywhere throughout the document after the table has appeared.   -->
+<!-- Table: (\#tab:inher) Correlation of Inheritance Factors for Parents and Child -->
+<!-- We can also create a link to the table by doing the following: Table \@ref(tab:inher).  If you go back to [Loading and exploring data] and look at the `kable` table, we can create a reference to this max delays table too: Table \@ref(tab:maxdelays). The addition of the `(\#tab:inher)` option to the end of the table caption allows us to then make a reference to Table `\@ref(tab:label)`. Note that this reference could appear anywhere throughout the document after the table has appeared. -->
 <!-- <!-- We will next explore ways to create this label-ref link using figures. -->
-<p>–&gt;</p>
 <!-- \clearpage -->
 <!-- <!-- clearpage ends the page, and also dumps out all floats. -->
 <!--   Floats are things like tables and figures. -->
-<p>–&gt;</p>
 <!-- ## Figures -->
 <!-- If your thesis has a lot of figures, _R Markdown_ might behave better for you than that other word processor.  One perk is that it will automatically number the figures accordingly in each chapter.    You'll also be able to create a label for each figure, add a caption, and then reference the figure in a way similar to what we saw with tables earlier.  If you label your figures, you can move the figures around and _R Markdown_ will automatically adjust the numbering for you.  No need for you to remember!  So that you don't have to get too far into LaTeX to do this, a couple **R** functions have been created for you to assist.  You'll see their use below. -->
 <!-- <!-- -->
 <!-- One thing that may be annoying is the way _R Markdown_ handles "floats" like tables and figures (it's really \LaTeX's fault). \LaTeX\ will try to find the best place to put your object based on the text around it and until you're really, truly done writing you should just leave it where it lies. There are some optional arguments specified in the options parameter of the `label` function.  If you need to shift your figure around, it might be good to look here on tweaking the options argument:  <https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions> -->
 <!-- If you need a graphic or tabular material to be part of the text, you can just put it inline. If you need it to appear in the list of figures or tables, it should be placed in a code chunk. -->
 <!-- -->
-<p>–&gt;</p>
 <!-- In the **R** chunk below, we will load in a picture stored as `duke.png` in our main directory.  We then give it the caption of "Duke logo", the label of "dukelogo", and specify that this is a figure.  Make note of the different **R** chunk options that are given in the R Markdown file (not shown in the knitted document). -->
 <!-- ```{r dukelogo, fig.cap="Duke logo"} -->
 <!-- include_graphics(path = "figure/duke.png") -->
 <!-- ``` -->
 <!-- Here is a reference to the Duke logo: Figure \@ref(fig:dukelogo).  Note the use of the `fig:` code here.  By naming the **R** chunk that contains the figure, we can then reference that figure later as done in the first sentence here.  We can also specify the caption for the figure via the R chunk option `fig.cap`. -->
-<!-- \clearpage  -->
+<!-- \clearpage -->
 <!-- <!-- starts a new page and stops trying to place floats such as tables and figures -->
-<p>–&gt;</p>
 <!-- Below we will investigate how to save the output of an **R** plot and label it in a way similar to that done above.  Recall the `flights` dataset from Chapter \@ref(rmd-basics).  (Note that we've shown a different way to reference a section or chapter here.)  We will next explore a bar graph with the mean flight departure delays by airline from Portland for 2014.  Note also the use of the `scale` parameter which is discussed on the next page. -->
 <!-- ```{r delaysboxplot, warnings=FALSE, messages=FALSE, fig.cap="Mean Delays by Airline", fig.width=6} -->
 <!-- flights %>% group_by(carrier) %>% -->
@@ -310,12 +515,12 @@ Figure 3.2: Word cloud of 50 most frequent words in corpus (pre-stemming)
 <!-- ```{r subd2, results="asis", echo=FALSE, out.extra="angle=180, scale=1.1", fig.cap="A Larger Figure, Flipped Upside Down"} -->
 <!-- include_graphics("figure/subdivision.pdf") -->
 <!-- ``` -->
-<!-- As another example, here is a reference: Figure \@ref(fig:subd2).   -->
+<!-- As another example, here is a reference: Figure \@ref(fig:subd2). -->
 <!-- ## Footnotes and Endnotes -->
 <!-- You might want to footnote something. ^[footnote text] The footnote will be in a smaller font and placed appropriately. Endnotes work in much the same way. -->
 <!-- ## Bibliographies -->
 <!-- Of course you will need to cite things, and you will probably accumulate an armful of sources. There are a variety of tools available for creating a bibliography database (stored with the .bib extension).  In addition to BibTeX suggested below, you may want to consider using the free and easy-to-use tool called Zotero.  The Duke librarians have created Zotero documentation at <https://library.duke.edu/research/zotero>.  In addition, a tutorial is available from Middlebury College at <http://sites.middlebury.edu/zoteromiddlebury/>. -->
-<!-- _R Markdown_ uses _pandoc_ (<http://pandoc.org/>) to build its bibliographies.  One nice caveat of this is that you won't have to do a second compile to load in references as standard LaTeX requires. To cite references in your thesis (after creating your bibliography database), place the reference name inside square brackets and precede it by the "at" symbol.  For example, here's a reference to a book about worrying:  [@Molina1994].  This `Molina1994` entry appears in a file called `thesis.bib` in the `bib` folder.  This bibliography database file was created by a program called BibTeX.  You can call this file something else if you like (look at the YAML header in the main .Rmd file) and, by default, is to placed in the `bib` folder.   -->
+<!-- _R Markdown_ uses _pandoc_ (<http://pandoc.org/>) to build its bibliographies.  One nice caveat of this is that you won't have to do a second compile to load in references as standard LaTeX requires. To cite references in your thesis (after creating your bibliography database), place the reference name inside square brackets and precede it by the "at" symbol.  For example, here's a reference to a book about worrying:  [@Molina1994].  This `Molina1994` entry appears in a file called `thesis.bib` in the `bib` folder.  This bibliography database file was created by a program called BibTeX.  You can call this file something else if you like (look at the YAML header in the main .Rmd file) and, by default, is to placed in the `bib` folder. -->
 <!-- For more information about BibTeX and bibliographies, see the following documentation from Reed College at (<http://web.reed.edu/cis/help/latex/index.html>)^[@reedweb2007]. There are three pages on this topic:  _bibtex_ (which talks about using BibTeX, at <http://web.reed.edu/cis/help/latex/bibtex.html>), _bibtexstyles_ (about how to find and use the bibliography style that best suits your needs, at <http://web.reed.edu/cis/help/latex/bibtexstyles.html>) and _bibman_ (which covers how to make and maintain a bibliography by hand, without BibTeX, at <http://web.reed.edu/cis/help/latex/bibman.html>). The last page will not be useful unless you have only a few sources. -->
 <!-- If you look at the YAML header at the top of the main .Rmd file you can see that we can specify the style of the bibliography by referencing the appropriate csl file.  You can download a variety of different style files at <https://www.zotero.org/styles>.  Make sure to download the file into the csl folder. -->
 <!-- **Tips for Bibliographies** -->
@@ -327,6 +532,7 @@ Figure 3.2: Word cloud of 50 most frequent words in corpus (pre-stemming)
 <!-- ## Anything else? -->
 <!-- If you'd like to see examples of other things in this template, please contact Mine Cetinkaya-Rundel (email <mine@stat.duke.edu>) with your suggestions. We love to see people using _R Markdown_ for their theses, and are happy to help. -->
 
+</div>
 </div>
 </div>
             </section>
@@ -375,6 +581,17 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

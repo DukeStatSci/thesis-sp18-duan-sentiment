@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Personalization with Aspect-based Sentiment Analysis</title>
-  <meta name="description" content="Personalization with Aspect-based Sentiment Analysis">
+  <title>Providing Aspect-specific Subscore for Restaurants with Topic Modeling and Sentiment Analysis</title>
+  <meta name="description" content="Providing Aspect-specific Subscore for Restaurants with Topic Modeling and Sentiment Analysis">
   <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Personalization with Aspect-based Sentiment Analysis" />
+  <meta property="og:title" content="Providing Aspect-specific Subscore for Restaurants with Topic Modeling and Sentiment Analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Personalization with Aspect-based Sentiment Analysis" />
+  <meta name="twitter:title" content="Providing Aspect-specific Subscore for Restaurants with Topic Modeling and Sentiment Analysis" />
   
   
   
@@ -105,12 +105,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2" data-path="2-methods.html"><a href="2-methods.html"><i class="fa fa-check"></i><b>2</b> Methodology</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-methods.html"><a href="2-methods.html#data-preprocessing"><i class="fa fa-check"></i><b>2.1</b> Data Preprocessing</a></li>
 <li class="chapter" data-level="2.2" data-path="2-methods.html"><a href="2-methods.html#n-gramming"><i class="fa fa-check"></i><b>2.2</b> N-Gramming</a></li>
-<li class="chapter" data-level="2.3" data-path="2-methods.html"><a href="2-methods.html#topic-extraction"><i class="fa fa-check"></i><b>2.3</b> Topic Extraction</a></li>
+<li class="chapter" data-level="2.3" data-path="2-methods.html"><a href="2-methods.html#topic-extraction"><i class="fa fa-check"></i><b>2.3</b> Topic Extraction</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="2-methods.html"><a href="2-methods.html#latent-dirichlet-allocation-lda"><i class="fa fa-check"></i><b>2.3.1</b> Latent Dirichlet Allocation (LDA)</a></li>
+</ul></li>
 <li class="chapter" data-level="2.4" data-path="2-methods.html"><a href="2-methods.html#sentiment-extraction-and-aggregation-spring-semester"><i class="fa fa-check"></i><b>2.4</b> Sentiment Extraction and Aggregation (Spring Semester)</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="3-results.html"><a href="3-results.html"><i class="fa fa-check"></i><b>3</b> Results</a><ul>
 <li class="chapter" data-level="3.1" data-path="3-results.html"><a href="3-results.html#exploratory-data-analysis"><i class="fa fa-check"></i><b>3.1</b> Exploratory Data Analysis</a></li>
 <li class="chapter" data-level="3.2" data-path="3-results.html"><a href="3-results.html#n-gramming-1"><i class="fa fa-check"></i><b>3.2</b> N-Gramming</a></li>
+<li class="chapter" data-level="3.3" data-path="3-results.html"><a href="3-results.html#topic-extraction-1"><i class="fa fa-check"></i><b>3.3</b> Topic Extraction</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="3-results.html"><a href="3-results.html#lda"><i class="fa fa-check"></i><b>3.3.1</b> LDA</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="4-discussion.html"><a href="4-discussion.html"><i class="fa fa-check"></i><b>4</b> Discussion</a></li>
 <li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i>Conclusion</a></li>
@@ -129,7 +134,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Personalization with Aspect-based Sentiment Analysis</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Providing Aspect-specific Subscore for Restaurants with Topic Modeling and Sentiment Analysis</a>
           </h1>
         </div>
 
@@ -213,6 +218,17 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
