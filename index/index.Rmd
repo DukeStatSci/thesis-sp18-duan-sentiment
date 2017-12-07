@@ -9,7 +9,7 @@ committeemembertwo: 'Committeemember T. Name'
 dus: 'Dus X. Name'
 department: 'Department of Statistical Science'
 degree: 'Bachelor of Science in Statistical Science'
-title: 'Providing Aspect-specific Subscore for Restaurants with Topic Modeling and Sentiment Analysis'
+title: 'Providing Aspect Subscores for Restaurants with Topic Modeling and Sentiment Analysis'
 knit: "bookdown::render_book"
 site: bookdown::bookdown_site
 output: 
