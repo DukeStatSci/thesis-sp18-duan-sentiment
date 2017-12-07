@@ -78,4 +78,6 @@ on chapters.
 -->
 
 # Check-in {.unnumbered}
-2017-12-7: This is the check point for Fall 2017. Current version includes a completed **Introduction**, up-to-date **Methodology** (*Data Preprocessing*, *N-Gramming*, *Topic Extraction - LDA* completed), and correspondong sections in **Results** (*EDA*, *N-Gramming*, *Topic Extraction - LDA* completed).  
+2017-12-7: This is the check point for Fall 2017. Current version includes a completed **Introduction**, up-to-date **Methodology** (*Data Preprocessing*, *N-Gramming*, *Topic Extraction - LDA* completed), and correspondong sections in **Results** (*EDA*, *N-Gramming*, *Topic Extraction - LDA* completed).   
+
+In the Spring semester, I will primarily focus on the aggregation of sentiments. As soon as I have a working solution of providing subscores for restaurant based on most-reviewed aspects (food, service, ambience, location etc.), I will further refine methods for extracting common topics, and I’m especially hoping to experiment with the doc2vec model.   

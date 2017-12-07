@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Providing Aspect-specific Subscore for Restaurants with Topic Modeling and Sentiment Analysis</title>
-  <meta name="description" content="Providing Aspect-specific Subscore for Restaurants with Topic Modeling and Sentiment Analysis">
+  <title>Providing Aspect Subscores for Restaurants with Topic Modeling and Sentiment Analysis</title>
+  <meta name="description" content="Providing Aspect Subscores for Restaurants with Topic Modeling and Sentiment Analysis">
   <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Providing Aspect-specific Subscore for Restaurants with Topic Modeling and Sentiment Analysis" />
+  <meta property="og:title" content="Providing Aspect Subscores for Restaurants with Topic Modeling and Sentiment Analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Providing Aspect-specific Subscore for Restaurants with Topic Modeling and Sentiment Analysis" />
+  <meta name="twitter:title" content="Providing Aspect Subscores for Restaurants with Topic Modeling and Sentiment Analysis" />
   
   
   
@@ -134,7 +134,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Providing Aspect-specific Subscore for Restaurants with Topic Modeling and Sentiment Analysis</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Providing Aspect Subscores for Restaurants with Topic Modeling and Sentiment Analysis</a>
           </h1>
         </div>
 
@@ -465,6 +465,7 @@ one
 </tbody>
 </table>
 <p>The above topics are approximately about restaurant - location and type (Topic 1), food - variety and taste (Topic 2), food - type and price (Topic 3), food - taste and variety (Topic 4), service (Topic 5). While Topic 2 and Topic 4 seems to focus on approximately the same aspects, the former is more about fast-food type of food while the latter seems to be about fine dining.</p>
+<p>I have also experimented with running LDA with sub-corpus of each category listed on Yelp (i.e. by cuisine type), and besides showing more category-specific top terms such as “taco”, “salsa”, and “horchata” in the food topic for the sub-corpus of Mexican restaurants, the segmented corpus did not result in significant improvements in the distinction of topics but rather had worse performance possibly due to less documents in sub-corpus. While segmentation of corpus proves to not be of much help when extracting common topics, it may be helpful later in the step of sentiment aggregation especially we decide to use top terms associated with targeted topics (food, service, ambience, location etc.) as the anchor/center for finding and aggregating sentiment polarity.</p>
 <!-- ## Tables -->
 <!-- In addition to the tables that can be automatically generated from a data frame in **R** that you saw in [R Markdown Basics] using the `kable` function, you can also create tables using _pandoc_. (More information is available at <http://pandoc.org/README.html#tables>.)  This might be useful if you don't have values specifically stored in **R**, but you'd like to display them in table form.  Below is an example.  Pay careful attention to the alignment in the table and hyphens to create the rows and columns. -->
 <!-- ---------------------------------------------------------------------------------- -->
