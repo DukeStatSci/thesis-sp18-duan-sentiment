@@ -100,24 +100,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul class="summary">
 <li><a href="./"></a></li>
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="1" data-path="1-intro.html"><a href="1-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-intro.html"><a href="1-intro.html#personalization"><i class="fa fa-check"></i><b>1.1</b> Personalization</a></li>
-<li class="chapter" data-level="1.2" data-path="1-intro.html"><a href="1-intro.html#sentiment-analysis"><i class="fa fa-check"></i><b>1.2</b> Sentiment Analysis</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Check-in</a></li>
+<li class="chapter" data-level="1" data-path="1-intro.html"><a href="1-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="2-methods.html"><a href="2-methods.html"><i class="fa fa-check"></i><b>2</b> Methodology</a><ul>
-<li class="chapter" data-level="2.1" data-path="2-methods.html"><a href="2-methods.html#data-collection-and-preprocessing"><i class="fa fa-check"></i><b>2.1</b> Data Collection and Preprocessing</a></li>
-<li class="chapter" data-level="2.2" data-path="2-methods.html"><a href="2-methods.html#models"><i class="fa fa-check"></i><b>2.2</b> Models</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="2-methods.html"><a href="2-methods.html#feature-extraction"><i class="fa fa-check"></i><b>2.2.1</b> Feature Extraction</a></li>
-<li class="chapter" data-level="2.2.2" data-path="2-methods.html"><a href="2-methods.html#sentiment-extraction-and-aggregation"><i class="fa fa-check"></i><b>2.2.2</b> Sentiment Extraction and Aggregation</a></li>
-</ul></li>
+<li class="chapter" data-level="2.1" data-path="2-methods.html"><a href="2-methods.html#data-preprocessing"><i class="fa fa-check"></i><b>2.1</b> Data Preprocessing</a></li>
+<li class="chapter" data-level="2.2" data-path="2-methods.html"><a href="2-methods.html#n-gramming"><i class="fa fa-check"></i><b>2.2</b> N-Gramming</a></li>
+<li class="chapter" data-level="2.3" data-path="2-methods.html"><a href="2-methods.html#topic-extraction"><i class="fa fa-check"></i><b>2.3</b> Topic Extraction</a></li>
+<li class="chapter" data-level="2.4" data-path="2-methods.html"><a href="2-methods.html#sentiment-extraction-and-aggregation-spring-semester"><i class="fa fa-check"></i><b>2.4</b> Sentiment Extraction and Aggregation (Spring Semester)</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="3-results.html"><a href="3-results.html"><i class="fa fa-check"></i><b>3</b> Results</a><ul>
-<li class="chapter" data-level="3.1" data-path="3-results.html"><a href="3-results.html#tables"><i class="fa fa-check"></i><b>3.1</b> Tables</a></li>
-<li class="chapter" data-level="3.2" data-path="3-results.html"><a href="3-results.html#figures"><i class="fa fa-check"></i><b>3.2</b> Figures</a></li>
-<li class="chapter" data-level="3.3" data-path="3-results.html"><a href="3-results.html#footnotes-and-endnotes"><i class="fa fa-check"></i><b>3.3</b> Footnotes and Endnotes</a></li>
-<li class="chapter" data-level="3.4" data-path="3-results.html"><a href="3-results.html#bibliographies"><i class="fa fa-check"></i><b>3.4</b> Bibliographies</a></li>
-<li class="chapter" data-level="3.5" data-path="3-results.html"><a href="3-results.html#anything-else"><i class="fa fa-check"></i><b>3.5</b> Anything else?</a></li>
+<li class="chapter" data-level="3.1" data-path="3-results.html"><a href="3-results.html#exploratory-data-analysis"><i class="fa fa-check"></i><b>3.1</b> Exploratory Data Analysis</a></li>
+<li class="chapter" data-level="3.2" data-path="3-results.html"><a href="3-results.html#n-gramming-1"><i class="fa fa-check"></i><b>3.2</b> N-Gramming</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="4-discussion.html"><a href="4-discussion.html"><i class="fa fa-check"></i><b>4</b> Discussion</a></li>
 <li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i>Conclusion</a></li>
@@ -150,7 +143,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <!--
 The bib chunk below must go last in this document according to how R Markdown renders.  More info is at http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html
 -->
-
+<p></p>
 <!-- 
 If you'd like to change the name of the bibliography to something else,
 delete "References" and replace it.
@@ -202,17 +195,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(script.src))
-      script.src  = script.src.replace(/^https?:/, '');
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

@@ -100,24 +100,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul class="summary">
 <li><a href="./"></a></li>
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="1" data-path="1-intro.html"><a href="1-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-intro.html"><a href="1-intro.html#personalization"><i class="fa fa-check"></i><b>1.1</b> Personalization</a></li>
-<li class="chapter" data-level="1.2" data-path="1-intro.html"><a href="1-intro.html#sentiment-analysis"><i class="fa fa-check"></i><b>1.2</b> Sentiment Analysis</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Check-in</a></li>
+<li class="chapter" data-level="1" data-path="1-intro.html"><a href="1-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="2-methods.html"><a href="2-methods.html"><i class="fa fa-check"></i><b>2</b> Methodology</a><ul>
-<li class="chapter" data-level="2.1" data-path="2-methods.html"><a href="2-methods.html#data-collection-and-preprocessing"><i class="fa fa-check"></i><b>2.1</b> Data Collection and Preprocessing</a></li>
-<li class="chapter" data-level="2.2" data-path="2-methods.html"><a href="2-methods.html#models"><i class="fa fa-check"></i><b>2.2</b> Models</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="2-methods.html"><a href="2-methods.html#feature-extraction"><i class="fa fa-check"></i><b>2.2.1</b> Feature Extraction</a></li>
-<li class="chapter" data-level="2.2.2" data-path="2-methods.html"><a href="2-methods.html#sentiment-extraction-and-aggregation"><i class="fa fa-check"></i><b>2.2.2</b> Sentiment Extraction and Aggregation</a></li>
-</ul></li>
+<li class="chapter" data-level="2.1" data-path="2-methods.html"><a href="2-methods.html#data-preprocessing"><i class="fa fa-check"></i><b>2.1</b> Data Preprocessing</a></li>
+<li class="chapter" data-level="2.2" data-path="2-methods.html"><a href="2-methods.html#n-gramming"><i class="fa fa-check"></i><b>2.2</b> N-Gramming</a></li>
+<li class="chapter" data-level="2.3" data-path="2-methods.html"><a href="2-methods.html#topic-extraction"><i class="fa fa-check"></i><b>2.3</b> Topic Extraction</a></li>
+<li class="chapter" data-level="2.4" data-path="2-methods.html"><a href="2-methods.html#sentiment-extraction-and-aggregation-spring-semester"><i class="fa fa-check"></i><b>2.4</b> Sentiment Extraction and Aggregation (Spring Semester)</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="3-results.html"><a href="3-results.html"><i class="fa fa-check"></i><b>3</b> Results</a><ul>
-<li class="chapter" data-level="3.1" data-path="3-results.html"><a href="3-results.html#tables"><i class="fa fa-check"></i><b>3.1</b> Tables</a></li>
-<li class="chapter" data-level="3.2" data-path="3-results.html"><a href="3-results.html#figures"><i class="fa fa-check"></i><b>3.2</b> Figures</a></li>
-<li class="chapter" data-level="3.3" data-path="3-results.html"><a href="3-results.html#footnotes-and-endnotes"><i class="fa fa-check"></i><b>3.3</b> Footnotes and Endnotes</a></li>
-<li class="chapter" data-level="3.4" data-path="3-results.html"><a href="3-results.html#bibliographies"><i class="fa fa-check"></i><b>3.4</b> Bibliographies</a></li>
-<li class="chapter" data-level="3.5" data-path="3-results.html"><a href="3-results.html#anything-else"><i class="fa fa-check"></i><b>3.5</b> Anything else?</a></li>
+<li class="chapter" data-level="3.1" data-path="3-results.html"><a href="3-results.html#exploratory-data-analysis"><i class="fa fa-check"></i><b>3.1</b> Exploratory Data Analysis</a></li>
+<li class="chapter" data-level="3.2" data-path="3-results.html"><a href="3-results.html#n-gramming-1"><i class="fa fa-check"></i><b>3.2</b> N-Gramming</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="4-discussion.html"><a href="4-discussion.html"><i class="fa fa-check"></i><b>4</b> Discussion</a></li>
 <li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i>Conclusion</a></li>
@@ -152,56 +145,68 @@ MathJax.Hub.Config({
   TeX: { equationNumbers: { autoNumber: "AMS" } }
 });
 </script>
-<div id="data-collection-and-preprocessing" class="section level2">
-<h2><span class="header-section-number">2.1</span> Data Collection and Preprocessing</h2>
+<div id="data-preprocessing" class="section level2">
+<h2><span class="header-section-number">2.1</span> Data Preprocessing</h2>
+<p>Standard text data cleaning procedure was followed for the preprocessing of the review corpus: all characters were transformed to lowercase, punctuations and numbers were removed, stop words such as “I”, “me”, “she”, “is” (see Appendix: stopwords for the full list) were also removed, whitespaces were stripped and trimmed, and all words were stemmed using Porter stemming algorithm (implemented in R through the stemDocument function in the tm package).</p>
 </div>
-<div id="models" class="section level2">
-<h2><span class="header-section-number">2.2</span> Models</h2>
-<div id="feature-extraction" class="section level3">
-<h3><span class="header-section-number">2.2.1</span> Feature Extraction</h3>
+<div id="n-gramming" class="section level2">
+<h2><span class="header-section-number">2.2</span> N-Gramming</h2>
+<p>One optional yet particularly helpful preprocessing step was n-gramming. It captures word sequences that are better perceived or carry more meaningful information as a whole. For example, “White House” should be perceived as a single token instead of separately as “white” and “house”, and similarly “President of the United States” makes more sense as a whole. N-gramming is especially helpful when identifying word sequences that are specific to the context of the corpus. In the previous example, it would be crucial to identify “White House” and “President of the United States” as n-grams in a corpus consists of political blogs. In our case where we have a corpus of restaurant reviews, we can expect to see context-specific n-grams such as “Mac ‘n Cheese”, “highly recommend”, “great service”, and even “can’t wait to go back”.</p>
+<p>We adopted the probabilistic approach for identifying these n-grams where the conditional probability of seeing the ith word given the (i-1)th word. The n-gramming implementation code was modified based on the NGramming Processing Script (c) by Teague Henry. The procedure in this code is for each consecutive bigram sequence (word1, word2):<br />
+* Calculate count1 = number of appearances of word1 in the corpus;<br />
+* Calculate prop2 = appearance rate of word2 in all non-word1 words in the corpus;<br />
+* Calculate count_bi = number of appearance of bigram word1_word2 in the corpus;<br />
+* Compute p_value = Pr(N count_bi) where N is the total number of consecutive co-occurrences of word1_word2, N ~ Binomial(count1, prop2);<br />
+* If p-value &lt; 0.01, then we reject the null hypothesis that the co-occurrences happened by random and identify word1_word2 as a meaningful bigram.</p>
+<p>The above procedure is repeated again after first run to identify trigrams and larger n-grams.</p>
+<p>In terms of the cutoff threshold for identifying meaningful n-grams, both count and p-values were considered. While p-value cutoff has comparatively more consistent performance, it alone would include bigrams with neglectable occurrences (eg. appeared only 2 times in the entire corpus) and thus contribute minimal information. As a result, a hybrid cutoff using both a p-value cutoff of 0.01 and empirically-set count cutoffs of 100 for bigrams and 40 for trigrams was adopted for our corpus.</p>
+<p>All identified n-grams will be replaced by an integrated token of the original words in the corpus, where bigrams are connected with “_” in between and trigrams with “.”. For example, after all pre-processing steps and n-gramming, “White House” would become “white_hous”, and “Mac ‘n Cheese” would be “mac_n.chees.”</p>
 </div>
-<div id="sentiment-extraction-and-aggregation" class="section level3">
-<h3><span class="header-section-number">2.2.2</span> Sentiment Extraction and Aggregation</h3>
-<p> is the best way to typeset mathematics. Donald Knuth designed  when he got frustrated at how long it was taking the typesetters to finish his book, which contained a lot of mathematics. One nice feature of <em>R Markdown</em> is its ability to read LaTeX code directly.</p>
-<p>If you are doing a thesis that will involve lots of math, you will want to read the following section.</p>
-<p><span class="math display">\[\sum_{j=1}^n (\delta\theta_j)^2 \leq {{\beta_i^2}\over{\delta_i^2 + \rho_i^2}}
-\left[ 2\rho_i^2 + {\delta_i^2\beta_i^2\over{\delta_i^2 + \rho_i^2}} \right] \equiv \omega_i^2
-\]</span></p>
-<p>From Informational Dynamics, we have the following (Dave Braden):</p>
-<p>After <em>n</em> such encounters the posterior density for <span class="math inline">\(\theta\)</span> is</p>
-<p><span class="math display">\[
-\pi(\theta|X_1&lt; y_1,\dots,X_n&lt;y_n) \varpropto \pi(\theta) \prod_{i=1}^n\int_{-\infty}^{y_i}
-   \exp\left(-{(x-\theta)^2\over{2\sigma^2}}\right)\ dx
-\]</span></p>
-<p>Another equation:</p>
-<p><span class="math display">\[\det\left|\,\begin{matrix}%
-c_0&amp;c_1\hfill&amp;c_2\hfill&amp;\ldots&amp;c_n\hfill\cr
-c_1&amp;c_2\hfill&amp;c_3\hfill&amp;\ldots&amp;c_{n+1}\hfill\cr
-c_2&amp;c_3\hfill&amp;c_4\hfill&amp;\ldots&amp;c_{n+2}\hfill\cr
-\,\vdots\hfill&amp;\,\vdots\hfill&amp;
-  \,\vdots\hfill&amp;&amp;\,\vdots\hfill\cr
-c_n&amp;c_{n+1}\hfill&amp;c_{n+2}\hfill&amp;\ldots&amp;c_{2n}\hfill\cr
-\end{matrix}\right|&gt;0\]</span></p>
-<p>Lapidus and Pindar, Numerical Solution of Partial Differential Equations in Science and Engineering. Page 54</p>
-<p><span class="math display">\[
-\int_t\left\{\sum_{j=1}^3 T_j \left({d\phi_j\over dt}+k\phi_j\right)-kT_e\right\}w_i(t)\ dt=0,
-   \qquad\quad i=1,2,3.
-\]</span></p>
-<p>L&amp;P Galerkin method weighting functions. Page 55</p>
-<p><span class="math display">\[
-\sum_{j=1}^3 T_j\int_0^1\left\{{d\phi_j\over dt} + k\phi_j\right\} \phi_i\ dt
-   = \int_{0}^1k\,T_e\phi_idt, \qquad i=1,2,3 \]</span></p>
-<p>Another L&amp;P (p145)</p>
-<p><span class="math display">\[
-\int_{-1}^1\!\int_{-1}^1\!\int_{-1}^1 f\big(\xi,\eta,\zeta\big)
-   = \sum_{k=1}^n\sum_{j=1}^n\sum_{i=1}^n w_i w_j w_k f\big( \xi,\eta,\zeta\big).
-\]</span></p>
-<p>Another L&amp;P (p126)</p>
-<p><span class="math display">\[
-\int_{A_e} (\,\cdot\,) dx dy = \int_{-1}^1\!\int_{-1}^1 (\,\cdot\,) \det[J] d\xi d\eta.
-\]</span></p>
+<div id="topic-extraction" class="section level2">
+<h2><span class="header-section-number">2.3</span> Topic Extraction</h2>
+</div>
+<div id="sentiment-extraction-and-aggregation-spring-semester" class="section level2">
+<h2><span class="header-section-number">2.4</span> Sentiment Extraction and Aggregation (Spring Semester)</h2>
+<!-- \TeX\ is the best way to typeset mathematics. Donald Knuth designed \TeX\ when he got frustrated at how long it was taking the typesetters to finish his book, which contained a lot of mathematics.  One nice feature of _R Markdown_ is its ability to read LaTeX code directly. -->
+<!-- If you are doing a thesis that will involve lots of math, you will want to read the following section. -->
+<!-- $$\sum_{j=1}^n (\delta\theta_j)^2 \leq {{\beta_i^2}\over{\delta_i^2 + \rho_i^2}} -->
+<!-- \left[ 2\rho_i^2 + {\delta_i^2\beta_i^2\over{\delta_i^2 + \rho_i^2}} \right] \equiv \omega_i^2 -->
+<!-- $$ -->
+<!-- From Informational Dynamics, we have the following (Dave Braden): -->
+<!-- After _n_ such encounters the posterior density for $\theta$ is -->
+<!-- $$ -->
+<!-- \pi(\theta|X_1< y_1,\dots,X_n<y_n) \varpropto \pi(\theta) \prod_{i=1}^n\int_{-\infty}^{y_i} -->
+<!--    \exp\left(-{(x-\theta)^2\over{2\sigma^2}}\right)\ dx -->
+<!-- $$ -->
+<!-- Another equation: -->
+<!-- $$\det\left|\,\begin{matrix}% -->
+<!-- c_0&c_1\hfill&c_2\hfill&\ldots&c_n\hfill\cr -->
+<!-- c_1&c_2\hfill&c_3\hfill&\ldots&c_{n+1}\hfill\cr -->
+<!-- c_2&c_3\hfill&c_4\hfill&\ldots&c_{n+2}\hfill\cr -->
+<!-- \,\vdots\hfill&\,\vdots\hfill& -->
+<!--   \,\vdots\hfill&&\,\vdots\hfill\cr -->
+<!-- c_n&c_{n+1}\hfill&c_{n+2}\hfill&\ldots&c_{2n}\hfill\cr -->
+<!-- \end{matrix}\right|>0$$ -->
+<!-- Lapidus and Pindar, Numerical Solution of Partial Differential Equations in Science and -->
+<!-- Engineering.  Page 54 -->
+<!-- $$ -->
+<!-- \int_t\left\{\sum_{j=1}^3 T_j \left({d\phi_j\over dt}+k\phi_j\right)-kT_e\right\}w_i(t)\ dt=0, -->
+<!--    \qquad\quad i=1,2,3. -->
+<!-- $$ -->
+<!-- L\&P  Galerkin method weighting functions.  Page 55 -->
+<!-- $$ -->
+<!-- \sum_{j=1}^3 T_j\int_0^1\left\{{d\phi_j\over dt} + k\phi_j\right\} \phi_i\ dt -->
+<!--    = \int_{0}^1k\,T_e\phi_idt, \qquad i=1,2,3 $$ -->
+<!-- Another L\&P (p145) -->
+<!-- $$ -->
+<!-- \int_{-1}^1\!\int_{-1}^1\!\int_{-1}^1 f\big(\xi,\eta,\zeta\big) -->
+<!--    = \sum_{k=1}^n\sum_{j=1}^n\sum_{i=1}^n w_i w_j w_k f\big( \xi,\eta,\zeta\big). -->
+<!-- $$ -->
+<!-- Another L\&P (p126) -->
+<!-- $$ -->
+<!-- \int_{A_e} (\,\cdot\,) dx dy = \int_{-1}^1\!\int_{-1}^1 (\,\cdot\,) \det[J] d\xi d\eta. -->
+<!-- $$ -->
 
-</div>
 </div>
 </div>
             </section>
@@ -250,17 +255,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(script.src))
-      script.src  = script.src.replace(/^https?:/, '');
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
