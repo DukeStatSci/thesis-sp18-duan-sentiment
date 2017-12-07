@@ -78,4 +78,4 @@ on chapters.
 -->
 
 # Check-in {.unnumbered}
-2017-12-7: This is the check point for Fall 2017. Current version includes a completed **Introduction**, completed sections in **Methodology** (*Data Preprocessing*, *Topic Extraction with LDA*), and correspondong sections in **Results** (*EDA*, *Topic Extraction with LDA*).  
+2017-12-7: This is the check point for Fall 2017. Current version includes a completed **Introduction**, sections in **Methodology** (*Data Preprocessing* and *N-Gramming* completed with draft of *Topic Extraction with LDA*), and correspondong sections in **Results** (*EDA* and *N-Gramming* completed with draft results for *Topic Extraction with LDA*).  
