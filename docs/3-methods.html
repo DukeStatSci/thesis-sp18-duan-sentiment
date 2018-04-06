@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Aspect-based Opinion Mining with Yelp Restaurant Reviews</title>
+  <meta name="description" content="Aspect-based Opinion Mining with Yelp Restaurant Reviews">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Aspect-based Opinion Mining with Yelp Restaurant Reviews" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Aspect-based Opinion Mining with Yelp Restaurant Reviews" />
+  
+  
+  
+
+<meta name="author" content="Tianlin Duan">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="2-intro.html">
+<link rel="next" href="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"></a></li>
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> thesisdowndss::thesis_pdf: default</a></li>
+<li class="chapter" data-level="2" data-path="2-intro.html"><a href="2-intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
+<li class="chapter" data-level="3" data-path="3-methods.html"><a href="3-methods.html"><i class="fa fa-check"></i><b>3</b> Methodology</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-methods.html"><a href="3-methods.html#identify-common-topics-entire-corpus"><i class="fa fa-check"></i><b>3.1</b> Identify Common Topics (Entire Corpus)</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="3-methods.html"><a href="3-methods.html#data-pre-processing"><i class="fa fa-check"></i><b>3.1.1</b> Data Pre-processing</a></li>
+<li class="chapter" data-level="3.1.2" data-path="3-methods.html"><a href="3-methods.html#latent-dirichlet-allocation-lda"><i class="fa fa-check"></i><b>3.1.2</b> Latent Dirichlet Allocation (LDA)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="3-methods.html"><a href="3-methods.html#opinion-mining-restaurant-specific"><i class="fa fa-check"></i><b>3.2</b> Opinion Mining (Restaurant-specific)</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="3-methods.html"><a href="3-methods.html#aspect-extraction"><i class="fa fa-check"></i><b>3.2.1</b> Aspect Extraction</a></li>
+<li class="chapter" data-level="3.2.2" data-path="3-methods.html"><a href="3-methods.html#aspect-categorization"><i class="fa fa-check"></i><b>3.2.2</b> Aspect Categorization</a></li>
+<li class="chapter" data-level="3.2.3" data-path="3-methods.html"><a href="3-methods.html#sentiment-analysis"><i class="fa fa-check"></i><b>3.2.3</b> Sentiment Analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html"><a href="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html"><i class="fa fa-check"></i><b>4</b> This chunk ensures that the thesisdowndss package is</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html"><a href="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html#exploratory-data-analysis"><i class="fa fa-check"></i><b>4.1</b> Exploratory Data Analysis</a></li>
+<li class="chapter" data-level="4.2" data-path="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html"><a href="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html#common-topics-lda"><i class="fa fa-check"></i><b>4.2</b> Common Topics (LDA)</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html"><a href="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html#n-gramming-1"><i class="fa fa-check"></i><b>4.2.1</b> N-Gramming</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html"><a href="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html#lda"><i class="fa fa-check"></i><b>4.2.2</b> LDA</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html"><a href="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html#restaurant-opinion-mining"><i class="fa fa-check"></i><b>4.3</b> Restaurant Opinion Mining</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html"><a href="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html#aspect-extraction-1"><i class="fa fa-check"></i><b>4.3.1</b> Aspect Extraction</a></li>
+<li class="chapter" data-level="4.3.2" data-path="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html"><a href="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html#aspect-categorization-1"><i class="fa fa-check"></i><b>4.3.2</b> Aspect Categorization</a></li>
+<li class="chapter" data-level="4.3.3" data-path="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html"><a href="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html#sentiment-analysis-1"><i class="fa fa-check"></i><b>4.3.3</b> Sentiment Analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-discussion.html"><a href="5-discussion.html"><i class="fa fa-check"></i><b>5</b> Discussion</a></li>
+<li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i>Conclusion</a></li>
+<li class="chapter" data-level="6" data-path="6-the-first-appendix.html"><a href="6-the-first-appendix.html"><i class="fa fa-check"></i><b>6</b> The First Appendix</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Aspect-based Opinion Mining with Yelp Restaurant Reviews</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="methods" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Methodology</h1>
+<!-- Required to number equations in HTML files -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+<div id="identify-common-topics-entire-corpus" class="section level2">
+<h2><span class="header-section-number">3.1</span> Identify Common Topics (Entire Corpus)</h2>
+<p>Seeing our corpus as a collection of review documents sharing some common topics, the task of extracting these topics can be framed as a topic modeling one. In particular, we use Latent Dirichlet Allocation (LDA) to extract hidden common topics in restaurant reviews.</p>
+<div id="data-pre-processing" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> Data Pre-processing</h3>
+<p>Standard text data cleaning procedure was followed for preprocessing the review corpus: all characters were transformed to lowercase, punctuations and numbers removed, stop words such as “I”, “me”, “she”, “is” also removed, whitespaces stripped and trimmed, and all words stemmed using Porter stemming algorithm.</p>
+<div id="n-gramming" class="section level4">
+<h4><span class="header-section-number">3.1.1.1</span> N-Gramming</h4>
+<p>One optional yet particularly helpful preprocessing step was n-gramming. It captures word sequences that are better perceived or carry more meaningful information as a whole. For example, “White House” should be perceived as a single token instead of separately as “white” and “house”, and similarly “President of the United States” makes more sense as a whole. N-gramming is especially helpful when identifying word sequences that are specific to the context of the corpus. In the previous example, it would be crucial to identify “White House” and “President of the United States” as n-grams in a corpus consists of political blogs. In our case where the corpus is consists of restaurant reviews, we can expect to see context-specific n-grams such as “Mac ‘n Cheese” or “highly recommend”. We take the probabilistic approach for identifying these n-grams where the conditional probability of seeing the i-th word given the (i-1) th word. The n-gramming implementation code was modified based on the NGramming Processing Script (c) by Teague Henry. The procedure in this code is for each consecutive bigram sequence (<em><span class="math inline">\(word_1\)</span></em>, <em><span class="math inline">\(word_2\)</span></em>):</p>
+<ul>
+<li>Calculate <strong><span class="math inline">\(n_{word_1}\)</span></strong> = number of occurrences of <em><span class="math inline">\(word_1\)</span></em> in the corpus;<br />
+</li>
+<li>Calculate <strong><span class="math inline">\(p_{word_2}\)</span></strong> = proportion of <em><span class="math inline">\(word_2\)</span></em> in all non-<span class="math inline">\(word_1\)</span> words in the corpus;<br />
+</li>
+<li>Calculate <strong><span class="math inline">\(n_bigram\)</span></strong> = number of occurrences of bigram <span class="math inline">\(word_1\_word_2\)</span> in the corpus;<br />
+</li>
+<li>Compute <span class="math inline">\({p-value} = P(N \geqslant n_{bigram})\)</span> where N is the total number of consecutive co-occurrences of <span class="math inline">\(word_1\_word_2\)</span> where <span class="math inline">\(N \sim Binomial(c_{word_1}, p_{word_2})\)</span>;<br />
+</li>
+<li>If <span class="math inline">\({p-value} &lt; 0.01\)</span>, then we reject the null hypothesis that the co-occurrences happened by random and identify <span class="math inline">\(word_1\_word_2\)</span> as a meaningful bigram.</li>
+</ul>
+<p>The above procedure is repeated again after first run to identify trigrams and larger n-grams.</p>
+<p>In terms of the cutoff threshold for identifying meaningful n-grams, both count and p-values were considered. While p-value cutoff has comparatively more consistent performance, it alone would include bigrams with neglectable occurrences (eg. appeared only 2 times in the entire corpus) and thus contribute minimal information. As a result, a hybrid cutoff using both a p-value cutoff of 0.01 and empirically-set count cutoffs of 100 for bigrams and 40 for trigrams was adopted for our corpus.</p>
+<p>All identified n-grams will be replaced by an integrated token of the original words in the corpus, where bigrams are connected with “_” in between and trigrams with “.”. For example, after all pre-processing steps and n-gramming, <em>“White House”</em> would become <em>“white_hous”</em>, and <em>“Mac ‘n Cheese”</em> would be <em>“mac_n.chees”.</em></p>
+</div>
+</div>
+<div id="latent-dirichlet-allocation-lda" class="section level3">
+<h3><span class="header-section-number">3.1.2</span> Latent Dirichlet Allocation (LDA)</h3>
+<p>To identify common topics in our corpus, we will first experiment with the topic modeling approach, or more specifically Latent Dirichlet Allocation (LDA). LDA is a Bayesian generative topic model based on the assumption that each document, as a collection of words, is a mixture of a certain number of topics, and that the occurrence of each word in that document can be attributed to one of its topics. In terms of denotations, the entire corpus is a set of documents <span class="math inline">\(\{D_1, ..., Dm\}\)</span>, and the words within a document are denoted as <span class="math inline">\(D_i=\{w_{i1},...,w_{in_i}\}\)</span>, <span class="math inline">\(w_ij \in W\)</span> where W is a finite vocabulary set of size <span class="math inline">\(V\)</span>. Suppose we assume the entire corpus is a mixture of <span class="math inline">\(K\)</span> topics, the data generative process with LDA is as follows:</p>
+<ol style="list-style-type: decimal">
+<li>For each topic <span class="math inline">\(k \in \{1,...,K\}\)</span>,<br />
+</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Draw a topic-word proportion vector <span class="math inline">\(\phi_k \sim Dirichlet(\alpha)\)</span><br />
+</li>
+</ol>
+<ol start="2" style="list-style-type: decimal">
+<li>For each document <span class="math inline">\(D_i\)</span>,</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Draw a document-topic proportion vector <span class="math inline">\(\theta_i \sim Dirichlet(\beta)\)</span><br />
+</li>
+<li>For each word <span class="math inline">\(w_{ij}\)</span>,
+<ol style="list-style-type: lower-roman">
+<li>Draw a topic assignment <span class="math inline">\(z_j \sim Multinomial(\theta_i), z_j \in \{1,...,K\}\)</span><br />
+</li>
+<li>Draw a word from this topic <span class="math inline">\(w_{ij} \sim Multinomial(\phi_k), w_{ij} \in \{1,...,V\}\)</span></li>
+</ol></li>
+</ol>
+<div class="figure" style="text-align: center"><span id="fig:LDA"></span>
+<img src="figure/LDA.png" alt="Diagram of LDA generative process"  />
+<p class="caption">
+Figure 3.1: Diagram of LDA generative process
+</p>
+</div>
+</div>
+</div>
+<div id="opinion-mining-restaurant-specific" class="section level2">
+<h2><span class="header-section-number">3.2</span> Opinion Mining (Restaurant-specific)</h2>
+<p>Given a restaurant, we propose the following analysis pipeline:<br />
+1. Extract reviewed aspects and associated text based on all reviews on the restaurant;<br />
+2. Categorize the extracted aspects into topics based on LDA results;<br />
+3. For each aspect, derive a sentiment score based on all associated text for this aspect;<br />
+4. Summarize highlights of the given restaurant based on average sentiment scores of extracted highlights.</p>
+<div id="aspect-extraction" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Aspect Extraction</h3>
+<p>For a given text, such as “service was fast, food was pretty good and price is very affordable”, the goal is to extract aspect terms <span class="math inline">\(service\)</span>, <span class="math inline">\(food\)</span>, and <span class="math inline">\(price\)</span>, and their associated opinion <span class="math inline">\(fast\)</span>, <span class="math inline">\(pretty\ good\)</span>, and <span class="math inline">\(very\ affordable\)</span>, respectively.</p>
+<p>Since aspect terms are primarily nouns, the candidate pool for aspects is formed by extracting all noun phrases in the given text. Noun phrases, as opposed to single words, are identified so that n-grams like “vanilla ice cream” can be extracted as a whole. At the same time, it would also make more sense to see <span class="math inline">\(vanilla\ ice\ cream\)</span> and <span class="math inline">\(ice\ cream\)</span> as phrases belong to the same aspect of <em>“ice cream”</em> to avoid redundancy. In consideration of both, we lemmatize extracted phrases to the root form (<span class="math inline">\(ice\_cream\)</span> or <span class="math inline">\(cream\)</span>) but also keep track of all distinct phrases under this aspect (<span class="math inline">\(vanilla\ ice\ cream\)</span>) for potential future use.</p>
+<p>While hundreds of aspects may be mentioned for a restaurant in its review corpus, not all of them are necessarily representative, and thus we only keep aspects mentioned by at least 10% of the reviews for this restaurant. A custom list of stopwords such as “star”, “thing”, and “customer” is also used to filter out noun chunks that are less likely to be meaningful aspects of the restaurant.</p>
+<p>A challenge in the step of aspect extraction is parsing a sentence with multiple aspect terms into chunks corresponding to each aspect. In the example above, for the later precision of aspect-based sentiment score, I only want to attribute “fast” as opposed to other parts or the entire sentence to the specific aspect “service”. To do this, we utilize the common linguistic pattern that different aspects at the same semantic level are usually separated by a comma, “and”, or “but”: we split a mixed sentence according to these conjunctions and attribute relevant parts to concerning aspects.</p>
+</div>
+<div id="aspect-categorization" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> Aspect Categorization</h3>
+<p>We experiment with two approaches for categorizing extracted aspects. Assuming some pre-fixed categories based on LDA results or conventions (we use the Annotation Guidelines for SemEval 2016 Task 5: Aspect-based Sentiment Analysis, restaurant domain), we can measure the semantic similarity between an aspect term and each of the categories and assign it to the closest category. The other approach does not make presumptions on categories, but instead try to automatically identify them through clustering.</p>
+<p>Both approaches require some numerical representations of the aspects, and a natural choice would be using word embedding models. Word embeddings map words and phrases to vectors of real numbers using methods such as neural networks (Word2Vec) and dimensionality reduction on the word co-occurrence matrix (GloVe). For our purpose, we use a GloVe model with 300-dimensional vectors pre-trained on 42B tokens from Common Crawl. We use a pre-trained model instead of training our own on the corpus (300M tokens) in consideration of both the computation cost and the quality and size of vocabulary, and we chose the 42B-token version trained on Common Crawl since it has the largest vocab (1.9M) that could fit into the memory we have and is more suitable for our corpus comparing to the 6B-token Wikipedia in terms of the type of expression used.</p>
+<p>For the first approach with pre-fixed categories, we use cosine similarities between each extracted aspect and the categories to determine its category; for the second approach, we use vector representations of extracted aspects to automatically identify clusters.</p>
+</div>
+<div id="sentiment-analysis" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> Sentiment Analysis</h3>
+<p>After parsing the review corpus for a restaurant into aspect terms and corresponding opinion sentences, we can perform sentiment analysis on the opinion sentences for each aspect term.</p>
+<p>We recognize that both lexicon-based approach and machine learning approach can be used for this purpose. Lexicon-based methods are widely-used in the field for its intuitiveness and ease of implementation, but have limited coverage of lexical features and are not quite adaptive (manually expanding the lexicon is extremely labor-intensive and time-consuming). Machine learning methods, on the other hand, are much more flexible and often lead to better accuracy, but as with high-quality sentiment lexicons for lexicon-based methods, extensive training data are essential to the performance and validity of machine learning methods but often hard to acquire. Additionally, texts in online reviews are often short and sparse, and thus pose a challenge for ensuring the quality and quantity of input features. arse. Practically, machine learning models can also be quite expensive to implement computationally, especially when dealing with an enormous corpus. Last but not least, machine learning methods can become “black boxes” and lose interpretability.</p>
+<div class="figure" style="text-align: center"><span id="fig:s-a"></span>
+<img src="figure/s-a.png" alt="Sentiment analysis / classificaion techniques"  />
+<p class="caption">
+Figure 3.2: Sentiment analysis / classificaion techniques
+</p>
+</div>
+<p>Based on the discussion above, we decide to take a primarily lexicon-based approach (more specifically a dictionary-based approach) for the scope of this project. We experimented with two open-source implementations of refined lexicon-based sentiment analysis. One is VADER (Valence Aware Dictionary and sEntiment Reasoner), which combines a sentiment lexicon specifically attuned to social media context with grammatical and syntactical heuristics that capture intensity of sentiment, and the other is TextBlob, which uses a lexicon of adjectives (eg. good, bad, amazing, irritating etc.) that occur frequently in product reviews and takes into account semantic patterns when averaging the polarity for lexical features (eg. words). Online reviews do share many common characteristics with social media texts in terms of the distinctive way of expression and relative informality of language. Many of these characteristics, such as the prevalence of slang words, acronyms, and emoticons and the use of all caps and excessive punctuations, though commonly cleaned in the pre-processing step or simply ignored by traditional sentiment analysis tools, may contain valuable information about the polarity and intensity of sentiment. The table below shows a representative sample of challenging cases in sentiment analysis (especially in the social media/ online review context) and a comparison of results from VADER and TextBlob against the baseline of AFINN scores. As expected, VADER is quite sensitive to the intensity as well as binary polarity of sentiment, while TextBlob also has decent performance. The implementations are not without their shortcomes: VADER does seem to have a denser score distribution but at the same time also slightly dramatic changes in score in presence of emoticons and qualifications, and TextBlob tends to ignore slang words and abbreviations, but overall the two lexicon-based methods are giving reasonable results.</p>
+<table class="table table-striped table-hover" style="font-size: 14px; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:unnamed-chunk-1">Table 3.1: </span>Common challenges in sentiment analysis and comparison of performances between VADER and TextBlob against baseline results from AFINN score.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Challenge
+</th>
+<th style="text-align:left;">
+Example text
+</th>
+<th style="text-align:right;">
+AFINN
+</th>
+<th style="text-align:right;">
+VADER
+</th>
+<th style="text-align:right;">
+TextBlob
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Punctuation (intensify)
+</td>
+<td style="text-align:left;">
+Food was good!!!
+</td>
+<td style="text-align:right;">
+0.6
+</td>
+<td style="text-align:right;">
+0.58
+</td>
+<td style="text-align:right;">
+1.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Word shape (intensify)
+</td>
+<td style="text-align:left;">
+Food was GOOD.
+</td>
+<td style="text-align:right;">
+0.6
+</td>
+<td style="text-align:right;">
+0.56
+</td>
+<td style="text-align:right;">
+0.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Emoticon
+</td>
+<td style="text-align:left;">
+Food was good :)
+</td>
+<td style="text-align:right;">
+0.6
+</td>
+<td style="text-align:right;">
+0.71
+</td>
+<td style="text-align:right;">
+0.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Degree modifier
+</td>
+<td style="text-align:left;">
+Food was very good.
+</td>
+<td style="text-align:right;">
+0.6
+</td>
+<td style="text-align:right;">
+0.49
+</td>
+<td style="text-align:right;">
+0.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Baseline (positive)
+</td>
+<td style="text-align:left;font-weight: bold;">
+Food was good.
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.6
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.44
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Negation
+</td>
+<td style="text-align:left;">
+I did not dislike the food.
+</td>
+<td style="text-align:right;">
+-0.4
+</td>
+<td style="text-align:right;">
+0.29
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Baseline (neutral)
+</td>
+<td style="text-align:left;font-weight: bold;">
+Food was okay.
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.0
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.23
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Qualification (mild negative)
+</td>
+<td style="text-align:left;">
+Food was okay but I would not recommend it to you.
+</td>
+<td style="text-align:right;">
+0.4
+</td>
+<td style="text-align:right;">
+-0.30
+</td>
+<td style="text-align:right;">
+0.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Contraction as negation
+</td>
+<td style="text-align:left;">
+Food was not very good.
+</td>
+<td style="text-align:right;">
+0.6
+</td>
+<td style="text-align:right;">
+-0.39
+</td>
+<td style="text-align:right;">
+-0.3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Slang word
+</td>
+<td style="text-align:left;">
+Food sux.
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+<td style="text-align:right;">
+-0.36
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Baseline (negative)
+</td>
+<td style="text-align:left;font-weight: bold;">
+Food was bad.
+</td>
+<td style="text-align:right;font-weight: bold;">
+-0.6
+</td>
+<td style="text-align:right;font-weight: bold;">
+-0.54
+</td>
+<td style="text-align:right;font-weight: bold;">
+-0.7
+</td>
+</tr>
+</tbody>
+</table>
+<p>For each aspect, we aggregate a sentiment score using the sum of polarity scores for all review text associated with this aspect, divided by the number of reviews mentioning this aspect to account for both the volume of opinions expressed towards this aspect and the number of units (reviews) in which they were expressed.</p>
+<!-- \TeX\ is the best way to typeset mathematics. Donald Knuth designed \TeX\ when he got frustrated at how long it was taking the typesetters to finish his book, which contained a lot of mathematics.  One nice feature of _R Markdown_ is its ability to read LaTeX code directly. -->
+<!-- If you are doing a thesis that will involve lots of math, you will want to read the following section. -->
+<!-- $$\sum_{j=1}^n (\delta\theta_j)^2 \leq {{\beta_i^2}\over{\delta_i^2 + \rho_i^2}} -->
+<!-- \left[ 2\rho_i^2 + {\delta_i^2\beta_i^2\over{\delta_i^2 + \rho_i^2}} \right] \equiv \omega_i^2 -->
+<!-- $$ -->
+<!-- From Informational Dynamics, we have the following (Dave Braden): -->
+<!-- After _n_ such encounters the posterior density for $\theta$ is -->
+<!-- $$ -->
+<!-- \pi(\theta|X_1< y_1,\dots,X_n<y_n) \varpropto \pi(\theta) \prod_{i=1}^n\int_{-\infty}^{y_i} -->
+<!--    \exp\left(-{(x-\theta)^2\over{2\sigma^2}}\right)\ dx -->
+<!-- $$ -->
+<!-- Another equation: -->
+<!-- $$\det\left|\,\begin{matrix}% -->
+<!-- c_0&c_1\hfill&c_2\hfill&\ldots&c_n\hfill\cr -->
+<!-- c_1&c_2\hfill&c_3\hfill&\ldots&c_{n+1}\hfill\cr -->
+<!-- c_2&c_3\hfill&c_4\hfill&\ldots&c_{n+2}\hfill\cr -->
+<!-- \,\vdots\hfill&\,\vdots\hfill& -->
+<!--   \,\vdots\hfill&&\,\vdots\hfill\cr -->
+<!-- c_n&c_{n+1}\hfill&c_{n+2}\hfill&\ldots&c_{2n}\hfill\cr -->
+<!-- \end{matrix}\right|>0$$ -->
+<!-- Lapidus and Pindar, Numerical Solution of Partial Differential Equations in Science and -->
+<!-- Engineering.  Page 54 -->
+<!-- $$ -->
+<!-- \int_t\left\{\sum_{j=1}^3 T_j \left({d\phi_j\over dt}+k\phi_j\right)-kT_e\right\}w_i(t)\ dt=0, -->
+<!--    \qquad\quad i=1,2,3. -->
+<!-- $$ -->
+<!-- L\&P  Galerkin method weighting functions.  Page 55 -->
+<!-- $$ -->
+<!-- \sum_{j=1}^3 T_j\int_0^1\left\{{d\phi_j\over dt} + k\phi_j\right\} \phi_i\ dt -->
+<!--    = \int_{0}^1k\,T_e\phi_idt, \qquad i=1,2,3 $$ -->
+<!-- Another L\&P (p145) -->
+<!-- $$ -->
+<!-- \int_{-1}^1\!\int_{-1}^1\!\int_{-1}^1 f\big(\xi,\eta,\zeta\big) -->
+<!--    = \sum_{k=1}^n\sum_{j=1}^n\sum_{i=1}^n w_i w_j w_k f\big( \xi,\eta,\zeta\big). -->
+<!-- $$ -->
+<!-- Another L\&P (p126) -->
+<!-- $$ -->
+<!-- \int_{A_e} (\,\cdot\,) dx dy = \int_{-1}^1\!\int_{-1}^1 (\,\cdot\,) \det[J] d\xi d\eta. -->
+<!-- $$ -->
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="2-intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": [["thesis.pdf", "PDF"], ["thesis.epub", "EPUB"], ["thesis.docx", "Word"]],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

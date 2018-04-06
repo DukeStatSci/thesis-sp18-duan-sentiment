@@ -34,5 +34,11 @@ This is just for testing with more citations for the bibliography at the end.  A
 
 ---
 nocite: | 
-  @angel2000, @angel2001, @angel2002a
+  @Blei:2003:LDA:944919.944937
+  @pennington2014glove
+  @DBLP:journals/corr/abs-1301-3781
+  @Medhat2014SentimentAA
+  @conf/icwsm/HuttoG14
+  @Li:2010:SAG:2898607.2898826
+  @Jagarlamudi:2012:ILP:2380816.2380844
 ...

@@ -7,18 +7,25 @@ If you feel it necessary to include an appendix, it goes here.
 -->
 
 
-# The First Appendix
+# LDA Result by Cuisine Category   
+```{r, echo=FALSE, results='asis'}
+folder = "data/results/"
+temp = list.files(path=folder, pattern="*.csv")
+myfiles = lapply(temp, function(x) read.csv(paste0(folder,x)))
+for(i in 1:length(temp)){
+  print(knitr::kable(myfiles[i],caption = gsub("_"," ",substr(temp[i],1,nchar(temp[i])-4)),"html") %>%
+    kableExtra::kable_styling(bootstrap_options = c("striped", "hover"), full_width = T, font_size = 14))
+}
+```   
 
-This first appendix includes all of the R chunks of code that were hidden throughout the document (using the `include = FALSE` chunk tag) to help with readibility and/or setup.
 
-**In the main Rmd file**
 
-```{r ref.label='include_packages', results='hide', echo = TRUE}
-```
+<!-- **In the main Rmd file** -->
 
-**In Chapter \@ref(ref-labels):**
+<!-- ```{r ref.label='include_packages', results='hide', echo = TRUE} -->
+<!-- ``` -->
 
-```{r ref.label='include_packages_2', results='hide', echo = TRUE}
-```
+<!-- **In Chapter \@ref(ref-labels):** -->
 
-# The Second Appendix, for Fun
+<!-- ```{r ref.label='include_packages_2', results='hide', echo = TRUE} -->
+<!-- ``` -->

@@ -1,0 +1,21 @@
+LDA	include_graphics
+s-a	include_graphics
+unnamed-chunk-1	library	kableExtra	tbl	read.csv	names	c	kable	%>%	kable_styling	F	row_spec	T
+include_packages_2	require	devtools	install.packages	dplyr	ggplot2	thesisdowndss	library	install_github	topicmodels	lda	readRDS
+unnamed-chunk-2	include_graphics
+unnamed-chunk-3	include_graphics
+unnamed-chunk-4	include_graphics
+unnamed-chunk-5	include_graphics
+wordcloud	include_graphics
+unnamed-chunk-6	tbl	read.csv	names	`p-value`	as.character	kable	%>%	kable_styling	c	F
+unnamed-chunk-7	tbl	read.csv	names	`p-value`	as.character	kable	%>%	kable_styling	c	F
+LDA-result	kable	terms	lda	%>%	kable_styling	c	F
+LDA-result-cat	lda_c	read.csv	kable	%>%	kable_styling	c	F
+unnamed-chunk-8	library	xlsx	cat	read.xlsx	names	kable	%>%	kable_styling	c	F
+unnamed-chunk-9	include_graphics
+unnamed-chunk-10	include_graphics
+unnamed-chunk-11	library	xlsx	sa	read.xlsx	names	c	kable	%>%	kable_styling	F
+unnamed-chunk-12	library	xlsx	hl	read.xlsx	names	kable	%>%	kable_styling	c	F
+unnamed-chunk-13	include_graphics
+unnamed-chunk-14	folder	temp	list.files	myfiles	lapply	read.csv	paste0	x	i	length	print	kable	gsub	substr	nchar	%>%	kable_styling	c	T
+unnamed-chunk-15	require	devtools	install.packages	dplyr	ggplot2	thesisdowndss	library	install_github	topicmodels	lda	readRDS

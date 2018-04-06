@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Aspect-based Opinion Mining with Yelp Restaurant Reviews</title>
+  <meta name="description" content="Aspect-based Opinion Mining with Yelp Restaurant Reviews">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Aspect-based Opinion Mining with Yelp Restaurant Reviews" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Aspect-based Opinion Mining with Yelp Restaurant Reviews" />
+  
+  
+  
+
+<meta name="author" content="Tianlin Duan">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html">
+<link rel="next" href="6-lda-result-by-cuisine-category.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"></a></li>
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> thesisdowndss::thesis_pdf: default</a></li>
+<li class="chapter" data-level="2" data-path="2-intro.html"><a href="2-intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
+<li class="chapter" data-level="3" data-path="3-methods.html"><a href="3-methods.html"><i class="fa fa-check"></i><b>3</b> Methodology</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-methods.html"><a href="3-methods.html#identify-common-topics-entire-corpus"><i class="fa fa-check"></i><b>3.1</b> Identify Common Topics (Entire Corpus)</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="3-methods.html"><a href="3-methods.html#data-pre-processing"><i class="fa fa-check"></i><b>3.1.1</b> Data Pre-processing</a></li>
+<li class="chapter" data-level="3.1.2" data-path="3-methods.html"><a href="3-methods.html#latent-dirichlet-allocation-lda"><i class="fa fa-check"></i><b>3.1.2</b> Latent Dirichlet Allocation (LDA)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="3-methods.html"><a href="3-methods.html#opinion-mining-restaurant-specific"><i class="fa fa-check"></i><b>3.2</b> Opinion Mining (Restaurant-specific)</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="3-methods.html"><a href="3-methods.html#aspect-extraction"><i class="fa fa-check"></i><b>3.2.1</b> Aspect Extraction</a></li>
+<li class="chapter" data-level="3.2.2" data-path="3-methods.html"><a href="3-methods.html#aspect-categorization"><i class="fa fa-check"></i><b>3.2.2</b> Aspect Categorization</a></li>
+<li class="chapter" data-level="3.2.3" data-path="3-methods.html"><a href="3-methods.html#sentiment-analysis"><i class="fa fa-check"></i><b>3.2.3</b> Sentiment Analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html"><a href="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html"><i class="fa fa-check"></i><b>4</b> This chunk ensures that the thesisdowndss package is</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html"><a href="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html#exploratory-data-analysis"><i class="fa fa-check"></i><b>4.1</b> Exploratory Data Analysis</a></li>
+<li class="chapter" data-level="4.2" data-path="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html"><a href="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html#common-topics-lda"><i class="fa fa-check"></i><b>4.2</b> Common Topics (LDA)</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html"><a href="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html#n-gramming-1"><i class="fa fa-check"></i><b>4.2.1</b> N-Gramming</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html"><a href="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html#lda"><i class="fa fa-check"></i><b>4.2.2</b> LDA</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html"><a href="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html#restaurant-opinion-mining"><i class="fa fa-check"></i><b>4.3</b> Restaurant Opinion Mining</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html"><a href="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html#aspect-extraction-1"><i class="fa fa-check"></i><b>4.3.1</b> Aspect Extraction</a></li>
+<li class="chapter" data-level="4.3.2" data-path="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html"><a href="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html#aspect-categorization-1"><i class="fa fa-check"></i><b>4.3.2</b> Aspect Categorization</a></li>
+<li class="chapter" data-level="4.3.3" data-path="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html"><a href="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html#sentiment-analysis-1"><i class="fa fa-check"></i><b>4.3.3</b> Sentiment Analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-conclusion.html"><a href="5-conclusion.html"><i class="fa fa-check"></i><b>5</b> Conclusion &amp; Future Work</a></li>
+<li class="chapter" data-level="6" data-path="6-lda-result-by-cuisine-category.html"><a href="6-lda-result-by-cuisine-category.html"><i class="fa fa-check"></i><b>6</b> LDA Result by Cuisine Category</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Aspect-based Opinion Mining with Yelp Restaurant Reviews</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="conclusion" class="section level1">
+<h1><span class="header-section-number">Chapter 5</span> Conclusion &amp; Future Work</h1>
+<ul>
+<li>LDA identified Food (quality, options) , Service, and Restaurant as the commonly discussed topics in Yelp restaurant reviews, but distinctions among topics are not especially clear;
+<ul>
+<li>Next step is to optimize hyper-parameters including number of topics.<br />
+</li>
+</ul></li>
+<li>POS tagging and semantic patterns gave decent results in extracting meaningful aspects from reviews for a given restaurant, but have limited ability in handling complex sentences with mixed aspects;
+<ul>
+<li>Next step is to experiment with methods that incorporate more semantic context, such as dependency parsing.<br />
+</li>
+</ul></li>
+<li>Word embedding representations can provide preliminary results on categorizing extracted aspects, but as with LDA topics, aspects in the same domain (restaurant) are by nature semantically close and thus pose challenge to effective clustering/categorization;
+<ul>
+<li>Next step is to explore better options for aspect categorization.<br />
+</li>
+</ul></li>
+<li>Lexicon (dictionary)-based approach, when combined with semantic patterns or rules, have overall decent performance on sentiment analysis, but is still constrained by word-level information and thus can only reach limited accuracy;
+<ul>
+<li>Next step is to experiment with machine-learning based approach for sentiment analysis.</li>
+</ul></li>
+</ul>
+<p>The original motivation and also a particularly meaningful application of this project is to provide personalized restaurant recommendations based on a user’s review. A potential approach to this task would be Doc2Vec, which can measure the distance from a given text (can be a word, a phrase, a sentence, or a full review text) to the documents (reviews) in corpus.</p>
+<p>With improved aspect extraction and sentiment analysis as well as categorization methods, it would also be interesting to derive categorical scores (for food, service, ambience, location, price etc.) and use them as features to explain and predict users’ overall sentiment towards a restaurant — what category or aspect has the most impact? Does the answer differ for different cuisine categories / restaurant types?</p>
+<p>Such incredibly rich dataset allows us to experiment with a wide range of tasks in the field of Text Mining and Natural Language Processing. This project is a starting point for these exploration and I look forward to the learning experience (and fun) ahead.</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="4-this-chunk-ensures-that-the-thesisdowndss-package-is.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="6-lda-result-by-cuisine-category.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": [["thesis.pdf", "PDF"], ["thesis.epub", "EPUB"], ["thesis.docx", "Word"]],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

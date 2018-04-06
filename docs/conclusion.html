@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Providing Aspect Subscores for Restaurants with Topic Modeling and Sentiment Analysis</title>
-  <meta name="description" content="Providing Aspect Subscores for Restaurants with Topic Modeling and Sentiment Analysis">
+  <title>Aspect-based Opinion Mining with Yelp Restaurant Reviews</title>
+  <meta name="description" content="Aspect-based Opinion Mining with Yelp Restaurant Reviews">
   <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Providing Aspect Subscores for Restaurants with Topic Modeling and Sentiment Analysis" />
+  <meta property="og:title" content="Aspect-based Opinion Mining with Yelp Restaurant Reviews" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Providing Aspect Subscores for Restaurants with Topic Modeling and Sentiment Analysis" />
+  <meta name="twitter:title" content="Aspect-based Opinion Mining with Yelp Restaurant Reviews" />
   
   
   
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="4-discussion.html">
-<link rel="next" href="A-the-first-appendix.html">
+<link rel="next" href="A-lda-result-by-cuisine-category.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -48,43 +48,6 @@
 
 
 
-<style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-</style>
 
 </head>
 
@@ -100,28 +63,35 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul class="summary">
 <li><a href="./"></a></li>
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Check-in</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Abstract</a></li>
 <li class="chapter" data-level="1" data-path="1-intro.html"><a href="1-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="2-methods.html"><a href="2-methods.html"><i class="fa fa-check"></i><b>2</b> Methodology</a><ul>
-<li class="chapter" data-level="2.1" data-path="2-methods.html"><a href="2-methods.html#data-preprocessing"><i class="fa fa-check"></i><b>2.1</b> Data Preprocessing</a></li>
-<li class="chapter" data-level="2.2" data-path="2-methods.html"><a href="2-methods.html#n-gramming"><i class="fa fa-check"></i><b>2.2</b> N-Gramming</a></li>
-<li class="chapter" data-level="2.3" data-path="2-methods.html"><a href="2-methods.html#topic-extraction"><i class="fa fa-check"></i><b>2.3</b> Topic Extraction</a><ul>
-<li class="chapter" data-level="2.3.1" data-path="2-methods.html"><a href="2-methods.html#latent-dirichlet-allocation-lda"><i class="fa fa-check"></i><b>2.3.1</b> Latent Dirichlet Allocation (LDA)</a></li>
+<li class="chapter" data-level="2.1" data-path="2-methods.html"><a href="2-methods.html#identify-common-topics-entire-corpus"><i class="fa fa-check"></i><b>2.1</b> Identify Common Topics (Entire Corpus)</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="2-methods.html"><a href="2-methods.html#data-pre-processing"><i class="fa fa-check"></i><b>2.1.1</b> Data Pre-processing</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2-methods.html"><a href="2-methods.html#latent-dirichlet-allocation-lda"><i class="fa fa-check"></i><b>2.1.2</b> Latent Dirichlet Allocation (LDA)</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="2-methods.html"><a href="2-methods.html#sentiment-extraction-and-aggregation-spring-semester"><i class="fa fa-check"></i><b>2.4</b> Sentiment Extraction and Aggregation (Spring Semester)</a></li>
+<li class="chapter" data-level="2.2" data-path="2-methods.html"><a href="2-methods.html#opinion-mining-restaurant-specific"><i class="fa fa-check"></i><b>2.2</b> Opinion Mining (Restaurant-specific)</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-methods.html"><a href="2-methods.html#aspect-extraction"><i class="fa fa-check"></i><b>2.2.1</b> Aspect Extraction</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-methods.html"><a href="2-methods.html#aspect-categorization"><i class="fa fa-check"></i><b>2.2.2</b> Aspect Categorization</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-methods.html"><a href="2-methods.html#sentiment-analysis"><i class="fa fa-check"></i><b>2.2.3</b> Sentiment Analysis</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="3-results.html"><a href="3-results.html"><i class="fa fa-check"></i><b>3</b> Results</a><ul>
 <li class="chapter" data-level="3.1" data-path="3-results.html"><a href="3-results.html#exploratory-data-analysis"><i class="fa fa-check"></i><b>3.1</b> Exploratory Data Analysis</a></li>
-<li class="chapter" data-level="3.2" data-path="3-results.html"><a href="3-results.html#n-gramming-1"><i class="fa fa-check"></i><b>3.2</b> N-Gramming</a></li>
-<li class="chapter" data-level="3.3" data-path="3-results.html"><a href="3-results.html#topic-extraction-1"><i class="fa fa-check"></i><b>3.3</b> Topic Extraction</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="3-results.html"><a href="3-results.html#lda"><i class="fa fa-check"></i><b>3.3.1</b> LDA</a></li>
+<li class="chapter" data-level="3.2" data-path="3-results.html"><a href="3-results.html#common-topics-lda"><i class="fa fa-check"></i><b>3.2</b> Common Topics (LDA)</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="3-results.html"><a href="3-results.html#n-gramming-1"><i class="fa fa-check"></i><b>3.2.1</b> N-Gramming</a></li>
+<li class="chapter" data-level="3.2.2" data-path="3-results.html"><a href="3-results.html#lda"><i class="fa fa-check"></i><b>3.2.2</b> LDA</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="3-results.html"><a href="3-results.html#restaurant-opinion-mining"><i class="fa fa-check"></i><b>3.3</b> Restaurant Opinion Mining</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="3-results.html"><a href="3-results.html#aspect-extraction-1"><i class="fa fa-check"></i><b>3.3.1</b> Aspect Extraction</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3-results.html"><a href="3-results.html#aspect-categorization-1"><i class="fa fa-check"></i><b>3.3.2</b> Aspect Categorization</a></li>
+<li class="chapter" data-level="3.3.3" data-path="3-results.html"><a href="3-results.html#sentiment-analysis-1"><i class="fa fa-check"></i><b>3.3.3</b> Sentiment Analysis</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="4-discussion.html"><a href="4-discussion.html"><i class="fa fa-check"></i><b>4</b> Discussion</a></li>
 <li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i>Conclusion</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="A-the-first-appendix.html"><a href="A-the-first-appendix.html"><i class="fa fa-check"></i><b>A</b> The First Appendix</a></li>
-<li class="chapter" data-level="B" data-path="B-the-second-appendix-for-fun.html"><a href="B-the-second-appendix-for-fun.html"><i class="fa fa-check"></i><b>B</b> The Second Appendix, for Fun</a></li>
+<li class="chapter" data-level="A" data-path="A-lda-result-by-cuisine-category.html"><a href="A-lda-result-by-cuisine-category.html"><i class="fa fa-check"></i><b>A</b> LDA Result by Cuisine Category</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -134,7 +104,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Providing Aspect Subscores for Restaurants with Topic Modeling and Sentiment Analysis</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Aspect-based Opinion Mining with Yelp Restaurant Reviews</a>
           </h1>
         </div>
 
@@ -161,7 +131,7 @@ If you feel it necessary to include an appendix, it goes here.
         </div>
       </div>
 <a href="4-discussion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="A-the-first-appendix.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="A-lda-result-by-cuisine-category.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

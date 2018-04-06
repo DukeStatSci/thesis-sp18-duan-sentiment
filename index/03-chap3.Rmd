@@ -21,79 +21,137 @@ library(topicmodels)
 lda <- readRDS("data/LDA_all_ngrammed.rds")
 ```
 
-
 # Results {#results}
-The Yelp dataset version as of Round 10 (in terms of the Dataset Challenge) contains 4.7 million reviews of 156K businesses, not limited to restaurants and each with corresponding attributes such as business hours, parking, and ambience. For the purpose of this thesis, we restrict to reviews of restaurants in the US and only examine a sample of this subset, which comes to 57,790 reviews of 1,409 restaurant in the US provided by 47,617 users on Yelp.  
-
 ## Exploratory Data Analysis  
-Before diving into the analysis of the corpus, we shall first explore the distribution and characteristics of the reviews and the reviewed restaurants. Note that the insights here does not necessarily reflect the actual distribution or characteristics of the reviewed restaurants or reviews on Yelp since our corpus is a sample of the Yelp-provided dataset which is also a not necessarily random sample of the raw reviews.  
+Before diving into the analysis of the corpus, we shall first explore the distribution and characteristics of the reviews and the reviewed restaurants. Since our corpus is a not-necessarily random sample of Yelp reviews, the insights below only may not reflect the true distribution or characteristics of the reviewed restaurants or reviews on Yelp.     
 
-As shown below in the graphs, 258 out of the 1409 restaurants reviewed in our corpus are located in the state of Arizona, and the majority of the reviewed restaurants also in Nevada, Ohio, North Carolina, and Pennsylvania, with the rest of the restaurants in Wisconsin and Illinois and only a few in South Carolina, California, or New York. The state distribution may later explain the identification of certain location-specific n-grams such as “las_vega.” On average each restaurant has 40 reviews in our corpus, with 50% of them having around 10 reviews and 10% having more than 100 reviews. The review-restaurant distribution may influence the choice and validity of any potential segmentation of the corpus for analysis or later the aggregation of sentiments by restaurants. Most reviews in our corpus are relatively short with an average length of 115 words (median at 81 words), while there surely are more lengthy reviews, with about 3,500 reviews (6% of all reviews) spanning from 300 to 1,000 words.  
+```{r, fig.cap="Geo-distribution of reviewed restaurant (showing top 10 locations).", echo=FALSE}
+knitr::include_graphics(path = "figure/map.png")
+```   
 
-```{r EDA, fig.cap="Plots illustrating EDA insights on reviews and restaurants", echo=FALSE}
-include_graphics(path = "figure/EDA_combined.png")
+As shown in the graph above, the top 10 geolocations account for 95% of all reviewed restaurants in our dataset: more than half (57.6%) of the reviewed restaurants in our dataset are located in Ontario (Canada), Arizona, and Nevada, and another 31% of restaurants about evenly distributed in Quebec, Ohio, North Carolina. While Ontario and Quebec, Canada do have two of the most number of reviews, all or the vast majority of these views are written in English and thus would not impact the results for later analysis.   
+
+```{r, fig.cap="Distribution of length of reviews in dataset.", echo=FALSE}
+knitr::include_graphics(path = "figure/length.png")
+```   
+
+The average length of reviews is at 111 words and the most common length is around 50 words, typical of the the “microblog” nature of online text, but we do have an extremely long right-tail indicating a small proportion of quite lengthy reviews, with about 6% of all reviews spanning from 300 to 1,000 words.   
+
+```{r, fig.cap="Distribution of star-ratings by cuisine category / restaurant type.", echo=FALSE}
+knitr::include_graphics(path = "figure/star-cat.png")
+```   
+
+```{r, fig.cap="Percentage of star-ratings by cuisine category / restaurant type. Categories sorted in descending order of total number of reviews.", echo=FALSE}
+knitr::include_graphics(path = "figure/star-cat-2.png")
+```   
+
+In terms of distribution of star ratings, the entire dataset is consists of 37% of reviews with a 5-star rating, 28% with 4 stars, 14% with 3, 10% with 2, and 11%. The distribution for each Cuisine Category / Restaurant Type, while mostly consistent with that of the entire dataset, does show some interesting scoring differences between fine-dining and casual eating scenarios: assuming our dataset random and unbiased, Vegetarian, Steakhouse, Seafood, Sandwiches restaurants tend to receive higher percentage of 5-star ratings, while Chinese, Burgers, Pizza, and Mexican restaurants have significantly higher percentage of 1-star ratings.   
+
+```{r wordcloud, fig.cap="Word cloud of 50 most frequent words in corpus (pre-stemming). We can already see many potential “aspects” and associated “sentiment” that we would like to extract next.", echo=FALSE}
+knitr::include_graphics(path = "figure/raw_wordcloud.png")
 ```  
 
-```{r wordcloud, fig.cap="Word cloud of 50 most frequent words in corpus (pre-stemming)", echo=FALSE}
-include_graphics(path = "figure/raw_wordcloud.png")
-```  
+## Common Topics (LDA)   
+### N-Gramming  
+Using the n-gramming method with hybrid cutoff thresholds discussed in the Methodology section, 2148 bigrams and 406 trigrams (and larger n-grams) were identified. Below shows the top and most representative n-grams identified in our corpus, and it is evident that the method successfully identified context-specific phrases that should be processed as single tokens.   
 
-## N-Gramming  
-With the n-gramming model with hybrid cutoff thresholds detailed in the Methodology section, 2148 bigrams and 406 trigrams or larger n-grams were identified. Below is a table of the top and most representative n-grams identified in our corpus of Yelp restaurant reviews.  
-
------------------------------------------------------------------------------
-  n-grams                             Counts                      p-value
-------------------------- ------------------------------------ --------------
-  go_back                              3936                      0.000000e+00
-  
-  high_recommend                       1814                      0.000000e+00   
-  
-  great_food\*                         1723                      1.060000e-75
-  
-  happi_hour                           1704                      1.19e-75
-  
-  custom_servic                        1397                      2.73e-26
-  
-  las_vega                             1057                      7.60e-201
-  
-  white_castl\*\*                      974                       5.79e-152
-  
-  will_definit.back                    482                       0.000000e+00
-  
-  mac_n.chees                          222                       0.000000e+00
-  
-  food.pretti_good\*                   166                       1.270000e-121
-  
-  seat.right_away                      113                       7.160000e-228
-  
-  matt_big.breakfast\*\*\*             101                       2.550000e-296
-  
-  give_place.star                      99                        2.430000e-184
-  
-  kung_pao.chicken                     54                        8.850000e-119
-  
-  fast_food.chain                      40                        1.24e-79
-------------------------- ------------------------------------- --------------
-Table: (\#tab:bigram) Top Context-Specific Bigrams and Trigrams   
-
-Notes on the Bigram Trigram table:  
-1. (\*) Similar bigrams including *“good/great_food/servic/place”* are also common with significant p-values. Same as in the case of trigrams: *“food/servic.pretti/realli/super_good/great”*.  
-2. (\*\*) Refers to “White Castle”, a fast-food chain in Midwestern and Mid-Atlantic regions of the United States. As previously mentioned, the high occurrence of this bigram is likely due to the state distribution of the reviewed restaurants in our corpus.  
-3. (\*\*\*) Name of a reviewed restaurant in Phoenix, AZ. Same as above, the high occurrence and significance of p-value of this trigram is also related to our corpus-specific restaurant distributions. But in both cases, identifying the word sequence as one token would carry the right meaningful information and thus beneficial for the analysis.   
-
-## Topic Extraction   
-Regardless of the method used for identifying common topics in the corpus, we may first set our intuitive expectations for the output as a qualitative sanity check. Given that our corpus is a set of reviews on restaurants, commonly reviewed aspects may include food (eg. taste, portion, price), service (eg. timeliness, friendliness), ambience (eg. noise level, suitable occasion), location, etc.. We will see if these targeted aspects can be recovered automatically.   
+```{r, echo=FALSE}
+tbl <- read.csv("data/bigram.csv")
+names(tbl)[2] = "p-value"
+tbl$`p-value` = as.character(tbl$`p-value`)
+knitr::kable(tbl, caption = "Top context-specific bigrams (stemmed).", "html") %>% kableExtra::kable_styling(bootstrap_options = c("striped", "hover"), full_width = F, font_size = 14)
+```   
+```{r, echo=FALSE}
+tbl <- read.csv("data/trigram.csv")
+names(tbl)[2] = "p-value"
+tbl$`p-value` = as.character(tbl$`p-value`)
+knitr::kable(tbl, caption = "Top context-specific trigrams (stemmed).", "html") %>% kableExtra::kable_styling(bootstrap_options = c("striped", "hover"), full_width = F, font_size = 14)
+```   
 
 ### LDA   
-With number of topics manually set at 5 and Gibbs sampling control slots set at default level (again, a future step could be optimizing these parameters automatically), the topics identified by the LDA model from our corpus along with top words/tokens in each topic is listed below:   
+While no “ground truth” exist for topic modeling results, we may expect to see category-aspect pairs such as Food / Drinks (taste, portion, price, options), Service (timeliness, friendliness), Ambience (noise level, occasion), Location, and Restaurant in general (cuisine category, restaurant type) etc.. We check if these targeted aspects can be recovered automatically.
 
 ```{r LDA-result, warning=FALSE, message=FALSE, echo=FALSE}
-knitr::kable(terms(lda,10), format = "html",
-             caption = "LDA topics and associated top terms (entire corpus, stemmed)")
-```   
-The above topics are approximately about restaurant - location and type (Topic 1), food - variety and taste (Topic 2), food - type and price (Topic 3), food - taste and variety (Topic 4), service (Topic 5). While Topic 2 and Topic 4 seems to focus on approximately the same aspects, the former is more about fast-food type of food while the latter seems to be about fine dining.   
+knitr::kable(terms(lda,10), format = "html", 
+             caption = "LDA topics and associated top terms (entire corpus, stemmed)") %>% kableExtra::kable_styling(bootstrap_options = c("striped", "hover"), full_width = F, font_size = 14)
+```    
 
-I have also experimented with running LDA with sub-corpus of each category listed on Yelp (i.e. by cuisine type), and besides showing more category-specific top terms such as “taco”, “salsa”, and “horchata” in the food topic for the sub-corpus of Mexican restaurants, the segmented corpus did not result in significant improvements in the distinction of topics but rather had worse performance possibly due to less documents in sub-corpus. While segmentation of corpus proves to not be of much help when extracting common topics, it may be helpful later in the step of sentiment aggregation especially we decide to use top terms associated with targeted topics (food, service, ambience, location etc.) as the anchor/center for finding and aggregating sentiment polarity.   
+When trained on the entire corpus, LDA identified topics that are in general consistent with the expectation above: *Restaurant (Ambience and Location)* (Topic 1), *Food-quality* (Topic 2, more casual or lunch style), *Food-price / dining experience* (Topic 3), *Food-options / quality* (Topic 4, fine-dining or dinner style), *Service* (Topic 5). The food-related topics, however, do seem to contain tokens representing a mix of aspects (price, taste, variety). In other words, the food topics need more discriminating differentiation.    
+
+One potential explanation for this drawback could be the various but unevenly distributed cuisine categories we have in the corpus: while service and restaurant ambience / location may be shared topics containing similar tokens regardless of the cuisine type, food-related topics and associated tokens are likely to be more category-specific or even restaurant-specific. In response, we experiment with running LDA on segmented corpus for each cuisine category.    
+
+```{r LDA-result-cat, warning=FALSE, message=FALSE, echo=FALSE}
+lda_c <- read.csv("data/lda_cat.csv")
+knitr::kable(lda_c, format = "html", 
+             caption = "LDA topics and associated top terms (restaurants with category ‘Korean’, stemmed)") %>% kableExtra::kable_styling(bootstrap_options = c("striped", "hover"), full_width = F, font_size = 14)
+```    
+
+When trained on corpus segmented by cuisine category, Food topic and corresponding top terms become much more category-specific. As illustrated in the results from Korean category corpus, *specialty-food-related tokens* are extracted and grouped into topics (Bibimbap-related in Topic 1, Korean BBQ-related in Topic 2) in addition to more general topics seen in the entire corpus (*Food-quality* in Topic 3, *Service* in Topic 4, *Restaurant* in Topic 5).   
+
+## Restaurant Opinion Mining    
+### Aspect Extraction   
+Unlike the extraction of common topics, our analysis of highlights (aspects) and corresponding sentiment is specific to each restaurant. To illustrate the opinion mining process, we use results for a randomly picked restaurant (Kitchen M in Markham, Ontario). Based on 73 reviews on this restaurant, 32 aspect terms were extracted (in order of most mentioned, by number of reviews):   
+
+$$
+\begin{aligned}
+food,\ place,\ service,\ dish,\ restaurant,\ menu,\ rice,\ soup,\ tea,\ table,\\ meal,\ cafe,\ price,\ sauce,\ drink,\ portion,\ noodle,\ staff,\ congee,\\ lunch,\ option,\ spaghetti,\ breakfast,\ dessert,\ waitress,\\ cheese,\ area,\ style,\ order,\ space,\ sandwich,\ steak
+\end{aligned} 
+$$
+
+### Aspect Categorization   
+We previously discussed two approaches for categorizing extracted aspect terms: one is assigning each term to the closest pre-defined category based on cosine similarity, and the other  is automatically identify them with clustering without making presumptions about the categories. For the first approach, we decided not to use the pre-defined categories of SemEval (Food, Drinks, Service, Ambience, Location, Restaurant) but rely on the LDA results for our corpus (Food, Service, Restaurant) since the latter is consistent with the former but more representative of our corpus.   
+
+The results, as shown below, are not especially satisfying. Each category has a few aspects improperly assigned, most significantly in the Restaurant category, where a collection of words (‘noodle’, ‘congee’, ‘waitress’) bearing clear categories were wrongly assigned. With a closer examination, we realized that for many words, their cosine similarity to different pre-defined categories can be quite similar, and thus the assignments were made with little confidence. In addition, regardless of categories, extracted aspects all belong to the larger domain of restaurant characteristics, and thus are semantically close by nature.   
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+library(xlsx)
+cat <- read.xlsx("data/cat.xlsx",1)
+names(cat)[2] = "Aspect terms assigned to this category"
+knitr::kable(cat, format = "html", 
+             caption = "Categorization results using cosine similarity between aspect terms and each pre-fixed category terms.") %>% kableExtra::kable_styling(bootstrap_options = c("striped", "hover"), full_width = F, font_size = 14)
+```    
+
+For the second approach, we cluster the extracted aspects using their word embedding representations based on the 300-dimensional, 42B pre-trained GloVe model. The result shows that the aspects can be approximately grouped into 3 clusters of dishes, food & drink types and dining experience attributes, generally consistent with the LDA results, but is also lacking more discriminating differentiation within topics.   
+
+```{r, fig.cap="t-SNE visualization of clustering results for extracted aspects using vector representations from GloVe.", echo=FALSE}
+knitr::include_graphics(path = "figure/cluster.png")
+```   
+
+Since neither approach derived very satisfying result for categorization, we decide to focus on the aspect level for sentiment analysis, and postpone the aggregation of categorical scores for the scope of this project.   
+
+### Sentiment Analysis   
+In the Methodology section, we discussed two refined lexicon-based sentiment analysis implementations, VADER and TextBlob. While they had decent performance on common challenging use cases, it is worthwhile to do a sanity check on whether they can capture the overall sentiments in our review corpus. Using the overall star rating as proxy for review polarity, we perform sentiment analysis on all reviews in the corpus and compare the two tools’ ability to recover the general polarity of reviews. From the graphs below, it is evident that polarity scores derived by TextBlob have better correlation with the star ratings and thus may be more suitable for our sentiment analysis task.   
+
+```{r, fig.cap="Sanity check with candidate sentiment analysis tools. VADER, while attuned to distinctive expression patterns in social media context and sensitive to intensity of polarity, may focus much on the nuances but lose grip on the overall polarity. TextBlob, on the other hand, shows good correlation with the actual star ratings.", echo=FALSE}
+knitr::include_graphics(path = "figure/vader.png")
+knitr::include_graphics(path = "figure/textblob.png")
+```   
+
+TextBlob’s better performance was further confirmed by results for individual review text. For each of the extracted aspects of a given restaurant, all review text concerning the aspect are collected. VADER and TextBlob are then used to perform sentiment analysis on each of the review text. The table below shows all review text in the corpus for our example restaurant concerning the aspect ‘price’ along with the corresponding polarity scores derived by both tools.   
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+library(xlsx)
+sa <- read.xlsx("data/sa.xlsx",1)
+names(sa) = c("Review text concerning 'price'","VADER score", "TextBlob score")
+knitr::kable(sa, format = "html", 
+             caption = "Review text on ‘price’ for example restaurant and corresponding scores by VADER and  TextBlob. VADER seems to have less lexical features (words) in its vocab and thus missed many sentiment keywords. TextBlob captured the majority of sentiment words possibly due to its lexicon attuned to product reviews, but also had problems with context-dependent sentiments such as “high (price)” and “above average (price)”.") %>% kableExtra::kable_styling(bootstrap_options = c("striped", "hover"), full_width = F, font_size = 14)
+```    
+
+From the results above, it is evident that words bearing context-dependent sentiment impose a challenge for lexicon-based methods in general. In the examples above, *cheap* and *affordable* should carry positive sentiment while *high* carries negative when associated with *price*, but the words themselves do not necessarily have a polarity, and can even carry opposite polarity when associated with different context (eg. *high price* is negative but *high score* can be positive). This limitation of lexicon-based method is hard to resolve, since the unit of analysis in these approach is often words, and thus even with the incorporation of semantic patterns only limited of info can be incorporated from the context.   
+
+The final step in our analysis is to derive an averaged score for each aspect and summarize the highlights (most-mentioned and most-positively-reviewed) of the given restaurant. Below is the summary for the example restaurant. Interestingly, our summarized highlights do overlap with the ones provided by Yelp for Kitchen M (our example restaurant), though Yelp seems to focus more on the “most-discussed” part when defining highlights and gives little explicit attention to the sentiment associated.   
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+library(xlsx)
+hl <- read.xlsx("data/hl.xlsx",1)
+names(hl)[2] = "Representative review text"
+knitr::kable(hl, format = "html", 
+             caption = "Summary of highlights for the example restaurant.") %>% kableExtra::kable_styling(bootstrap_options = c("striped", "hover"), full_width = F, font_size = 14)
+```    
+
+```{r, fig.cap="Screenshot of Yelp-provided highlights for the example restaurant. These highlights, though selected mainly based on number of reviews mentioning it, are not necessarily the most-positively-reviewed. Interestingly, these aspects do overlap with the ones extracted with our sentiment-focused approach.", echo=FALSE}
+knitr::include_graphics(path = "figure/yelp-highlights.png")
+```   
 
 
 <!-- ## Tables -->

@@ -1,8 +1,15 @@
-# Conclusion {-}
+# Conclusion & Future Work {#conclusion}
+- LDA identified Food (quality, options) , Service, and Restaurant as the commonly discussed topics in Yelp restaurant reviews, but distinctions among topics are not especially clear;   
+    + Next step is to optimize hyper-parameters including number of topics.    
+- POS tagging and semantic patterns gave decent results in extracting meaningful aspects from reviews for a given restaurant, but have limited ability in handling complex sentences with mixed aspects;    
+    + Next step is to experiment with methods that incorporate more semantic context, such as dependency parsing.    
+- Word embedding representations can provide preliminary results on categorizing extracted aspects, but as with LDA topics, aspects in the same domain (restaurant) are by nature semantically close and thus pose challenge to effective clustering/categorization;    
+    + Next step is to explore better options for aspect categorization.    
+- Lexicon (dictionary)-based approach, when combined with semantic patterns or rules, have overall decent performance on sentiment analysis, but is still constrained by word-level information and thus can only reach limited accuracy;    
+    + Next step is to experiment with machine-learning based approach for sentiment analysis.      
+    
+The original motivation and also a particularly meaningful application of this project is to provide personalized restaurant recommendations based on a user’s review. A potential approach to this task would be Doc2Vec, which can measure the distance from a given text (can be a word, a phrase, a sentence, or a full review text) to the documents (reviews) in corpus.   
 
-If we don't want Conclusion to have a chapter number next to it, we can add the `{-}` attribute.
+With improved aspect extraction and sentiment analysis as well as categorization methods, it would also be interesting to derive categorical scores (for food, service, ambience, location, price etc.) and use them as features to explain and predict users’ overall sentiment towards a restaurant --- what category or aspect has the most impact? Does the answer differ for different cuisine categories / restaurant types?   
 
-**More info**
-
-And here's some other random info: the first paragraph after a chapter title or section head _shouldn't be_ indented, because indents are to tell the reader that you're starting a new paragraph. Since that's obvious after a chapter or section title, proper typesetting doesn't add an indent there.
-
+Such incredibly rich dataset allows us to experiment with a wide range of tasks in the field of Text Mining and Natural Language Processing. This project is a starting point for these exploration and I look forward to the learning experience (and fun) ahead.   

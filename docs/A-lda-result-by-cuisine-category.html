@@ -1,0 +1,4815 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Aspect-based Opinion Mining with Yelp Restaurant Reviews</title>
+  <meta name="description" content="Aspect-based Opinion Mining with Yelp Restaurant Reviews">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Aspect-based Opinion Mining with Yelp Restaurant Reviews" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Aspect-based Opinion Mining with Yelp Restaurant Reviews" />
+  
+  
+  
+
+<meta name="author" content="Tianlin Duan">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="4-conclusion.html">
+<link rel="next" href="references.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"></a></li>
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="1" data-path="1-intro.html"><a href="1-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="2-methods.html"><a href="2-methods.html"><i class="fa fa-check"></i><b>2</b> Methodology</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-methods.html"><a href="2-methods.html#identify-common-topics-entire-corpus"><i class="fa fa-check"></i><b>2.1</b> Identify Common Topics (Entire Corpus)</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="2-methods.html"><a href="2-methods.html#data-pre-processing"><i class="fa fa-check"></i><b>2.1.1</b> Data Pre-processing</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2-methods.html"><a href="2-methods.html#latent-dirichlet-allocation-lda"><i class="fa fa-check"></i><b>2.1.2</b> Latent Dirichlet Allocation (LDA)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-methods.html"><a href="2-methods.html#opinion-mining-restaurant-specific"><i class="fa fa-check"></i><b>2.2</b> Opinion Mining (Restaurant-specific)</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-methods.html"><a href="2-methods.html#aspect-extraction"><i class="fa fa-check"></i><b>2.2.1</b> Aspect Extraction</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-methods.html"><a href="2-methods.html#aspect-categorization"><i class="fa fa-check"></i><b>2.2.2</b> Aspect Categorization</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-methods.html"><a href="2-methods.html#sentiment-analysis"><i class="fa fa-check"></i><b>2.2.3</b> Sentiment Analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-results.html"><a href="3-results.html"><i class="fa fa-check"></i><b>3</b> Results</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-results.html"><a href="3-results.html#exploratory-data-analysis"><i class="fa fa-check"></i><b>3.1</b> Exploratory Data Analysis</a></li>
+<li class="chapter" data-level="3.2" data-path="3-results.html"><a href="3-results.html#common-topics-lda"><i class="fa fa-check"></i><b>3.2</b> Common Topics (LDA)</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="3-results.html"><a href="3-results.html#n-gramming-1"><i class="fa fa-check"></i><b>3.2.1</b> N-Gramming</a></li>
+<li class="chapter" data-level="3.2.2" data-path="3-results.html"><a href="3-results.html#lda"><i class="fa fa-check"></i><b>3.2.2</b> LDA</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="3-results.html"><a href="3-results.html#restaurant-opinion-mining"><i class="fa fa-check"></i><b>3.3</b> Restaurant Opinion Mining</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="3-results.html"><a href="3-results.html#aspect-extraction-1"><i class="fa fa-check"></i><b>3.3.1</b> Aspect Extraction</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3-results.html"><a href="3-results.html#aspect-categorization-1"><i class="fa fa-check"></i><b>3.3.2</b> Aspect Categorization</a></li>
+<li class="chapter" data-level="3.3.3" data-path="3-results.html"><a href="3-results.html#sentiment-analysis-1"><i class="fa fa-check"></i><b>3.3.3</b> Sentiment Analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-conclusion.html"><a href="4-conclusion.html"><i class="fa fa-check"></i><b>4</b> Conclusion &amp; Future Work</a></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="A-lda-result-by-cuisine-category.html"><a href="A-lda-result-by-cuisine-category.html"><i class="fa fa-check"></i><b>A</b> LDA Result by Cuisine Category</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Aspect-based Opinion Mining with Yelp Restaurant Reviews</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="lda-result-by-cuisine-category" class="section level1">
+<h1><span class="header-section-number">A</span> LDA Result by Cuisine Category</h1>
+<table class="kable_wrapper table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:unnamed-chunk-14">Table A.1: </span>LDA top terms American
+</caption>
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Topic.1
+</th>
+<th style="text-align:left;">
+Topic.2
+</th>
+<th style="text-align:left;">
+Topic.3
+</th>
+<th style="text-align:left;">
+Topic.4
+</th>
+<th style="text-align:left;">
+Topic.5
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+burger
+</td>
+<td style="text-align:left;">
+just
+</td>
+<td style="text-align:left;">
+tabl
+</td>
+<td style="text-align:left;">
+restaur
+</td>
+<td style="text-align:left;">
+bar
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+fri
+</td>
+<td style="text-align:left;">
+get
+</td>
+<td style="text-align:left;">
+server
+</td>
+<td style="text-align:left;">
+delici
+</td>
+<td style="text-align:left;">
+beer
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+order
+</td>
+<td style="text-align:left;">
+go
+</td>
+<td style="text-align:left;">
+ask
+</td>
+<td style="text-align:left;">
+dinner
+</td>
+<td style="text-align:left;">
+place
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sandwich
+</td>
+<td style="text-align:left;">
+make
+</td>
+<td style="text-align:left;">
+us
+</td>
+<td style="text-align:left;">
+meal
+</td>
+<td style="text-align:left;">
+drink
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+salad
+</td>
+<td style="text-align:left;">
+come
+</td>
+<td style="text-align:left;">
+servic
+</td>
+<td style="text-align:left;">
+amaz
+</td>
+<td style="text-align:left;">
+friend
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+like
+</td>
+<td style="text-align:left;">
+think
+</td>
+<td style="text-align:left;">
+said
+</td>
+<td style="text-align:left;">
+perfect
+</td>
+<td style="text-align:left;">
+locat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+got
+</td>
+<td style="text-align:left;">
+food
+</td>
+<td style="text-align:left;">
+order
+</td>
+<td style="text-align:left;">
+steak
+</td>
+<td style="text-align:left;">
+great
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+good
+</td>
+<td style="text-align:left;">
+one
+</td>
+<td style="text-align:left;">
+even
+</td>
+<td style="text-align:left;">
+dish
+</td>
+<td style="text-align:left;">
+night
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+littl
+</td>
+<td style="text-align:left;">
+im
+</td>
+<td style="text-align:left;">
+waitress
+</td>
+<td style="text-align:left;">
+appet
+</td>
+<td style="text-align:left;">
+lot
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bread
+</td>
+<td style="text-align:left;">
+eat
+</td>
+<td style="text-align:left;">
+manag
+</td>
+<td style="text-align:left;">
+great
+</td>
+<td style="text-align:left;">
+menu
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tri
+</td>
+<td style="text-align:left;">
+place
+</td>
+<td style="text-align:left;">
+one
+</td>
+<td style="text-align:left;">
+dessert
+</td>
+<td style="text-align:left;">
+awesom
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+came
+</td>
+<td style="text-align:left;">
+thing
+</td>
+<td style="text-align:left;">
+went
+</td>
+<td style="text-align:left;">
+flavor
+</td>
+<td style="text-align:left;">
+visit
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+chicken
+</td>
+<td style="text-align:left;">
+can
+</td>
+<td style="text-align:left;">
+back
+</td>
+<td style="text-align:left;">
+plate
+</td>
+<td style="text-align:left;">
+well
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+chees
+</td>
+<td style="text-align:left;">
+realli
+</td>
+<td style="text-align:left;">
+seat
+</td>
+<td style="text-align:left;">
+menu
+</td>
+<td style="text-align:left;">
+stop
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+top
+</td>
+<td style="text-align:left;">
+breakfast
+</td>
+<td style="text-align:left;">
+wait
+</td>
+<td style="text-align:left;">
+well
+</td>
+<td style="text-align:left;">
+also
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="kable_wrapper table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:unnamed-chunk-14">Table A.1: </span>LDA top terms Breakfast
+</caption>
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Topic.1
+</th>
+<th style="text-align:left;">
+Topic.2
+</th>
+<th style="text-align:left;">
+Topic.3
+</th>
+<th style="text-align:left;">
+Topic.4
+</th>
+<th style="text-align:left;">
+Topic.5
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+breakfast
+</td>
+<td style="text-align:left;">
+menu
+</td>
+<td style="text-align:left;">
+white.castl
+</td>
+<td style="text-align:left;">
+tabl
+</td>
+<td style="text-align:left;">
+taco
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+egg
+</td>
+<td style="text-align:left;">
+sandwich
+</td>
+<td style="text-align:left;">
+burger
+</td>
+<td style="text-align:left;">
+order
+</td>
+<td style="text-align:left;">
+salsa
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+wait
+</td>
+<td style="text-align:left;">
+also
+</td>
+<td style="text-align:left;">
+slider
+</td>
+<td style="text-align:left;">
+ask
+</td>
+<td style="text-align:left;">
+great
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+coffe
+</td>
+<td style="text-align:left;">
+restaur
+</td>
+<td style="text-align:left;">
+locat
+</td>
+<td style="text-align:left;">
+servic
+</td>
+<td style="text-align:left;">
+salsa_bar
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pancak
+</td>
+<td style="text-align:left;">
+friend
+</td>
+<td style="text-align:left;">
+fri
+</td>
+<td style="text-align:left;">
+said
+</td>
+<td style="text-align:left;">
+delici
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+place
+</td>
+<td style="text-align:left;">
+food
+</td>
+<td style="text-align:left;">
+eat
+</td>
+<td style="text-align:left;">
+just
+</td>
+<td style="text-align:left;">
+flavor
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bacon
+</td>
+<td style="text-align:left;">
+meal
+</td>
+<td style="text-align:left;">
+get
+</td>
+<td style="text-align:left;">
+busi
+</td>
+<td style="text-align:left;">
+amaz
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+side
+</td>
+<td style="text-align:left;">
+even
+</td>
+<td style="text-align:left;">
+just
+</td>
+<td style="text-align:left;">
+peopl
+</td>
+<td style="text-align:left;">
+love
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+good
+</td>
+<td style="text-align:left;">
+time
+</td>
+<td style="text-align:left;">
+chees
+</td>
+<td style="text-align:left;">
+us
+</td>
+<td style="text-align:left;">
+one
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+potato
+</td>
+<td style="text-align:left;">
+lunch
+</td>
+<td style="text-align:left;">
+one
+</td>
+<td style="text-align:left;">
+server
+</td>
+<td style="text-align:left;">
+tri
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+matt
+</td>
+<td style="text-align:left;">
+option
+</td>
+<td style="text-align:left;">
+tast
+</td>
+<td style="text-align:left;">
+food
+</td>
+<td style="text-align:left;">
+place
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+morn
+</td>
+<td style="text-align:left;">
+salad
+</td>
+<td style="text-align:left;">
+like
+</td>
+<td style="text-align:left;">
+work
+</td>
+<td style="text-align:left;">
+well
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+toast
+</td>
+<td style="text-align:left;">
+eat
+</td>
+<td style="text-align:left;">
+expect
+</td>
+<td style="text-align:left;">
+go
+</td>
+<td style="text-align:left;">
+good
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+like
+</td>
+<td style="text-align:left;">
+brunch
+</td>
+<td style="text-align:left;">
+line
+</td>
+<td style="text-align:left;">
+want
+</td>
+<td style="text-align:left;">
+best
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+perfect
+</td>
+<td style="text-align:left;">
+alway
+</td>
+<td style="text-align:left;">
+better
+</td>
+<td style="text-align:left;">
+look
+</td>
+<td style="text-align:left;">
+chip
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="kable_wrapper table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:unnamed-chunk-14">Table A.1: </span>LDA top terms Burgers
+</caption>
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Topic.1
+</th>
+<th style="text-align:left;">
+Topic.2
+</th>
+<th style="text-align:left;">
+Topic.3
+</th>
+<th style="text-align:left;">
+Topic.4
+</th>
+<th style="text-align:left;">
+Topic.5
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+just
+</td>
+<td style="text-align:left;">
+place
+</td>
+<td style="text-align:left;">
+burger
+</td>
+<td style="text-align:left;">
+order
+</td>
+<td style="text-align:left;">
+white.castl
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+even
+</td>
+<td style="text-align:left;">
+good
+</td>
+<td style="text-align:left;">
+fri
+</td>
+<td style="text-align:left;">
+ask
+</td>
+<td style="text-align:left;">
+slider
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+get
+</td>
+<td style="text-align:left;">
+also
+</td>
+<td style="text-align:left;">
+bun
+</td>
+<td style="text-align:left;">
+said
+</td>
+<td style="text-align:left;">
+locat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+make
+</td>
+<td style="text-align:left;">
+go
+</td>
+<td style="text-align:left;">
+got
+</td>
+<td style="text-align:left;">
+time
+</td>
+<td style="text-align:left;">
+one
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+can
+</td>
+<td style="text-align:left;">
+nice
+</td>
+<td style="text-align:left;">
+delici
+</td>
+<td style="text-align:left;">
+manag
+</td>
+<td style="text-align:left;">
+vega
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+think
+</td>
+<td style="text-align:left;">
+friend
+</td>
+<td style="text-align:left;">
+love
+</td>
+<td style="text-align:left;">
+went
+</td>
+<td style="text-align:left;">
+line
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+want
+</td>
+<td style="text-align:left;">
+menu
+</td>
+<td style="text-align:left;">
+shake
+</td>
+<td style="text-align:left;">
+wait
+</td>
+<td style="text-align:left;">
+strip
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+way
+</td>
+<td style="text-align:left;">
+well
+</td>
+<td style="text-align:left;">
+sauc
+</td>
+<td style="text-align:left;">
+drink
+</td>
+<td style="text-align:left;">
+tast
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+made
+</td>
+<td style="text-align:left;">
+food
+</td>
+<td style="text-align:left;">
+flavor
+</td>
+<td style="text-align:left;">
+tabl
+</td>
+<td style="text-align:left;">
+eat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+say
+</td>
+<td style="text-align:left;">
+bar
+</td>
+<td style="text-align:left;">
+top
+</td>
+<td style="text-align:left;">
+work
+</td>
+<td style="text-align:left;">
+littl
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+im
+</td>
+<td style="text-align:left;">
+alway
+</td>
+<td style="text-align:left;">
+meat
+</td>
+<td style="text-align:left;">
+one
+</td>
+<td style="text-align:left;">
+onion
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+much
+</td>
+<td style="text-align:left;">
+will
+</td>
+<td style="text-align:left;">
+amaz
+</td>
+<td style="text-align:left;">
+servic
+</td>
+<td style="text-align:left;">
+like
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+like
+</td>
+<td style="text-align:left;">
+stop
+</td>
+<td style="text-align:left;">
+tri
+</td>
+<td style="text-align:left;">
+busi
+</td>
+<td style="text-align:left;">
+chees
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+still
+</td>
+<td style="text-align:left;">
+come
+</td>
+<td style="text-align:left;">
+fresh
+</td>
+<td style="text-align:left;">
+back
+</td>
+<td style="text-align:left;">
+open
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+thing
+</td>
+<td style="text-align:left;">
+wing
+</td>
+<td style="text-align:left;">
+dog
+</td>
+<td style="text-align:left;">
+us
+</td>
+<td style="text-align:left;">
+better
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="kable_wrapper table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:unnamed-chunk-14">Table A.1: </span>LDA top terms Chinese
+</caption>
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Topic.1
+</th>
+<th style="text-align:left;">
+Topic.2
+</th>
+<th style="text-align:left;">
+Topic.3
+</th>
+<th style="text-align:left;">
+Topic.4
+</th>
+<th style="text-align:left;">
+Topic.5
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+one
+</td>
+<td style="text-align:left;">
+chicken
+</td>
+<td style="text-align:left;">
+chines
+</td>
+<td style="text-align:left;">
+dish
+</td>
+<td style="text-align:left;">
+order
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+place
+</td>
+<td style="text-align:left;">
+sauc
+</td>
+<td style="text-align:left;">
+sushi
+</td>
+<td style="text-align:left;">
+beef
+</td>
+<td style="text-align:left;">
+food
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+dim_sum
+</td>
+<td style="text-align:left;">
+fri_rice
+</td>
+<td style="text-align:left;">
+price
+</td>
+<td style="text-align:left;">
+dumpl
+</td>
+<td style="text-align:left;">
+eat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+time
+</td>
+<td style="text-align:left;">
+soup
+</td>
+<td style="text-align:left;">
+chines_food
+</td>
+<td style="text-align:left;">
+shrimp
+</td>
+<td style="text-align:left;">
+just
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tabl
+</td>
+<td style="text-align:left;">
+great
+</td>
+<td style="text-align:left;">
+best
+</td>
+<td style="text-align:left;">
+noodl
+</td>
+<td style="text-align:left;">
+even
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+serv
+</td>
+<td style="text-align:left;">
+love
+</td>
+<td style="text-align:left;">
+restaur
+</td>
+<td style="text-align:left;">
+flavor
+</td>
+<td style="text-align:left;">
+ask
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+us
+</td>
+<td style="text-align:left;">
+get
+</td>
+<td style="text-align:left;">
+take
+</td>
+<td style="text-align:left;">
+tast
+</td>
+<td style="text-align:left;">
+went
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+servic
+</td>
+<td style="text-align:left;">
+nice
+</td>
+<td style="text-align:left;">
+crave
+</td>
+<td style="text-align:left;">
+good
+</td>
+<td style="text-align:left;">
+come
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+go
+</td>
+<td style="text-align:left;">
+meal
+</td>
+<td style="text-align:left;">
+place
+</td>
+<td style="text-align:left;">
+spici
+</td>
+<td style="text-align:left;">
+realli
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+got
+</td>
+<td style="text-align:left;">
+littl
+</td>
+<td style="text-align:left;">
+tri
+</td>
+<td style="text-align:left;">
+pork
+</td>
+<td style="text-align:left;">
+said
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+see
+</td>
+<td style="text-align:left;">
+rice
+</td>
+<td style="text-align:left;">
+authent
+</td>
+<td style="text-align:left;">
+restaur
+</td>
+<td style="text-align:left;">
+want
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+locat
+</td>
+<td style="text-align:left;">
+like
+</td>
+<td style="text-align:left;">
+dinner
+</td>
+<td style="text-align:left;">
+like
+</td>
+<td style="text-align:left;">
+will
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+owner
+</td>
+<td style="text-align:left;">
+alway
+</td>
+<td style="text-align:left;">
+menu
+</td>
+<td style="text-align:left;">
+also
+</td>
+<td style="text-align:left;">
+know
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+busi
+</td>
+<td style="text-align:left;">
+general
+</td>
+<td style="text-align:left;">
+better
+</td>
+<td style="text-align:left;">
+bit
+</td>
+<td style="text-align:left;">
+buffet
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+around
+</td>
+<td style="text-align:left;">
+fresh
+</td>
+<td style="text-align:left;">
+china
+</td>
+<td style="text-align:left;">
+cook
+</td>
+<td style="text-align:left;">
+thing
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="kable_wrapper table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:unnamed-chunk-14">Table A.1: </span>LDA top terms Italian
+</caption>
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Topic.1
+</th>
+<th style="text-align:left;">
+Topic.2
+</th>
+<th style="text-align:left;">
+Topic.3
+</th>
+<th style="text-align:left;">
+Topic.4
+</th>
+<th style="text-align:left;">
+Topic.5
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+great
+</td>
+<td style="text-align:left;">
+get
+</td>
+<td style="text-align:left;">
+tabl
+</td>
+<td style="text-align:left;">
+pasta
+</td>
+<td style="text-align:left;">
+pizza
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+menu
+</td>
+<td style="text-align:left;">
+go
+</td>
+<td style="text-align:left;">
+order
+</td>
+<td style="text-align:left;">
+bread
+</td>
+<td style="text-align:left;">
+top
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+love
+</td>
+<td style="text-align:left;">
+place
+</td>
+<td style="text-align:left;">
+us
+</td>
+<td style="text-align:left;">
+meal
+</td>
+<td style="text-align:left;">
+crust
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+delici
+</td>
+<td style="text-align:left;">
+restaur
+</td>
+<td style="text-align:left;">
+ask
+</td>
+<td style="text-align:left;">
+salad
+</td>
+<td style="text-align:left;">
+chees
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nice
+</td>
+<td style="text-align:left;">
+make
+</td>
+<td style="text-align:left;">
+server
+</td>
+<td style="text-align:left;">
+italian
+</td>
+<td style="text-align:left;">
+slice
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+amaz
+</td>
+<td style="text-align:left;">
+eat
+</td>
+<td style="text-align:left;">
+drink
+</td>
+<td style="text-align:left;">
+dish
+</td>
+<td style="text-align:left;">
+sauc
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+food
+</td>
+<td style="text-align:left;">
+can
+</td>
+<td style="text-align:left;">
+time
+</td>
+<td style="text-align:left;">
+chicken
+</td>
+<td style="text-align:left;">
+fresh
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+enjoy
+</td>
+<td style="text-align:left;">
+bar
+</td>
+<td style="text-align:left;">
+said
+</td>
+<td style="text-align:left;">
+also
+</td>
+<td style="text-align:left;">
+like
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+perfect
+</td>
+<td style="text-align:left;">
+will
+</td>
+<td style="text-align:left;">
+one
+</td>
+<td style="text-align:left;">
+serv
+</td>
+<td style="text-align:left;">
+wing
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+friend
+</td>
+<td style="text-align:left;">
+locat
+</td>
+<td style="text-align:left;">
+servic
+</td>
+<td style="text-align:left;">
+came
+</td>
+<td style="text-align:left;">
+salad
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+dinner
+</td>
+<td style="text-align:left;">
+like
+</td>
+<td style="text-align:left;">
+manag
+</td>
+<td style="text-align:left;">
+sauc
+</td>
+<td style="text-align:left;">
+tomato
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+best
+</td>
+<td style="text-align:left;">
+way
+</td>
+<td style="text-align:left;">
+waiter
+</td>
+<td style="text-align:left;">
+meatbal
+</td>
+<td style="text-align:left;">
+sausag
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+wine
+</td>
+<td style="text-align:left;">
+im
+</td>
+<td style="text-align:left;">
+wait
+</td>
+<td style="text-align:left;">
+order
+</td>
+<td style="text-align:left;">
+vegan
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+awesom
+</td>
+<td style="text-align:left;">
+well
+</td>
+<td style="text-align:left;">
+look
+</td>
+<td style="text-align:left;">
+side
+</td>
+<td style="text-align:left;">
+vega
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+dessert
+</td>
+<td style="text-align:left;">
+just
+</td>
+<td style="text-align:left;">
+check
+</td>
+<td style="text-align:left;">
+good
+</td>
+<td style="text-align:left;">
+garlic
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="kable_wrapper table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:unnamed-chunk-14">Table A.1: </span>LDA top terms Japanese
+</caption>
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Topic.1
+</th>
+<th style="text-align:left;">
+Topic.2
+</th>
+<th style="text-align:left;">
+Topic.3
+</th>
+<th style="text-align:left;">
+Topic.4
+</th>
+<th style="text-align:left;">
+Topic.5
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+japanes
+</td>
+<td style="text-align:left;">
+sushi
+</td>
+<td style="text-align:left;">
+place
+</td>
+<td style="text-align:left;">
+tabl
+</td>
+<td style="text-align:left;">
+good
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ramen
+</td>
+<td style="text-align:left;">
+roll
+</td>
+<td style="text-align:left;">
+like
+</td>
+<td style="text-align:left;">
+restaur
+</td>
+<td style="text-align:left;">
+rice
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+menu
+</td>
+<td style="text-align:left;">
+hana
+</td>
+<td style="text-align:left;">
+one
+</td>
+<td style="text-align:left;">
+just
+</td>
+<td style="text-align:left;">
+order
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tri
+</td>
+<td style="text-align:left;">
+fish
+</td>
+<td style="text-align:left;">
+get
+</td>
+<td style="text-align:left;">
+server
+</td>
+<td style="text-align:left;">
+chicken
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+delici
+</td>
+<td style="text-align:left;">
+fresh
+</td>
+<td style="text-align:left;">
+go
+</td>
+<td style="text-align:left;">
+us
+</td>
+<td style="text-align:left;">
+hibachi
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+order
+</td>
+<td style="text-align:left;">
+sashimi
+</td>
+<td style="text-align:left;">
+come
+</td>
+<td style="text-align:left;">
+came
+</td>
+<td style="text-align:left;">
+sauc
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+littl
+</td>
+<td style="text-align:left;">
+love
+</td>
+<td style="text-align:left;">
+realli
+</td>
+<td style="text-align:left;">
+time
+</td>
+<td style="text-align:left;">
+got
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+flavor
+</td>
+<td style="text-align:left;">
+salmon
+</td>
+<td style="text-align:left;">
+think
+</td>
+<td style="text-align:left;">
+friend
+</td>
+<td style="text-align:left;">
+bowl
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+serv
+</td>
+<td style="text-align:left;">
+price
+</td>
+<td style="text-align:left;">
+can
+</td>
+<td style="text-align:left;">
+ask
+</td>
+<td style="text-align:left;">
+dinner
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+meal
+</td>
+<td style="text-align:left;">
+great
+</td>
+<td style="text-align:left;">
+eat
+</td>
+<td style="text-align:left;">
+servic
+</td>
+<td style="text-align:left;">
+better
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+dish
+</td>
+<td style="text-align:left;">
+byob
+</td>
+<td style="text-align:left;">
+will
+</td>
+<td style="text-align:left;">
+two
+</td>
+<td style="text-align:left;">
+lot
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+drink
+</td>
+<td style="text-align:left;">
+amaz
+</td>
+<td style="text-align:left;">
+way
+</td>
+<td style="text-align:left;">
+wait
+</td>
+<td style="text-align:left;">
+shrimp
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+food
+</td>
+<td style="text-align:left;">
+alway
+</td>
+<td style="text-align:left;">
+much
+</td>
+<td style="text-align:left;">
+experi
+</td>
+<td style="text-align:left;">
+salad
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sake
+</td>
+<td style="text-align:left;">
+phoenix
+</td>
+<td style="text-align:left;">
+make
+</td>
+<td style="text-align:left;">
+even
+</td>
+<td style="text-align:left;">
+use
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+well
+</td>
+<td style="text-align:left;">
+best
+</td>
+<td style="text-align:left;">
+want
+</td>
+<td style="text-align:left;">
+busi
+</td>
+<td style="text-align:left;">
+piec
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="kable_wrapper table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:unnamed-chunk-14">Table A.1: </span>LDA top terms Korean
+</caption>
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Topic.1
+</th>
+<th style="text-align:left;">
+Topic.2
+</th>
+<th style="text-align:left;">
+Topic.3
+</th>
+<th style="text-align:left;">
+Topic.4
+</th>
+<th style="text-align:left;">
+Topic.5
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+spici
+</td>
+<td style="text-align:left;">
+sauc
+</td>
+<td style="text-align:left;">
+meat
+</td>
+<td style="text-align:left;">
+like
+</td>
+<td style="text-align:left;">
+korean
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bulgogi
+</td>
+<td style="text-align:left;">
+side
+</td>
+<td style="text-align:left;">
+flavor
+</td>
+<td style="text-align:left;">
+just
+</td>
+<td style="text-align:left;">
+restaur
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+soup
+</td>
+<td style="text-align:left;">
+bbq
+</td>
+<td style="text-align:left;">
+chicken
+</td>
+<td style="text-align:left;">
+even
+</td>
+<td style="text-align:left;">
+place
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+dish
+</td>
+<td style="text-align:left;">
+improp
+</td>
+<td style="text-align:left;">
+great
+</td>
+<td style="text-align:left;">
+server
+</td>
+<td style="text-align:left;">
+delici
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hot
+</td>
+<td style="text-align:left;">
+good
+</td>
+<td style="text-align:left;">
+food
+</td>
+<td style="text-align:left;">
+one
+</td>
+<td style="text-align:left;">
+korean_food
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+rice
+</td>
+<td style="text-align:left;">
+tri
+</td>
+<td style="text-align:left;">
+littl
+</td>
+<td style="text-align:left;">
+come
+</td>
+<td style="text-align:left;">
+sushi
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tofu
+</td>
+<td style="text-align:left;">
+pull_pork
+</td>
+<td style="text-align:left;">
+tast
+</td>
+<td style="text-align:left;">
+us
+</td>
+<td style="text-align:left;">
+make
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+stone
+</td>
+<td style="text-align:left;">
+pig
+</td>
+<td style="text-align:left;">
+well
+</td>
+<td style="text-align:left;">
+tabl
+</td>
+<td style="text-align:left;">
+best
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pork
+</td>
+<td style="text-align:left;">
+nice
+</td>
+<td style="text-align:left;">
+eat
+</td>
+<td style="text-align:left;">
+order
+</td>
+<td style="text-align:left;">
+lot
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bowl
+</td>
+<td style="text-align:left;">
+rib
+</td>
+<td style="text-align:left;">
+taco
+</td>
+<td style="text-align:left;">
+time
+</td>
+<td style="text-align:left;">
+authent
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+came
+</td>
+<td style="text-align:left;">
+chees
+</td>
+<td style="text-align:left;">
+get
+</td>
+<td style="text-align:left;">
+said
+</td>
+<td style="text-align:left;">
+meal
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+lunch
+</td>
+<td style="text-align:left;">
+brisket
+</td>
+<td style="text-align:left;">
+got
+</td>
+<td style="text-align:left;">
+will
+</td>
+<td style="text-align:left;">
+alway
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+love
+</td>
+<td style="text-align:left;">
+grit
+</td>
+<td style="text-align:left;">
+menu
+</td>
+<td style="text-align:left;">
+im
+</td>
+<td style="text-align:left;">
+mani
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+kimchi
+</td>
+<td style="text-align:left;">
+sweet_potato
+</td>
+<td style="text-align:left;">
+thing
+</td>
+<td style="text-align:left;">
+friend
+</td>
+<td style="text-align:left;">
+enough
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+also
+</td>
+<td style="text-align:left;">
+went
+</td>
+<td style="text-align:left;">
+still
+</td>
+<td style="text-align:left;">
+want
+</td>
+<td style="text-align:left;">
+dinner
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="kable_wrapper table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:unnamed-chunk-14">Table A.1: </span>LDA top terms Mexican
+</caption>
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Topic.1
+</th>
+<th style="text-align:left;">
+Topic.2
+</th>
+<th style="text-align:left;">
+Topic.3
+</th>
+<th style="text-align:left;">
+Topic.4
+</th>
+<th style="text-align:left;">
+Topic.5
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+place
+</td>
+<td style="text-align:left;">
+order
+</td>
+<td style="text-align:left;">
+one
+</td>
+<td style="text-align:left;">
+taco
+</td>
+<td style="text-align:left;">
+burrito
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+good
+</td>
+<td style="text-align:left;">
+food
+</td>
+<td style="text-align:left;">
+just
+</td>
+<td style="text-align:left;">
+salsa
+</td>
+<td style="text-align:left;">
+chip
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mexican
+</td>
+<td style="text-align:left;">
+ask
+</td>
+<td style="text-align:left;">
+get
+</td>
+<td style="text-align:left;">
+salsa_bar
+</td>
+<td style="text-align:left;">
+chicken
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+margarita
+</td>
+<td style="text-align:left;">
+drink
+</td>
+<td style="text-align:left;">
+go
+</td>
+<td style="text-align:left;">
+delici
+</td>
+<td style="text-align:left;">
+meat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+shrimp
+</td>
+<td style="text-align:left;">
+tabl
+</td>
+<td style="text-align:left;">
+eat
+</td>
+<td style="text-align:left;">
+tri
+</td>
+<td style="text-align:left;">
+order
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+friend
+</td>
+<td style="text-align:left;">
+went
+</td>
+<td style="text-align:left;">
+like
+</td>
+<td style="text-align:left;">
+amaz
+</td>
+<td style="text-align:left;">
+tast
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+come
+</td>
+<td style="text-align:left;">
+servic
+</td>
+<td style="text-align:left;">
+make
+</td>
+<td style="text-align:left;">
+great
+</td>
+<td style="text-align:left;">
+sauc
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mexican_food
+</td>
+<td style="text-align:left;">
+restaur
+</td>
+<td style="text-align:left;">
+even
+</td>
+<td style="text-align:left;">
+best
+</td>
+<td style="text-align:left;">
+nice
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+food
+</td>
+<td style="text-align:left;">
+said
+</td>
+<td style="text-align:left;">
+locat
+</td>
+<td style="text-align:left;">
+horchata
+</td>
+<td style="text-align:left;">
+chees
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+love
+</td>
+<td style="text-align:left;">
+time
+</td>
+<td style="text-align:left;">
+can
+</td>
+<td style="text-align:left;">
+flavor
+</td>
+<td style="text-align:left;">
+tortilla
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+authent
+</td>
+<td style="text-align:left;">
+wait
+</td>
+<td style="text-align:left;">
+im
+</td>
+<td style="text-align:left;">
+love
+</td>
+<td style="text-align:left;">
+plate
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+lunch
+</td>
+<td style="text-align:left;">
+busi
+</td>
+<td style="text-align:left;">
+will
+</td>
+<td style="text-align:left;">
+quesadilla
+</td>
+<td style="text-align:left;">
+top
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+stop
+</td>
+<td style="text-align:left;">
+us
+</td>
+<td style="text-align:left;">
+peopl
+</td>
+<td style="text-align:left;">
+differ
+</td>
+<td style="text-align:left;">
+got
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+visit
+</td>
+<td style="text-align:left;">
+server
+</td>
+<td style="text-align:left;">
+much
+</td>
+<td style="text-align:left;">
+favorit
+</td>
+<td style="text-align:left;">
+bean
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+enjoy
+</td>
+<td style="text-align:left;">
+menu
+</td>
+<td style="text-align:left;">
+think
+</td>
+<td style="text-align:left;">
+fresh
+</td>
+<td style="text-align:left;">
+guacamol
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="kable_wrapper table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:unnamed-chunk-14">Table A.1: </span>LDA top terms Pizza
+</caption>
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Topic.1
+</th>
+<th style="text-align:left;">
+Topic.2
+</th>
+<th style="text-align:left;">
+Topic.3
+</th>
+<th style="text-align:left;">
+Topic.4
+</th>
+<th style="text-align:left;">
+Topic.5
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+order
+</td>
+<td style="text-align:left;">
+beer
+</td>
+<td style="text-align:left;">
+pizza
+</td>
+<td style="text-align:left;">
+one
+</td>
+<td style="text-align:left;">
+salad
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ask
+</td>
+<td style="text-align:left;">
+can
+</td>
+<td style="text-align:left;">
+crust
+</td>
+<td style="text-align:left;">
+just
+</td>
+<td style="text-align:left;">
+restaur
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tabl
+</td>
+<td style="text-align:left;">
+friend
+</td>
+<td style="text-align:left;">
+sauc
+</td>
+<td style="text-align:left;">
+get
+</td>
+<td style="text-align:left;">
+delici
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+said
+</td>
+<td style="text-align:left;">
+tri
+</td>
+<td style="text-align:left;">
+top
+</td>
+<td style="text-align:left;">
+like
+</td>
+<td style="text-align:left;">
+menu
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+time
+</td>
+<td style="text-align:left;">
+place
+</td>
+<td style="text-align:left;">
+chees
+</td>
+<td style="text-align:left;">
+eat
+</td>
+<td style="text-align:left;">
+great
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+call
+</td>
+<td style="text-align:left;">
+bar
+</td>
+<td style="text-align:left;">
+slice
+</td>
+<td style="text-align:left;">
+go
+</td>
+<td style="text-align:left;">
+nice
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+got
+</td>
+<td style="text-align:left;">
+enjoy
+</td>
+<td style="text-align:left;">
+wing
+</td>
+<td style="text-align:left;">
+place
+</td>
+<td style="text-align:left;">
+pasta
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+busi
+</td>
+<td style="text-align:left;">
+alway
+</td>
+<td style="text-align:left;">
+vegan
+</td>
+<td style="text-align:left;">
+locat
+</td>
+<td style="text-align:left;">
+good
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+us
+</td>
+<td style="text-align:left;">
+drink
+</td>
+<td style="text-align:left;">
+order
+</td>
+<td style="text-align:left;">
+realli
+</td>
+<td style="text-align:left;">
+bread
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+food
+</td>
+<td style="text-align:left;">
+staff
+</td>
+<td style="text-align:left;">
+fresh
+</td>
+<td style="text-align:left;">
+think
+</td>
+<td style="text-align:left;">
+perfect
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+went
+</td>
+<td style="text-align:left;">
+also
+</td>
+<td style="text-align:left;">
+garlic
+</td>
+<td style="text-align:left;">
+im
+</td>
+<td style="text-align:left;">
+italian
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+back
+</td>
+<td style="text-align:left;">
+awesom
+</td>
+<td style="text-align:left;">
+tast
+</td>
+<td style="text-align:left;">
+well
+</td>
+<td style="text-align:left;">
+love
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+wait
+</td>
+<td style="text-align:left;">
+love
+</td>
+<td style="text-align:left;">
+pepperoni
+</td>
+<td style="text-align:left;">
+come
+</td>
+<td style="text-align:left;">
+amaz
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+told
+</td>
+<td style="text-align:left;">
+littl
+</td>
+<td style="text-align:left;">
+vega
+</td>
+<td style="text-align:left;">
+will
+</td>
+<td style="text-align:left;">
+dinner
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+manag
+</td>
+<td style="text-align:left;">
+servic
+</td>
+<td style="text-align:left;">
+sausag
+</td>
+<td style="text-align:left;">
+price
+</td>
+<td style="text-align:left;">
+serv
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="kable_wrapper table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:unnamed-chunk-14">Table A.1: </span>LDA top terms Sandwiches
+</caption>
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Topic.1
+</th>
+<th style="text-align:left;">
+Topic.2
+</th>
+<th style="text-align:left;">
+Topic.3
+</th>
+<th style="text-align:left;">
+Topic.4
+</th>
+<th style="text-align:left;">
+Topic.5
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+salad
+</td>
+<td style="text-align:left;">
+burger
+</td>
+<td style="text-align:left;">
+beer
+</td>
+<td style="text-align:left;">
+ask
+</td>
+<td style="text-align:left;">
+sandwich
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+love
+</td>
+<td style="text-align:left;">
+order
+</td>
+<td style="text-align:left;">
+place
+</td>
+<td style="text-align:left;">
+said
+</td>
+<td style="text-align:left;">
+bread
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+delici
+</td>
+<td style="text-align:left;">
+good
+</td>
+<td style="text-align:left;">
+pizza
+</td>
+<td style="text-align:left;">
+order
+</td>
+<td style="text-align:left;">
+fri
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+soup
+</td>
+<td style="text-align:left;">
+got
+</td>
+<td style="text-align:left;">
+can
+</td>
+<td style="text-align:left;">
+servic
+</td>
+<td style="text-align:left;">
+eat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+great
+</td>
+<td style="text-align:left;">
+littl
+</td>
+<td style="text-align:left;">
+drink
+</td>
+<td style="text-align:left;">
+time
+</td>
+<td style="text-align:left;">
+locat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+lunch
+</td>
+<td style="text-align:left;">
+side
+</td>
+<td style="text-align:left;">
+friend
+</td>
+<td style="text-align:left;">
+want
+</td>
+<td style="text-align:left;">
+one
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+amaz
+</td>
+<td style="text-align:left;">
+flavor
+</td>
+<td style="text-align:left;">
+bar
+</td>
+<td style="text-align:left;">
+look
+</td>
+<td style="text-align:left;">
+chees
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+day
+</td>
+<td style="text-align:left;">
+came
+</td>
+<td style="text-align:left;">
+get
+</td>
+<td style="text-align:left;">
+busi
+</td>
+<td style="text-align:left;">
+meat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+option
+</td>
+<td style="text-align:left;">
+sauc
+</td>
+<td style="text-align:left;">
+alway
+</td>
+<td style="text-align:left;">
+tabl
+</td>
+<td style="text-align:left;">
+sub
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+food
+</td>
+<td style="text-align:left;">
+tri
+</td>
+<td style="text-align:left;">
+like
+</td>
+<td style="text-align:left;">
+even
+</td>
+<td style="text-align:left;">
+pittsburgh
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+also
+</td>
+<td style="text-align:left;">
+nice
+</td>
+<td style="text-align:left;">
+also
+</td>
+<td style="text-align:left;">
+back
+</td>
+<td style="text-align:left;">
+like
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+favorit
+</td>
+<td style="text-align:left;">
+well
+</td>
+<td style="text-align:left;">
+ive
+</td>
+<td style="text-align:left;">
+us
+</td>
+<td style="text-align:left;">
+realli
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+work
+</td>
+<td style="text-align:left;">
+tast
+</td>
+<td style="text-align:left;">
+select
+</td>
+<td style="text-align:left;">
+just
+</td>
+<td style="text-align:left;">
+just
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bacon
+</td>
+<td style="text-align:left;">
+chicken
+</td>
+<td style="text-align:left;">
+even
+</td>
+<td style="text-align:left;">
+manag
+</td>
+<td style="text-align:left;">
+way
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+perfect
+</td>
+<td style="text-align:left;">
+serv
+</td>
+<td style="text-align:left;">
+brew
+</td>
+<td style="text-align:left;">
+never
+</td>
+<td style="text-align:left;">
+turkey
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="kable_wrapper table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:unnamed-chunk-14">Table A.1: </span>LDA top terms Seafood
+</caption>
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Topic.1
+</th>
+<th style="text-align:left;">
+Topic.2
+</th>
+<th style="text-align:left;">
+Topic.3
+</th>
+<th style="text-align:left;">
+Topic.4
+</th>
+<th style="text-align:left;">
+Topic.5
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+dinner
+</td>
+<td style="text-align:left;">
+get
+</td>
+<td style="text-align:left;">
+server
+</td>
+<td style="text-align:left;">
+great
+</td>
+<td style="text-align:left;">
+shrimp
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+order
+</td>
+<td style="text-align:left;">
+just
+</td>
+<td style="text-align:left;">
+us
+</td>
+<td style="text-align:left;">
+oyster
+</td>
+<td style="text-align:left;">
+food
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nice
+</td>
+<td style="text-align:left;">
+place
+</td>
+<td style="text-align:left;">
+servic
+</td>
+<td style="text-align:left;">
+amaz
+</td>
+<td style="text-align:left;">
+vega
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+littl
+</td>
+<td style="text-align:left;">
+like
+</td>
+<td style="text-align:left;">
+tabl
+</td>
+<td style="text-align:left;">
+love
+</td>
+<td style="text-align:left;">
+locat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+meat
+</td>
+<td style="text-align:left;">
+eat
+</td>
+<td style="text-align:left;">
+ask
+</td>
+<td style="text-align:left;">
+bar
+</td>
+<td style="text-align:left;">
+good
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+serv
+</td>
+<td style="text-align:left;">
+one
+</td>
+<td style="text-align:left;">
+time
+</td>
+<td style="text-align:left;">
+friend
+</td>
+<td style="text-align:left;">
+beer
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+restaur
+</td>
+<td style="text-align:left;">
+realli
+</td>
+<td style="text-align:left;">
+even
+</td>
+<td style="text-align:left;">
+drink
+</td>
+<td style="text-align:left;">
+come
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+appet
+</td>
+<td style="text-align:left;">
+look
+</td>
+<td style="text-align:left;">
+experi
+</td>
+<td style="text-align:left;">
+seafood
+</td>
+<td style="text-align:left;">
+restaur
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+salad
+</td>
+<td style="text-align:left;">
+say
+</td>
+<td style="text-align:left;">
+made
+</td>
+<td style="text-align:left;">
+fresh
+</td>
+<td style="text-align:left;">
+fri
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sauc
+</td>
+<td style="text-align:left;">
+much
+</td>
+<td style="text-align:left;">
+manag
+</td>
+<td style="text-align:left;">
+crab
+</td>
+<td style="text-align:left;">
+menu
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+side
+</td>
+<td style="text-align:left;">
+im
+</td>
+<td style="text-align:left;">
+said
+</td>
+<td style="text-align:left;">
+best
+</td>
+<td style="text-align:left;">
+fish
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tast
+</td>
+<td style="text-align:left;">
+think
+</td>
+<td style="text-align:left;">
+waitress
+</td>
+<td style="text-align:left;">
+roll
+</td>
+<td style="text-align:left;">
+place
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+top
+</td>
+<td style="text-align:left;">
+peopl
+</td>
+<td style="text-align:left;">
+first
+</td>
+<td style="text-align:left;">
+happi.hour
+</td>
+<td style="text-align:left;">
+lot
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+dish
+</td>
+<td style="text-align:left;">
+expect
+</td>
+<td style="text-align:left;">
+want
+</td>
+<td style="text-align:left;">
+delici
+</td>
+<td style="text-align:left;">
+yard_hous
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+dessert
+</td>
+<td style="text-align:left;">
+still
+</td>
+<td style="text-align:left;">
+never
+</td>
+<td style="text-align:left;">
+tri
+</td>
+<td style="text-align:left;">
+chicken
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="kable_wrapper table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:unnamed-chunk-14">Table A.1: </span>LDA top terms Steakhouse
+</caption>
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Topic.1
+</th>
+<th style="text-align:left;">
+Topic.2
+</th>
+<th style="text-align:left;">
+Topic.3
+</th>
+<th style="text-align:left;">
+Topic.4
+</th>
+<th style="text-align:left;">
+Topic.5
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+order
+</td>
+<td style="text-align:left;">
+server
+</td>
+<td style="text-align:left;">
+amaz
+</td>
+<td style="text-align:left;">
+just
+</td>
+<td style="text-align:left;">
+steak
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+love
+</td>
+<td style="text-align:left;">
+us
+</td>
+<td style="text-align:left;">
+food
+</td>
+<td style="text-align:left;">
+place
+</td>
+<td style="text-align:left;">
+cut
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+salad
+</td>
+<td style="text-align:left;">
+tabl
+</td>
+<td style="text-align:left;">
+vega
+</td>
+<td style="text-align:left;">
+get
+</td>
+<td style="text-align:left;">
+side
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+delici
+</td>
+<td style="text-align:left;">
+ask
+</td>
+<td style="text-align:left;">
+well
+</td>
+<td style="text-align:left;">
+meat
+</td>
+<td style="text-align:left;">
+bread
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+good
+</td>
+<td style="text-align:left;">
+restaur
+</td>
+<td style="text-align:left;">
+menu
+</td>
+<td style="text-align:left;">
+eat
+</td>
+<td style="text-align:left;">
+flavor
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+great
+</td>
+<td style="text-align:left;">
+time
+</td>
+<td style="text-align:left;">
+made
+</td>
+<td style="text-align:left;">
+like
+</td>
+<td style="text-align:left;">
+tast
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+also
+</td>
+<td style="text-align:left;">
+manag
+</td>
+<td style="text-align:left;">
+servic
+</td>
+<td style="text-align:left;">
+realli
+</td>
+<td style="text-align:left;">
+steakhous
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+dinner
+</td>
+<td style="text-align:left;">
+one
+</td>
+<td style="text-align:left;">
+everyth
+</td>
+<td style="text-align:left;">
+come
+</td>
+<td style="text-align:left;">
+dessert
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bar
+</td>
+<td style="text-align:left;">
+waiter
+</td>
+<td style="text-align:left;">
+best
+</td>
+<td style="text-align:left;">
+price
+</td>
+<td style="text-align:left;">
+ribey
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+appet
+</td>
+<td style="text-align:left;">
+said
+</td>
+<td style="text-align:left;">
+locat
+</td>
+<td style="text-align:left;">
+even
+</td>
+<td style="text-align:left;">
+filet
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+dish
+</td>
+<td style="text-align:left;">
+servic
+</td>
+<td style="text-align:left;">
+great
+</td>
+<td style="text-align:left;">
+much
+</td>
+<td style="text-align:left;">
+oz
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+perfect
+</td>
+<td style="text-align:left;">
+night
+</td>
+<td style="text-align:left;">
+make
+</td>
+<td style="text-align:left;">
+think
+</td>
+<td style="text-align:left;">
+good
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cocktail
+</td>
+<td style="text-align:left;">
+never
+</td>
+<td style="text-align:left;">
+awesom
+</td>
+<td style="text-align:left;">
+disappoint
+</td>
+<td style="text-align:left;">
+nice
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+came
+</td>
+<td style="text-align:left;">
+first
+</td>
+<td style="text-align:left;">
+recommend
+</td>
+<td style="text-align:left;">
+better
+</td>
+<td style="text-align:left;">
+like
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+lobster
+</td>
+<td style="text-align:left;">
+drink
+</td>
+<td style="text-align:left;">
+staff
+</td>
+<td style="text-align:left;">
+one
+</td>
+<td style="text-align:left;">
+beef
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="kable_wrapper table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:unnamed-chunk-14">Table A.1: </span>LDA top terms Sushi Bars
+</caption>
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Topic.1
+</th>
+<th style="text-align:left;">
+Topic.2
+</th>
+<th style="text-align:left;">
+Topic.3
+</th>
+<th style="text-align:left;">
+Topic.4
+</th>
+<th style="text-align:left;">
+Topic.5
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+one
+</td>
+<td style="text-align:left;">
+get
+</td>
+<td style="text-align:left;">
+great
+</td>
+<td style="text-align:left;">
+sushi
+</td>
+<td style="text-align:left;">
+good
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+order
+</td>
+<td style="text-align:left;">
+place
+</td>
+<td style="text-align:left;">
+hana
+</td>
+<td style="text-align:left;">
+roll
+</td>
+<td style="text-align:left;">
+rice
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+restaur
+</td>
+<td style="text-align:left;">
+like
+</td>
+<td style="text-align:left;">
+also
+</td>
+<td style="text-align:left;">
+fish
+</td>
+<td style="text-align:left;">
+dish
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+even
+</td>
+<td style="text-align:left;">
+eat
+</td>
+<td style="text-align:left;">
+love
+</td>
+<td style="text-align:left;">
+fresh
+</td>
+<td style="text-align:left;">
+order
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tabl
+</td>
+<td style="text-align:left;">
+realli
+</td>
+<td style="text-align:left;">
+well
+</td>
+<td style="text-align:left;">
+sashimi
+</td>
+<td style="text-align:left;">
+got
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+time
+</td>
+<td style="text-align:left;">
+just
+</td>
+<td style="text-align:left;">
+tea
+</td>
+<td style="text-align:left;">
+happi.hour
+</td>
+<td style="text-align:left;">
+chicken
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+server
+</td>
+<td style="text-align:left;">
+think
+</td>
+<td style="text-align:left;">
+nice
+</td>
+<td style="text-align:left;">
+salmon
+</td>
+<td style="text-align:left;">
+flavor
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+us
+</td>
+<td style="text-align:left;">
+much
+</td>
+<td style="text-align:left;">
+japanes
+</td>
+<td style="text-align:left;">
+amaz
+</td>
+<td style="text-align:left;">
+sauc
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ask
+</td>
+<td style="text-align:left;">
+im
+</td>
+<td style="text-align:left;">
+alway
+</td>
+<td style="text-align:left;">
+favorit
+</td>
+<td style="text-align:left;">
+bowl
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+servic
+</td>
+<td style="text-align:left;">
+better
+</td>
+<td style="text-align:left;">
+will
+</td>
+<td style="text-align:left;">
+go
+</td>
+<td style="text-align:left;">
+small
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+two
+</td>
+<td style="text-align:left;">
+way
+</td>
+<td style="text-align:left;">
+menu
+</td>
+<td style="text-align:left;">
+tempura
+</td>
+<td style="text-align:left;">
+tast
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+just
+</td>
+<td style="text-align:left;">
+still
+</td>
+<td style="text-align:left;">
+can
+</td>
+<td style="text-align:left;">
+delici
+</td>
+<td style="text-align:left;">
+spici
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+waitress
+</td>
+<td style="text-align:left;">
+make
+</td>
+<td style="text-align:left;">
+tri
+</td>
+<td style="text-align:left;">
+special
+</td>
+<td style="text-align:left;">
+meal
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+said
+</td>
+<td style="text-align:left;">
+look
+</td>
+<td style="text-align:left;">
+enjoy
+</td>
+<td style="text-align:left;">
+wasabi
+</td>
+<td style="text-align:left;">
+hot
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+never
+</td>
+<td style="text-align:left;">
+ive
+</td>
+<td style="text-align:left;">
+spot
+</td>
+<td style="text-align:left;">
+littl
+</td>
+<td style="text-align:left;">
+lunch
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="kable_wrapper table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:unnamed-chunk-14">Table A.1: </span>LDA top terms Thai
+</caption>
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Topic.1
+</th>
+<th style="text-align:left;">
+Topic.2
+</th>
+<th style="text-align:left;">
+Topic.3
+</th>
+<th style="text-align:left;">
+Topic.4
+</th>
+<th style="text-align:left;">
+Topic.5
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+curri
+</td>
+<td style="text-align:left;">
+like
+</td>
+<td style="text-align:left;">
+thai
+</td>
+<td style="text-align:left;">
+order
+</td>
+<td style="text-align:left;">
+dish
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+good
+</td>
+<td style="text-align:left;">
+eat
+</td>
+<td style="text-align:left;">
+pad_thai
+</td>
+<td style="text-align:left;">
+restaur
+</td>
+<td style="text-align:left;">
+spici
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+rice
+</td>
+<td style="text-align:left;">
+one
+</td>
+<td style="text-align:left;">
+place
+</td>
+<td style="text-align:left;">
+ask
+</td>
+<td style="text-align:left;">
+soup
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+fri_rice
+</td>
+<td style="text-align:left;">
+sushi
+</td>
+<td style="text-align:left;">
+thai_food
+</td>
+<td style="text-align:left;">
+got
+</td>
+<td style="text-align:left;">
+flavor
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nice
+</td>
+<td style="text-align:left;">
+just
+</td>
+<td style="text-align:left;">
+delici
+</td>
+<td style="text-align:left;">
+menu
+</td>
+<td style="text-align:left;">
+noodl
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+small
+</td>
+<td style="text-align:left;">
+realli
+</td>
+<td style="text-align:left;">
+love
+</td>
+<td style="text-align:left;">
+lunch
+</td>
+<td style="text-align:left;">
+chicken
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+green
+</td>
+<td style="text-align:left;">
+well
+</td>
+<td style="text-align:left;">
+great
+</td>
+<td style="text-align:left;">
+came
+</td>
+<td style="text-align:left;">
+littl
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sweet
+</td>
+<td style="text-align:left;">
+time
+</td>
+<td style="text-align:left;">
+tri
+</td>
+<td style="text-align:left;">
+tabl
+</td>
+<td style="text-align:left;">
+beef
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+food
+</td>
+<td style="text-align:left;">
+roll
+</td>
+<td style="text-align:left;">
+best
+</td>
+<td style="text-align:left;">
+say
+</td>
+<td style="text-align:left;">
+spice
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+thai_restaur
+</td>
+<td style="text-align:left;">
+even
+</td>
+<td style="text-align:left;">
+hot
+</td>
+<td style="text-align:left;">
+look
+</td>
+<td style="text-align:left;">
+tom
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+price
+</td>
+<td style="text-align:left;">
+come
+</td>
+<td style="text-align:left;">
+tea
+</td>
+<td style="text-align:left;">
+take
+</td>
+<td style="text-align:left;">
+fresh
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+lunch_special
+</td>
+<td style="text-align:left;">
+think
+</td>
+<td style="text-align:left;">
+ive
+</td>
+<td style="text-align:left;">
+meal
+</td>
+<td style="text-align:left;">
+salad
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+get
+</td>
+<td style="text-align:left;">
+im
+</td>
+<td style="text-align:left;">
+favorit
+</td>
+<td style="text-align:left;">
+sinc
+</td>
+<td style="text-align:left;">
+serv
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+also
+</td>
+<td style="text-align:left;">
+never
+</td>
+<td style="text-align:left;">
+alway
+</td>
+<td style="text-align:left;">
+said
+</td>
+<td style="text-align:left;">
+can
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+authent
+</td>
+<td style="text-align:left;">
+crab
+</td>
+<td style="text-align:left;">
+basil
+</td>
+<td style="text-align:left;">
+food
+</td>
+<td style="text-align:left;">
+shrimp
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="kable_wrapper table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:unnamed-chunk-14">Table A.1: </span>LDA top terms Vegetarian
+</caption>
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Topic.1
+</th>
+<th style="text-align:left;">
+Topic.2
+</th>
+<th style="text-align:left;">
+Topic.3
+</th>
+<th style="text-align:left;">
+Topic.4
+</th>
+<th style="text-align:left;">
+Topic.5
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+food
+</td>
+<td style="text-align:left;">
+one
+</td>
+<td style="text-align:left;">
+soup
+</td>
+<td style="text-align:left;">
+taco
+</td>
+<td style="text-align:left;">
+love
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+menu
+</td>
+<td style="text-align:left;">
+tabl
+</td>
+<td style="text-align:left;">
+chicken
+</td>
+<td style="text-align:left;">
+salsa
+</td>
+<td style="text-align:left;">
+vegan
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+place
+</td>
+<td style="text-align:left;">
+go
+</td>
+<td style="text-align:left;">
+fresh
+</td>
+<td style="text-align:left;">
+salsa_bar
+</td>
+<td style="text-align:left;">
+also
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+locat
+</td>
+<td style="text-align:left;">
+just
+</td>
+<td style="text-align:left;">
+salad
+</td>
+<td style="text-align:left;">
+amaz
+</td>
+<td style="text-align:left;">
+good
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+drink
+</td>
+<td style="text-align:left;">
+time
+</td>
+<td style="text-align:left;">
+nice
+</td>
+<td style="text-align:left;">
+like
+</td>
+<td style="text-align:left;">
+delici
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+servic
+</td>
+<td style="text-align:left;">
+got
+</td>
+<td style="text-align:left;">
+dish
+</td>
+<td style="text-align:left;">
+tri
+</td>
+<td style="text-align:left;">
+sandwich
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+well
+</td>
+<td style="text-align:left;">
+order
+</td>
+<td style="text-align:left;">
+like
+</td>
+<td style="text-align:left;">
+flavor
+</td>
+<td style="text-align:left;">
+eat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+visit
+</td>
+<td style="text-align:left;">
+came
+</td>
+<td style="text-align:left;">
+veggi
+</td>
+<td style="text-align:left;">
+horchata
+</td>
+<td style="text-align:left;">
+flavor
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+server
+</td>
+<td style="text-align:left;">
+went
+</td>
+<td style="text-align:left;">
+get
+</td>
+<td style="text-align:left;">
+delici
+</td>
+<td style="text-align:left;">
+im
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+beer
+</td>
+<td style="text-align:left;">
+ask
+</td>
+<td style="text-align:left;">
+sauc
+</td>
+<td style="text-align:left;">
+one
+</td>
+<td style="text-align:left;">
+order
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+enjoy
+</td>
+<td style="text-align:left;">
+think
+</td>
+<td style="text-align:left;">
+serv
+</td>
+<td style="text-align:left;">
+chip
+</td>
+<td style="text-align:left;">
+option
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+great
+</td>
+<td style="text-align:left;">
+us
+</td>
+<td style="text-align:left;">
+even
+</td>
+<td style="text-align:left;">
+burrito
+</td>
+<td style="text-align:left;">
+day
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+price
+</td>
+<td style="text-align:left;">
+need
+</td>
+<td style="text-align:left;">
+vegetarian
+</td>
+<td style="text-align:left;">
+place
+</td>
+<td style="text-align:left;">
+lunch
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+dinner
+</td>
+<td style="text-align:left;">
+busi
+</td>
+<td style="text-align:left;">
+though
+</td>
+<td style="text-align:left;">
+great
+</td>
+<td style="text-align:left;">
+healthi
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+experi
+</td>
+<td style="text-align:left;">
+restaur
+</td>
+<td style="text-align:left;">
+meat
+</td>
+<td style="text-align:left;">
+mole
+</td>
+<td style="text-align:left;">
+salad
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="kable_wrapper table table-striped table-hover" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:unnamed-chunk-14">Table A.1: </span>LDA top terms Vietnamese
+</caption>
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Topic.1
+</th>
+<th style="text-align:left;">
+Topic.2
+</th>
+<th style="text-align:left;">
+Topic.3
+</th>
+<th style="text-align:left;">
+Topic.4
+</th>
+<th style="text-align:left;">
+Topic.5
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+soup
+</td>
+<td style="text-align:left;">
+vietnames
+</td>
+<td style="text-align:left;">
+order
+</td>
+<td style="text-align:left;">
+noodl
+</td>
+<td style="text-align:left;">
+pho
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+place
+</td>
+<td style="text-align:left;">
+restaur
+</td>
+<td style="text-align:left;">
+broth
+</td>
+<td style="text-align:left;">
+dish
+</td>
+<td style="text-align:left;">
+bun
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+flavor
+</td>
+<td style="text-align:left;">
+just
+</td>
+<td style="text-align:left;">
+bowl
+</td>
+<td style="text-align:left;">
+sauc
+</td>
+<td style="text-align:left;">
+tri
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+like
+</td>
+<td style="text-align:left;">
+one
+</td>
+<td style="text-align:left;">
+tast
+</td>
+<td style="text-align:left;">
+roll
+</td>
+<td style="text-align:left;">
+want
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+littl
+</td>
+<td style="text-align:left;">
+menu
+</td>
+<td style="text-align:left;">
+meat
+</td>
+<td style="text-align:left;">
+pork
+</td>
+<td style="text-align:left;">
+eat
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+clean
+</td>
+<td style="text-align:left;">
+good
+</td>
+<td style="text-align:left;">
+servic
+</td>
+<td style="text-align:left;">
+love
+</td>
+<td style="text-align:left;">
+much
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+even
+</td>
+<td style="text-align:left;">
+ive
+</td>
+<td style="text-align:left;">
+go
+</td>
+<td style="text-align:left;">
+fish
+</td>
+<td style="text-align:left;">
+asian
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+get
+</td>
+<td style="text-align:left;">
+also
+</td>
+<td style="text-align:left;">
+veggi
+</td>
+<td style="text-align:left;">
+beef
+</td>
+<td style="text-align:left;">
+side
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+shrimp
+</td>
+<td style="text-align:left;">
+great
+</td>
+<td style="text-align:left;">
+im
+</td>
+<td style="text-align:left;">
+spring_roll
+</td>
+<td style="text-align:left;">
+right
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+water
+</td>
+<td style="text-align:left;">
+seem
+</td>
+<td style="text-align:left;">
+said
+</td>
+<td style="text-align:left;">
+fresh
+</td>
+<td style="text-align:left;">
+beef
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+lot
+</td>
+<td style="text-align:left;">
+special
+</td>
+<td style="text-align:left;">
+us
+</td>
+<td style="text-align:left;">
+rice
+</td>
+<td style="text-align:left;">
+walk
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+chicken
+</td>
+<td style="text-align:left;">
+come
+</td>
+<td style="text-align:left;">
+usual
+</td>
+<td style="text-align:left;">
+sweet
+</td>
+<td style="text-align:left;">
+tabl
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+meal
+</td>
+<td style="text-align:left;">
+best
+</td>
+<td style="text-align:left;">
+ever
+</td>
+<td style="text-align:left;">
+friend
+</td>
+<td style="text-align:left;">
+price
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+say
+</td>
+<td style="text-align:left;">
+far
+</td>
+<td style="text-align:left;">
+use
+</td>
+<td style="text-align:left;">
+serv
+</td>
+<td style="text-align:left;">
+overal
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+around
+</td>
+<td style="text-align:left;">
+still
+</td>
+<td style="text-align:left;">
+alway
+</td>
+<td style="text-align:left;">
+food
+</td>
+<td style="text-align:left;">
+free
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- **In the main Rmd file** -->
+<!-- ```{r ref.label='include_packages', results='hide', echo = TRUE} -->
+<!-- ``` -->
+<!-- **In Chapter \@ref(ref-labels):** -->
+<!-- ```{r ref.label='include_packages_2', results='hide', echo = TRUE} -->
+<!-- ``` -->
+
+<!--
+The bib chunk below must go last in this document according to how R Markdown renders.  More info is at http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html
+-->
+<p></p>
+<!-- 
+If you'd like to change the name of the bibliography to something else,
+delete "References" and replace it.
+-->
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="4-conclusion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": [["thesis.pdf", "PDF"], ["thesis.epub", "EPUB"], ["thesis.docx", "Word"]],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

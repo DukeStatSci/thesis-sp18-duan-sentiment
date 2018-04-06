@@ -1,3 +1,6 @@
-The preface pretty much says it all.  \par
+Opinion mining, the study of collecting and categorizing complex public opinion, is a
+special focus in text mining and natural language processing. With the widespread use of social media in the digital age, opinion mining has become an increasingly useful tool with applications in different fields. Among these applications, the extraction of sentiment and opinion in user-generated reviews such as product, movie, or restaurant reviews has engaged much interest given its representation of a direct “voice” of customers and the business and social value embedded within.  \par
 
-Second paragraph of abstract starts here.
+While analyses of voice-of-the-customer (VOC) materials mainly focus on the classification of sentiment polarity at the document level, reviews rarely express a single, consistent sentiment towards the reviewed object or entity, but rather often involve complex, multi-level, and sometimes contradicting sentiments towards multiple aspects of the same entity. A restaurant review, for example, may embody a positive sentiment towards the overall experience, but more specifically a particularly positive view of the service, neutral towards ambience, and negative towards the food. These aspects and their associated sentiments are key to understanding users’ opinion of the reviewed entity and can be of great use in many application scenarios such as personalization.   
+
+In this project, we identify common topics in restaurant reviews, propose an analysis pipeline to extract a reviewed entity’s representative aspects and their associated sentiment, and discuss the strength and weakness of different approaches towards each task involved.   

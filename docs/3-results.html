@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Providing Aspect Subscores for Restaurants with Topic Modeling and Sentiment Analysis</title>
-  <meta name="description" content="Providing Aspect Subscores for Restaurants with Topic Modeling and Sentiment Analysis">
+  <title>Aspect-based Opinion Mining with Yelp Restaurant Reviews</title>
+  <meta name="description" content="Aspect-based Opinion Mining with Yelp Restaurant Reviews">
   <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Providing Aspect Subscores for Restaurants with Topic Modeling and Sentiment Analysis" />
+  <meta property="og:title" content="Aspect-based Opinion Mining with Yelp Restaurant Reviews" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Providing Aspect Subscores for Restaurants with Topic Modeling and Sentiment Analysis" />
+  <meta name="twitter:title" content="Aspect-based Opinion Mining with Yelp Restaurant Reviews" />
   
   
   
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="2-methods.html">
-<link rel="next" href="4-discussion.html">
+<link rel="next" href="4-conclusion.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -48,43 +48,6 @@
 
 
 
-<style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-</style>
 
 </head>
 
@@ -100,28 +63,34 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul class="summary">
 <li><a href="./"></a></li>
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Check-in</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Abstract</a></li>
 <li class="chapter" data-level="1" data-path="1-intro.html"><a href="1-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="2-methods.html"><a href="2-methods.html"><i class="fa fa-check"></i><b>2</b> Methodology</a><ul>
-<li class="chapter" data-level="2.1" data-path="2-methods.html"><a href="2-methods.html#data-preprocessing"><i class="fa fa-check"></i><b>2.1</b> Data Preprocessing</a></li>
-<li class="chapter" data-level="2.2" data-path="2-methods.html"><a href="2-methods.html#n-gramming"><i class="fa fa-check"></i><b>2.2</b> N-Gramming</a></li>
-<li class="chapter" data-level="2.3" data-path="2-methods.html"><a href="2-methods.html#topic-extraction"><i class="fa fa-check"></i><b>2.3</b> Topic Extraction</a><ul>
-<li class="chapter" data-level="2.3.1" data-path="2-methods.html"><a href="2-methods.html#latent-dirichlet-allocation-lda"><i class="fa fa-check"></i><b>2.3.1</b> Latent Dirichlet Allocation (LDA)</a></li>
+<li class="chapter" data-level="2.1" data-path="2-methods.html"><a href="2-methods.html#identify-common-topics-entire-corpus"><i class="fa fa-check"></i><b>2.1</b> Identify Common Topics (Entire Corpus)</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="2-methods.html"><a href="2-methods.html#data-pre-processing"><i class="fa fa-check"></i><b>2.1.1</b> Data Pre-processing</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2-methods.html"><a href="2-methods.html#latent-dirichlet-allocation-lda"><i class="fa fa-check"></i><b>2.1.2</b> Latent Dirichlet Allocation (LDA)</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="2-methods.html"><a href="2-methods.html#sentiment-extraction-and-aggregation-spring-semester"><i class="fa fa-check"></i><b>2.4</b> Sentiment Extraction and Aggregation (Spring Semester)</a></li>
+<li class="chapter" data-level="2.2" data-path="2-methods.html"><a href="2-methods.html#opinion-mining-restaurant-specific"><i class="fa fa-check"></i><b>2.2</b> Opinion Mining (Restaurant-specific)</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-methods.html"><a href="2-methods.html#aspect-extraction"><i class="fa fa-check"></i><b>2.2.1</b> Aspect Extraction</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-methods.html"><a href="2-methods.html#aspect-categorization"><i class="fa fa-check"></i><b>2.2.2</b> Aspect Categorization</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-methods.html"><a href="2-methods.html#sentiment-analysis"><i class="fa fa-check"></i><b>2.2.3</b> Sentiment Analysis</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="3-results.html"><a href="3-results.html"><i class="fa fa-check"></i><b>3</b> Results</a><ul>
 <li class="chapter" data-level="3.1" data-path="3-results.html"><a href="3-results.html#exploratory-data-analysis"><i class="fa fa-check"></i><b>3.1</b> Exploratory Data Analysis</a></li>
-<li class="chapter" data-level="3.2" data-path="3-results.html"><a href="3-results.html#n-gramming-1"><i class="fa fa-check"></i><b>3.2</b> N-Gramming</a></li>
-<li class="chapter" data-level="3.3" data-path="3-results.html"><a href="3-results.html#topic-extraction-1"><i class="fa fa-check"></i><b>3.3</b> Topic Extraction</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="3-results.html"><a href="3-results.html#lda"><i class="fa fa-check"></i><b>3.3.1</b> LDA</a></li>
+<li class="chapter" data-level="3.2" data-path="3-results.html"><a href="3-results.html#common-topics-lda"><i class="fa fa-check"></i><b>3.2</b> Common Topics (LDA)</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="3-results.html"><a href="3-results.html#n-gramming-1"><i class="fa fa-check"></i><b>3.2.1</b> N-Gramming</a></li>
+<li class="chapter" data-level="3.2.2" data-path="3-results.html"><a href="3-results.html#lda"><i class="fa fa-check"></i><b>3.2.2</b> LDA</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="3-results.html"><a href="3-results.html#restaurant-opinion-mining"><i class="fa fa-check"></i><b>3.3</b> Restaurant Opinion Mining</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="3-results.html"><a href="3-results.html#aspect-extraction-1"><i class="fa fa-check"></i><b>3.3.1</b> Aspect Extraction</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3-results.html"><a href="3-results.html#aspect-categorization-1"><i class="fa fa-check"></i><b>3.3.2</b> Aspect Categorization</a></li>
+<li class="chapter" data-level="3.3.3" data-path="3-results.html"><a href="3-results.html#sentiment-analysis-1"><i class="fa fa-check"></i><b>3.3.3</b> Sentiment Analysis</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="4-discussion.html"><a href="4-discussion.html"><i class="fa fa-check"></i><b>4</b> Discussion</a></li>
-<li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i>Conclusion</a></li>
+<li class="chapter" data-level="4" data-path="4-conclusion.html"><a href="4-conclusion.html"><i class="fa fa-check"></i><b>4</b> Conclusion &amp; Future Work</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="A-the-first-appendix.html"><a href="A-the-first-appendix.html"><i class="fa fa-check"></i><b>A</b> The First Appendix</a></li>
-<li class="chapter" data-level="B" data-path="B-the-second-appendix-for-fun.html"><a href="B-the-second-appendix-for-fun.html"><i class="fa fa-check"></i><b>B</b> The Second Appendix, for Fun</a></li>
+<li class="chapter" data-level="A" data-path="A-lda-result-by-cuisine-category.html"><a href="A-lda-result-by-cuisine-category.html"><i class="fa fa-check"></i><b>A</b> LDA Result by Cuisine Category</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -134,7 +103,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Providing Aspect Subscores for Restaurants with Topic Modeling and Sentiment Analysis</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Aspect-based Opinion Mining with Yelp Restaurant Reviews</a>
           </h1>
         </div>
 
@@ -144,133 +113,185 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="results" class="section level1">
 <h1><span class="header-section-number">Chapter 3</span> Results</h1>
-<p>The Yelp dataset version as of Round 10 (in terms of the Dataset Challenge) contains 4.7 million reviews of 156K businesses, not limited to restaurants and each with corresponding attributes such as business hours, parking, and ambience. For the purpose of this thesis, we restrict to reviews of restaurants in the US and only examine a sample of this subset, which comes to 57,790 reviews of 1,409 restaurant in the US provided by 47,617 users on Yelp.</p>
 <div id="exploratory-data-analysis" class="section level2">
 <h2><span class="header-section-number">3.1</span> Exploratory Data Analysis</h2>
-<p>Before diving into the analysis of the corpus, we shall first explore the distribution and characteristics of the reviews and the reviewed restaurants. Note that the insights here does not necessarily reflect the actual distribution or characteristics of the reviewed restaurants or reviews on Yelp since our corpus is a sample of the Yelp-provided dataset which is also a not necessarily random sample of the raw reviews.</p>
-<p>As shown below in the graphs, 258 out of the 1409 restaurants reviewed in our corpus are located in the state of Arizona, and the majority of the reviewed restaurants also in Nevada, Ohio, North Carolina, and Pennsylvania, with the rest of the restaurants in Wisconsin and Illinois and only a few in South Carolina, California, or New York. The state distribution may later explain the identification of certain location-specific n-grams such as “las_vega.” On average each restaurant has 40 reviews in our corpus, with 50% of them having around 10 reviews and 10% having more than 100 reviews. The review-restaurant distribution may influence the choice and validity of any potential segmentation of the corpus for analysis or later the aggregation of sentiments by restaurants. Most reviews in our corpus are relatively short with an average length of 115 words (median at 81 words), while there surely are more lengthy reviews, with about 3,500 reviews (6% of all reviews) spanning from 300 to 1,000 words.</p>
-<div class="figure" style="text-align: center"><span id="fig:EDA"></span>
-<img src="figure/EDA_combined.png" alt="Plots illustrating EDA insights on reviews and restaurants"  />
+<p>Before diving into the analysis of the corpus, we shall first explore the distribution and characteristics of the reviews and the reviewed restaurants. Since our corpus is a not-necessarily random sample of Yelp reviews, the insights below only may not reflect the true distribution or characteristics of the reviewed restaurants or reviews on Yelp.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
+<img src="figure/map.png" alt="Geo-distribution of reviewed restaurant (showing top 10 locations)."  />
 <p class="caption">
-Figure 3.1: Plots illustrating EDA insights on reviews and restaurants
+Figure 3.1: Geo-distribution of reviewed restaurant (showing top 10 locations).
 </p>
 </div>
+<p>As shown in the graph above, the top 10 geolocations account for 95% of all reviewed restaurants in our dataset: more than half (57.6%) of the reviewed restaurants in our dataset are located in Ontario (Canada), Arizona, and Nevada, and another 31% of restaurants about evenly distributed in Quebec, Ohio, North Carolina. While Ontario and Quebec, Canada do have two of the most number of reviews, all or the vast majority of these views are written in English and thus would not impact the results for later analysis.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
+<img src="figure/length.png" alt="Distribution of length of reviews in dataset."  />
+<p class="caption">
+Figure 3.2: Distribution of length of reviews in dataset.
+</p>
+</div>
+<p>The average length of reviews is at 111 words and the most common length is around 50 words, typical of the the “microblog” nature of online text, but we do have an extremely long right-tail indicating a small proportion of quite lengthy reviews, with about 6% of all reviews spanning from 300 to 1,000 words.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
+<img src="figure/star-cat.png" alt="Distribution of star-ratings by cuisine category / restaurant type."  />
+<p class="caption">
+Figure 3.3: Distribution of star-ratings by cuisine category / restaurant type.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-5"></span>
+<img src="figure/star-cat-2.png" alt="Percentage of star-ratings by cuisine category / restaurant type. Categories sorted in descending order of total number of reviews."  />
+<p class="caption">
+Figure 3.4: Percentage of star-ratings by cuisine category / restaurant type. Categories sorted in descending order of total number of reviews.
+</p>
+</div>
+<p>In terms of distribution of star ratings, the entire dataset is consists of 37% of reviews with a 5-star rating, 28% with 4 stars, 14% with 3, 10% with 2, and 11%. The distribution for each Cuisine Category / Restaurant Type, while mostly consistent with that of the entire dataset, does show some interesting scoring differences between fine-dining and casual eating scenarios: assuming our dataset random and unbiased, Vegetarian, Steakhouse, Seafood, Sandwiches restaurants tend to receive higher percentage of 5-star ratings, while Chinese, Burgers, Pizza, and Mexican restaurants have significantly higher percentage of 1-star ratings.</p>
 <div class="figure" style="text-align: center"><span id="fig:wordcloud"></span>
-<img src="figure/raw_wordcloud.png" alt="Word cloud of 50 most frequent words in corpus (pre-stemming)"  />
+<img src="figure/raw_wordcloud.png" alt="Word cloud of 50 most frequent words in corpus (pre-stemming). We can already see many potential “aspects” and associated “sentiment” that we would like to extract next."  />
 <p class="caption">
-Figure 3.2: Word cloud of 50 most frequent words in corpus (pre-stemming)
+Figure 3.5: Word cloud of 50 most frequent words in corpus (pre-stemming). We can already see many potential “aspects” and associated “sentiment” that we would like to extract next.
 </p>
 </div>
 </div>
-<div id="n-gramming-1" class="section level2">
-<h2><span class="header-section-number">3.2</span> N-Gramming</h2>
-<p>With the n-gramming model with hybrid cutoff thresholds detailed in the Methodology section, 2148 bigrams and 406 trigrams or larger n-grams were identified. Below is a table of the top and most representative n-grams identified in our corpus of Yelp restaurant reviews.</p>
-<table>
-<caption><span id="tab:bigram">Table 3.1: </span> Top Context-Specific Bigrams and Trigrams</caption>
-<colgroup>
-<col width="33%" />
-<col width="48%" />
-<col width="18%" />
-</colgroup>
+<div id="common-topics-lda" class="section level2">
+<h2><span class="header-section-number">3.2</span> Common Topics (LDA)</h2>
+<div id="n-gramming-1" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> N-Gramming</h3>
+<p>Using the n-gramming method with hybrid cutoff thresholds discussed in the Methodology section, 2148 bigrams and 406 trigrams (and larger n-grams) were identified. Below shows the top and most representative n-grams identified in our corpus, and it is evident that the method successfully identified context-specific phrases that should be processed as single tokens.</p>
+<table class="table table-striped table-hover" style="font-size: 14px; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:unnamed-chunk-6">Table 3.1: </span>Top context-specific bigrams (stemmed).
+</caption>
 <thead>
-<tr class="header">
-<th align="center">n-grams</th>
-<th align="center">Counts</th>
-<th align="center">p-value</th>
+<tr>
+<th style="text-align:left;">
+Bigram
+</th>
+<th style="text-align:left;">
+p-value
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="center">go_back</td>
-<td align="center">3936</td>
-<td align="center">0.000000e+00</td>
+<tr>
+<td style="text-align:left;">
+go_back
+</td>
+<td style="text-align:left;">
+0
+</td>
 </tr>
-<tr class="even">
-<td align="center">high_recommend</td>
-<td align="center">1814</td>
-<td align="center">0.000000e+00</td>
+<tr>
+<td style="text-align:left;">
+high_recommend
+</td>
+<td style="text-align:left;">
+0
+</td>
 </tr>
-<tr class="odd">
-<td align="center">great_food*</td>
-<td align="center">1723</td>
-<td align="center">1.060000e-75</td>
+<tr>
+<td style="text-align:left;">
+las_vega
+</td>
+<td style="text-align:left;">
+7.6e-201
+</td>
 </tr>
-<tr class="even">
-<td align="center">happi_hour</td>
-<td align="center">1704</td>
-<td align="center">1.19e-75</td>
+<tr>
+<td style="text-align:left;">
+great_food
+</td>
+<td style="text-align:left;">
+1.06e-75
+</td>
 </tr>
-<tr class="odd">
-<td align="center">custom_servic</td>
-<td align="center">1397</td>
-<td align="center">2.73e-26</td>
+<tr>
+<td style="text-align:left;">
+happi_hour
+</td>
+<td style="text-align:left;">
+1.19e-75
+</td>
 </tr>
-<tr class="even">
-<td align="center">las_vega</td>
-<td align="center">1057</td>
-<td align="center">7.60e-201</td>
-</tr>
-<tr class="odd">
-<td align="center">white_castl**</td>
-<td align="center">974</td>
-<td align="center">5.79e-152</td>
-</tr>
-<tr class="even">
-<td align="center">will_definit.back</td>
-<td align="center">482</td>
-<td align="center">0.000000e+00</td>
-</tr>
-<tr class="odd">
-<td align="center">mac_n.chees</td>
-<td align="center">222</td>
-<td align="center">0.000000e+00</td>
-</tr>
-<tr class="even">
-<td align="center">food.pretti_good*</td>
-<td align="center">166</td>
-<td align="center">1.270000e-121</td>
-</tr>
-<tr class="odd">
-<td align="center">seat.right_away</td>
-<td align="center">113</td>
-<td align="center">7.160000e-228</td>
-</tr>
-<tr class="even">
-<td align="center">matt_big.breakfast***</td>
-<td align="center">101</td>
-<td align="center">2.550000e-296</td>
-</tr>
-<tr class="odd">
-<td align="center">give_place.star</td>
-<td align="center">99</td>
-<td align="center">2.430000e-184</td>
-</tr>
-<tr class="even">
-<td align="center">kung_pao.chicken</td>
-<td align="center">54</td>
-<td align="center">8.850000e-119</td>
-</tr>
-<tr class="odd">
-<td align="center">fast_food.chain</td>
-<td align="center">40</td>
-<td align="center">1.24e-79</td>
+<tr>
+<td style="text-align:left;">
+custom_servic
+</td>
+<td style="text-align:left;">
+2.73e-26
+</td>
 </tr>
 </tbody>
 </table>
-<p>Notes on the Bigram Trigram table:<br />
-1. (*) Similar bigrams including <em>“good/great_food/servic/place”</em> are also common with significant p-values. Same as in the case of trigrams: <em>“food/servic.pretti/realli/super_good/great”</em>.<br />
-2. (**) Refers to “White Castle”, a fast-food chain in Midwestern and Mid-Atlantic regions of the United States. As previously mentioned, the high occurrence of this bigram is likely due to the state distribution of the reviewed restaurants in our corpus.<br />
-3. (***) Name of a reviewed restaurant in Phoenix, AZ. Same as above, the high occurrence and significance of p-value of this trigram is also related to our corpus-specific restaurant distributions. But in both cases, identifying the word sequence as one token would carry the right meaningful information and thus beneficial for the analysis.</p>
+<table class="table table-striped table-hover" style="font-size: 14px; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:unnamed-chunk-7">Table 3.2: </span>Top context-specific trigrams (stemmed).
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Trigram
+</th>
+<th style="text-align:left;">
+p-value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+cant.go_wrong
+</td>
+<td style="text-align:left;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mac_n.chees
+</td>
+<td style="text-align:left;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sweet_potato.fri
+</td>
+<td style="text-align:left;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+seat.right_away
+</td>
+<td style="text-align:left;">
+7.16e-228
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+kung_pao.chicken
+</td>
+<td style="text-align:left;">
+8.85e-119
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+fast_food.chain
+</td>
+<td style="text-align:left;">
+1.24e-79
+</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="topic-extraction-1" class="section level2">
-<h2><span class="header-section-number">3.3</span> Topic Extraction</h2>
-<p>Regardless of the method used for identifying common topics in the corpus, we may first set our intuitive expectations for the output as a qualitative sanity check. Given that our corpus is a set of reviews on restaurants, commonly reviewed aspects may include food (eg. taste, portion, price), service (eg. timeliness, friendliness), ambience (eg. noise level, suitable occasion), location, etc.. We will see if these targeted aspects can be recovered automatically.</p>
 <div id="lda" class="section level3">
-<h3><span class="header-section-number">3.3.1</span> LDA</h3>
-<p>With number of topics manually set at 5 and Gibbs sampling control slots set at default level (again, a future step could be optimizing these parameters automatically), the topics identified by the LDA model from our corpus along with top words/tokens in each topic is listed below:</p>
-<table>
-<caption>
-<span id="tab:LDA-result">Table 3.2: </span>LDA topics and associated top terms (entire corpus, stemmed)
+<h3><span class="header-section-number">3.2.2</span> LDA</h3>
+<p>While no “ground truth” exist for topic modeling results, we may expect to see category-aspect pairs such as Food / Drinks (taste, portion, price, options), Service (timeliness, friendliness), Ambience (noise level, occasion), Location, and Restaurant in general (cuisine category, restaurant type) etc.. We check if these targeted aspects can be recovered automatically.</p>
+<table class="table table-striped table-hover" style="font-size: 14px; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:LDA-result">Table 3.3: </span>LDA topics and associated top terms (entire corpus, stemmed)
 </caption>
 <thead>
 <tr>
@@ -464,8 +485,549 @@ one
 </tr>
 </tbody>
 </table>
-<p>The above topics are approximately about restaurant - location and type (Topic 1), food - variety and taste (Topic 2), food - type and price (Topic 3), food - taste and variety (Topic 4), service (Topic 5). While Topic 2 and Topic 4 seems to focus on approximately the same aspects, the former is more about fast-food type of food while the latter seems to be about fine dining.</p>
-<p>I have also experimented with running LDA with sub-corpus of each category listed on Yelp (i.e. by cuisine type), and besides showing more category-specific top terms such as “taco”, “salsa”, and “horchata” in the food topic for the sub-corpus of Mexican restaurants, the segmented corpus did not result in significant improvements in the distinction of topics but rather had worse performance possibly due to less documents in sub-corpus. While segmentation of corpus proves to not be of much help when extracting common topics, it may be helpful later in the step of sentiment aggregation especially we decide to use top terms associated with targeted topics (food, service, ambience, location etc.) as the anchor/center for finding and aggregating sentiment polarity.</p>
+<p>When trained on the entire corpus, LDA identified topics that are in general consistent with the expectation above: <em>Restaurant (Ambience and Location)</em> (Topic 1), <em>Food-quality</em> (Topic 2, more casual or lunch style), <em>Food-price / dining experience</em> (Topic 3), <em>Food-options / quality</em> (Topic 4, fine-dining or dinner style), <em>Service</em> (Topic 5). The food-related topics, however, do seem to contain tokens representing a mix of aspects (price, taste, variety). In other words, the food topics need more discriminating differentiation.</p>
+<p>One potential explanation for this drawback could be the various but unevenly distributed cuisine categories we have in the corpus: while service and restaurant ambience / location may be shared topics containing similar tokens regardless of the cuisine type, food-related topics and associated tokens are likely to be more category-specific or even restaurant-specific. In response, we experiment with running LDA on segmented corpus for each cuisine category.</p>
+<table class="table table-striped table-hover" style="font-size: 14px; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:LDA-result-cat">Table 3.4: </span>LDA topics and associated top terms (restaurants with category ‘Korean’, stemmed)
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Topic.1
+</th>
+<th style="text-align:left;">
+Topic.2
+</th>
+<th style="text-align:left;">
+Topic.3
+</th>
+<th style="text-align:left;">
+Topic.4
+</th>
+<th style="text-align:left;">
+Topic.5
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+spici
+</td>
+<td style="text-align:left;">
+sauc
+</td>
+<td style="text-align:left;">
+meat
+</td>
+<td style="text-align:left;">
+like
+</td>
+<td style="text-align:left;">
+korean
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bulgogi
+</td>
+<td style="text-align:left;">
+side
+</td>
+<td style="text-align:left;">
+flavor
+</td>
+<td style="text-align:left;">
+just
+</td>
+<td style="text-align:left;">
+restaur
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+soup
+</td>
+<td style="text-align:left;">
+bbq
+</td>
+<td style="text-align:left;">
+chicken
+</td>
+<td style="text-align:left;">
+even
+</td>
+<td style="text-align:left;">
+place
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+dish
+</td>
+<td style="text-align:left;">
+improp
+</td>
+<td style="text-align:left;">
+great
+</td>
+<td style="text-align:left;">
+server
+</td>
+<td style="text-align:left;">
+delici
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hot
+</td>
+<td style="text-align:left;">
+good
+</td>
+<td style="text-align:left;">
+food
+</td>
+<td style="text-align:left;">
+one
+</td>
+<td style="text-align:left;">
+korean_food
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+rice
+</td>
+<td style="text-align:left;">
+tri
+</td>
+<td style="text-align:left;">
+littl
+</td>
+<td style="text-align:left;">
+come
+</td>
+<td style="text-align:left;">
+sushi
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tofu
+</td>
+<td style="text-align:left;">
+pull_pork
+</td>
+<td style="text-align:left;">
+tast
+</td>
+<td style="text-align:left;">
+us
+</td>
+<td style="text-align:left;">
+make
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+stone
+</td>
+<td style="text-align:left;">
+pig
+</td>
+<td style="text-align:left;">
+well
+</td>
+<td style="text-align:left;">
+tabl
+</td>
+<td style="text-align:left;">
+best
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pork
+</td>
+<td style="text-align:left;">
+nice
+</td>
+<td style="text-align:left;">
+eat
+</td>
+<td style="text-align:left;">
+order
+</td>
+<td style="text-align:left;">
+lot
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bowl
+</td>
+<td style="text-align:left;">
+rib
+</td>
+<td style="text-align:left;">
+taco
+</td>
+<td style="text-align:left;">
+time
+</td>
+<td style="text-align:left;">
+authent
+</td>
+</tr>
+</tbody>
+</table>
+<p>When trained on corpus segmented by cuisine category, Food topic and corresponding top terms become much more category-specific. As illustrated in the results from Korean category corpus, <em>specialty-food-related tokens</em> are extracted and grouped into topics (Bibimbap-related in Topic 1, Korean BBQ-related in Topic 2) in addition to more general topics seen in the entire corpus (<em>Food-quality</em> in Topic 3, <em>Service</em> in Topic 4, <em>Restaurant</em> in Topic 5).</p>
+</div>
+</div>
+<div id="restaurant-opinion-mining" class="section level2">
+<h2><span class="header-section-number">3.3</span> Restaurant Opinion Mining</h2>
+<div id="aspect-extraction-1" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Aspect Extraction</h3>
+<p>Unlike the extraction of common topics, our analysis of highlights (aspects) and corresponding sentiment is specific to each restaurant. To illustrate the opinion mining process, we use results for a randomly picked restaurant (Kitchen M in Markham, Ontario). Based on 73 reviews on this restaurant, 32 aspect terms were extracted (in order of most mentioned, by number of reviews):</p>
+<p><span class="math display">\[
+\begin{aligned}
+food,\ place,\ service,\ dish,\ restaurant,\ menu,\ rice,\ soup,\ tea,\ table,\\ meal,\ cafe,\ price,\ sauce,\ drink,\ portion,\ noodle,\ staff,\ congee,\\ lunch,\ option,\ spaghetti,\ breakfast,\ dessert,\ waitress,\\ cheese,\ area,\ style,\ order,\ space,\ sandwich,\ steak
+\end{aligned} 
+\]</span></p>
+</div>
+<div id="aspect-categorization-1" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> Aspect Categorization</h3>
+<p>We previously discussed two approaches for categorizing extracted aspect terms: one is assigning each term to the closest pre-defined category based on cosine similarity, and the other is automatically identify them with clustering without making presumptions about the categories. For the first approach, we decided not to use the pre-defined categories of SemEval (Food, Drinks, Service, Ambience, Location, Restaurant) but rely on the LDA results for our corpus (Food, Service, Restaurant) since the latter is consistent with the former but more representative of our corpus.</p>
+<p>The results, as shown below, are not especially satisfying. Each category has a few aspects improperly assigned, most significantly in the Restaurant category, where a collection of words (‘noodle’, ‘congee’, ‘waitress’) bearing clear categories were wrongly assigned. With a closer examination, we realized that for many words, their cosine similarity to different pre-defined categories can be quite similar, and thus the assignments were made with little confidence. In addition, regardless of categories, extracted aspects all belong to the larger domain of restaurant characteristics, and thus are semantically close by nature.</p>
+<table class="table table-striped table-hover" style="font-size: 14px; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:unnamed-chunk-8">Table 3.5: </span>Categorization results using cosine similarity between aspect terms and each pre-fixed category terms.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Category
+</th>
+<th style="text-align:left;">
+Aspect terms assigned to this category
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Food
+</td>
+<td style="text-align:left;">
+‘spaghetti’, ‘sauce’, ‘dish’, ‘soup’, ‘drink’, ‘food’, ‘portion’, ‘table’, ‘rice’, ‘tea’, ‘place’, ‘lunch’, ‘sandwich’, ‘meal’, ‘dessert’, ‘cheese’
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Service
+</td>
+<td style="text-align:left;">
+‘option’, ‘price’, ‘area’, ‘staff’, ‘service’, ‘order’, ‘space’
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Restaurant
+</td>
+<td style="text-align:left;">
+‘menu’, ‘style’, ‘cafe’, ‘restaurant’, ‘breakfast’, ‘noodle’, ‘congee’, ‘waitress’, ‘steak’
+</td>
+</tr>
+</tbody>
+</table>
+<p>For the second approach, we cluster the extracted aspects using their word embedding representations based on the 300-dimensional, 42B pre-trained GloVe model. The result shows that the aspects can be approximately grouped into 3 clusters of dishes, food &amp; drink types and dining experience attributes, generally consistent with the LDA results, but is also lacking more discriminating differentiation within topics.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-9"></span>
+<img src="figure/cluster.png" alt="t-SNE visualization of clustering results for extracted aspects using vector representations from GloVe."  />
+<p class="caption">
+Figure 3.6: t-SNE visualization of clustering results for extracted aspects using vector representations from GloVe.
+</p>
+</div>
+<p>Since neither approach derived very satisfying result for categorization, we decide to focus on the aspect level for sentiment analysis, and postpone the aggregation of categorical scores for the scope of this project.</p>
+</div>
+<div id="sentiment-analysis-1" class="section level3">
+<h3><span class="header-section-number">3.3.3</span> Sentiment Analysis</h3>
+<p>In the Methodology section, we discussed two refined lexicon-based sentiment analysis implementations, VADER and TextBlob. While they had decent performance on common challenging use cases, it is worthwhile to do a sanity check on whether they can capture the overall sentiments in our review corpus. Using the overall star rating as proxy for review polarity, we perform sentiment analysis on all reviews in the corpus and compare the two tools’ ability to recover the general polarity of reviews. From the graphs below, it is evident that polarity scores derived by TextBlob have better correlation with the star ratings and thus may be more suitable for our sentiment analysis task.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-10"></span>
+<img src="figure/vader.png" alt="Sanity check with candidate sentiment analysis tools. VADER, while attuned to distinctive expression patterns in social media context and sensitive to intensity of polarity, may focus much on the nuances but lose grip on the overall polarity. TextBlob, on the other hand, shows good correlation with the actual star ratings."  />
+<p class="caption">
+Figure 3.7: Sanity check with candidate sentiment analysis tools. VADER, while attuned to distinctive expression patterns in social media context and sensitive to intensity of polarity, may focus much on the nuances but lose grip on the overall polarity. TextBlob, on the other hand, shows good correlation with the actual star ratings.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-10"></span>
+<img src="figure/textblob.png" alt="Sanity check with candidate sentiment analysis tools. VADER, while attuned to distinctive expression patterns in social media context and sensitive to intensity of polarity, may focus much on the nuances but lose grip on the overall polarity. TextBlob, on the other hand, shows good correlation with the actual star ratings."  />
+<p class="caption">
+Figure 3.7: Sanity check with candidate sentiment analysis tools. VADER, while attuned to distinctive expression patterns in social media context and sensitive to intensity of polarity, may focus much on the nuances but lose grip on the overall polarity. TextBlob, on the other hand, shows good correlation with the actual star ratings.
+</p>
+</div>
+<p>TextBlob’s better performance was further confirmed by results for individual review text. For each of the extracted aspects of a given restaurant, all review text concerning the aspect are collected. VADER and TextBlob are then used to perform sentiment analysis on each of the review text. The table below shows all review text in the corpus for our example restaurant concerning the aspect ‘price’ along with the corresponding polarity scores derived by both tools.</p>
+<table class="table table-striped table-hover" style="font-size: 14px; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:unnamed-chunk-11">Table 3.6: </span>Review text on ‘price’ for example restaurant and corresponding scores by VADER and TextBlob. VADER seems to have less lexical features (words) in its vocab and thus missed many sentiment keywords. TextBlob captured the majority of sentiment words possibly due to its lexicon attuned to product reviews, but also had problems with context-dependent sentiments such as “high (price)” and “above average (price)”.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Review text concerning ‘price’
+</th>
+<th style="text-align:right;">
+VADER score
+</th>
+<th style="text-align:right;">
+TextBlob score
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+‘the prices are fairly good’
+</td>
+<td style="text-align:right;">
+0.44
+</td>
+<td style="text-align:right;">
+0.70
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+‘price is very affordable’
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+‘price are very reasonable’
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.26
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+‘their price is reasonable’
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+‘Prices are reasonable’
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+‘The price seems above average’
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.08
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+‘high prices’
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.16
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“Kitchen M doesn’t charges high prices”
+</td>
+<td style="text-align:right;">
+0.21
+</td>
+<td style="text-align:right;">
+0.16
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+‘they gave you decent food for relatively good price’
+</td>
+<td style="text-align:right;">
+0.44
+</td>
+<td style="text-align:right;">
+0.43
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+‘Another plus is the affordability; you get enormous portions for Scarborough prices’
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+‘The prices are cheap here’
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.40
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+‘the price is a little too high for this type of food’
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+“you really can’t expect much for the price you pay”
+</td>
+<td style="text-align:right;">
+-0.10
+</td>
+<td style="text-align:right;">
+0.20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+‘good price’
+</td>
+<td style="text-align:right;">
+0.44
+</td>
+<td style="text-align:right;">
+0.70
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+‘dinner specials for a good price’
+</td>
+<td style="text-align:right;">
+0.44
+</td>
+<td style="text-align:right;">
+0.70
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+‘Very filling for a good price’
+</td>
+<td style="text-align:right;">
+0.49
+</td>
+<td style="text-align:right;">
+0.45
+</td>
+</tr>
+</tbody>
+</table>
+<p>From the results above, it is evident that words bearing context-dependent sentiment impose a challenge for lexicon-based methods in general. In the examples above, <em>cheap</em> and <em>affordable</em> should carry positive sentiment while <em>high</em> carries negative when associated with <em>price</em>, but the words themselves do not necessarily have a polarity, and can even carry opposite polarity when associated with different context (eg. <em>high price</em> is negative but <em>high score</em> can be positive). This limitation of lexicon-based method is hard to resolve, since the unit of analysis in these approach is often words, and thus even with the incorporation of semantic patterns only limited of info can be incorporated from the context.</p>
+<p>The final step in our analysis is to derive an averaged score for each aspect and summarize the highlights (most-mentioned and most-positively-reviewed) of the given restaurant. Below is the summary for the example restaurant. Interestingly, our summarized highlights do overlap with the ones provided by Yelp for Kitchen M (our example restaurant), though Yelp seems to focus more on the “most-discussed” part when defining highlights and gives little explicit attention to the sentiment associated.</p>
+<table class="table table-striped table-hover" style="font-size: 14px; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:unnamed-chunk-12">Table 3.7: </span>Summary of highlights for the example restaurant.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Highlight
+</th>
+<th style="text-align:left;">
+Representative review text
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Price (0.27)
+</td>
+<td style="text-align:left;">
+“price are very reasonable”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Portion (0.24)
+</td>
+<td style="text-align:left;">
+“The dishes I’ve ever ordered from the restaurant always come in a large portion”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Food (0.23)
+</td>
+<td style="text-align:left;">
+“food here is okay”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tea (0.19)
+</td>
+<td style="text-align:left;">
+“The Hong Kong style milk tea was also great”
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Place (0.14)
+</td>
+<td style="text-align:left;">
+“It’s a nice HK cafe kind of place”
+</td>
+</tr>
+</tbody>
+</table>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-13"></span>
+<img src="figure/yelp-highlights.png" alt="Screenshot of Yelp-provided highlights for the example restaurant. These highlights, though selected mainly based on number of reviews mentioning it, are not necessarily the most-positively-reviewed. Interestingly, these aspects do overlap with the ones extracted with our sentiment-focused approach."  />
+<p class="caption">
+Figure 3.8: Screenshot of Yelp-provided highlights for the example restaurant. These highlights, though selected mainly based on number of reviews mentioning it, are not necessarily the most-positively-reviewed. Interestingly, these aspects do overlap with the ones extracted with our sentiment-focused approach.
+</p>
+</div>
 <!-- ## Tables -->
 <!-- In addition to the tables that can be automatically generated from a data frame in **R** that you saw in [R Markdown Basics] using the `kable` function, you can also create tables using _pandoc_. (More information is available at <http://pandoc.org/README.html#tables>.)  This might be useful if you don't have values specifically stored in **R**, but you'd like to display them in table form.  Below is an example.  Pay careful attention to the alignment in the table and hyphens to create the rows and columns. -->
 <!-- ---------------------------------------------------------------------------------- -->
@@ -542,7 +1104,7 @@ one
         </div>
       </div>
 <a href="2-methods.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="4-discussion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="4-conclusion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

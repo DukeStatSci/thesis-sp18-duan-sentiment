@@ -3,13 +3,13 @@ author: 'Tianlin Duan'
 date: 'May 2018'
 institution: 'Duke University'
 division: 'Trinity College of Arts and Sciences'
-advisor: 'David Banks'
-committeememberone: 'Committeemember O. Name'
-committeemembertwo: 'Committeemember T. Name'
-dus: 'Dus X. Name'
+advisor: 'David Banks / Cynthia Rudin'
+committeememberone: 'David B. Dunson'
+committeemembertwo: 'Rebecca C. Steorts'
+dus: 'Mine Çetinkaya-Rundel'
 department: 'Department of Statistical Science'
 degree: 'Bachelor of Science in Statistical Science'
-title: 'Providing Aspect Subscores for Restaurants with Topic Modeling and Sentiment Analysis'
+title: 'Aspect-based Opinion Mining with Yelp Restaurant Reviews'
 knit: "bookdown::render_book"
 site: bookdown::bookdown_site
 output: 
@@ -26,12 +26,12 @@ abstract: |
 # like below, use a command like that for the abstract above.  Note that a tab is 
 # needed on the line after the |.
 acknowledgements: |
-  I want to thank a few people.
-dedication: |
-  You can have a dedication here if you wish. 
-preface: |
-  This is an example of a thesis setup to use the reed thesis document class
-  (for LaTeX) and the R bookdown package, in general.
+  I would like to thank Professor David Banks and Professor Cynthia Rudin for advising me on this project. I am also grateful for the support from Dr. Mine Cetinkaya-Rundel, and the help from Matthew Kenney.
+#dedication: |
+#  You can have a dedication here if you wish. 
+#preface: |
+#  This is an example of a thesis setup to use the reed thesis document class
+#  (for LaTeX) and the R bookdown package, in general.
 bibliography: bib/thesis.bib
 # Refer to your specific bibliography file in the line above.
 csl: csl/apa.csl
@@ -43,7 +43,12 @@ lof: true
 # to have a blank new line between each paragraph
 #header-includes:
 #- \usepackage{tikz}
----
+---  
+<style>
+p.caption {
+  font-size: 0.6em;
+}
+</style>
 
 <!--
 Above is the YAML (YAML Ain't Markup Language) header that includes a lot of metadata used to produce the document.  Be careful with spacing in this header!
@@ -66,6 +71,9 @@ if(!require(devtools))
 if(!require(thesisdowndss))
   devtools::install_github("mine-cetinkaya-rundel/thesisdowndss")
 library(thesisdowndss)
+opts_chunk$set(echo=FALSE,
+               cache=TRUE, autodep=TRUE, cache.comments=FALSE,
+               message=FALSE, warning=FALSE)
 ```
 
 <!-- You'll need to include the order that you'd like Rmd files to appear in the _bookdown.yml file for
@@ -75,9 +83,11 @@ and 00-abstract.Rmd since they are handled in the YAML above differently for the
 
 <!-- The {.unnumbered} option here means that the introduction will be "Chapter 0." You can also use {-} for no numbers
 on chapters.
--->
+-->   
 
-# Check-in {.unnumbered}
-2017-12-7: This is the check point for Fall 2017. Current version includes a completed **Introduction**, up-to-date **Methodology** (*Data Preprocessing*, *N-Gramming*, *Topic Extraction - LDA* completed), and correspondong sections in **Results** (*EDA*, *N-Gramming*, *Topic Extraction - LDA* completed).   
+# Abstract {.unnumbered}   
+Opinion mining, the study of collecting and categorizing complex public opinion, is a special focus in text mining and natural language processing. With the widespread use of social media in the digital age, opinion mining has become an increasingly useful tool with applications in different fields. Among these applications, the extraction of sentiment and opinion in user-generated reviews such as product, movie, or restaurant reviews has engaged much interest given its representation of a direct “voice” of customers and the business and social value embedded within.   
 
-In the Spring semester, I will primarily focus on the aggregation of sentiments. As soon as I have a working solution of providing subscores for restaurant based on most-reviewed aspects (food, service, ambience, location etc.), I will further refine methods for extracting common topics, and I’m especially hoping to experiment with the doc2vec model.   
+While analyses of voice-of-the-customer (VOC) materials mainly focus on the classification of sentiment polarity at the document level, reviews rarely express a single, consistent sentiment towards the reviewed object or entity, but rather often involve complex, multi-level, and sometimes contradicting sentiments towards multiple aspects of the same entity. A restaurant review, for example, may embody a positive sentiment towards the overall experience, but more specifically a particularly positive view of the service, neutral towards ambience, and negative towards the food. These aspects and their associated sentiments are key to understanding users’ opinion of the reviewed entity and can be of great use in many application scenarios such as personalization.   
+
+In this project, we identify common topics in restaurant reviews, propose an analysis pipeline to extract a reviewed entity’s representative aspects and their associated sentiment, and discuss the strength and weakness of different approaches towards each task involved.   
