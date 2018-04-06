@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Aspect-based Opinion Mining with Yelp Restaurant Reviews</title>
+  <meta name="description" content="Aspect-based Opinion Mining with Yelp Restaurant Reviews">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Aspect-based Opinion Mining with Yelp Restaurant Reviews" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Aspect-based Opinion Mining with Yelp Restaurant Reviews" />
+  
+  
+  
+
+<meta name="author" content="Tianlin Duan">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="4-conclusion.html">
+<link rel="next" href="A-lda-result-by-cuisine-category.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"></a></li>
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="1" data-path="1-intro.html"><a href="1-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="2-methods.html"><a href="2-methods.html"><i class="fa fa-check"></i><b>2</b> Methodology</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-methods.html"><a href="2-methods.html#identify-common-topics-entire-corpus"><i class="fa fa-check"></i><b>2.1</b> Identify Common Topics (Entire Corpus)</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="2-methods.html"><a href="2-methods.html#data-pre-processing"><i class="fa fa-check"></i><b>2.1.1</b> Data Pre-processing</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2-methods.html"><a href="2-methods.html#latent-dirichlet-allocation-lda"><i class="fa fa-check"></i><b>2.1.2</b> Latent Dirichlet Allocation (LDA)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-methods.html"><a href="2-methods.html#opinion-mining-restaurant-specific"><i class="fa fa-check"></i><b>2.2</b> Opinion Mining (Restaurant-specific)</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-methods.html"><a href="2-methods.html#aspect-extraction"><i class="fa fa-check"></i><b>2.2.1</b> Aspect Extraction</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-methods.html"><a href="2-methods.html#aspect-categorization"><i class="fa fa-check"></i><b>2.2.2</b> Aspect Categorization</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-methods.html"><a href="2-methods.html#sentiment-analysis"><i class="fa fa-check"></i><b>2.2.3</b> Sentiment Analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-results.html"><a href="3-results.html"><i class="fa fa-check"></i><b>3</b> Results</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-results.html"><a href="3-results.html#exploratory-data-analysis"><i class="fa fa-check"></i><b>3.1</b> Exploratory Data Analysis</a></li>
+<li class="chapter" data-level="3.2" data-path="3-results.html"><a href="3-results.html#common-topics-lda"><i class="fa fa-check"></i><b>3.2</b> Common Topics (LDA)</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="3-results.html"><a href="3-results.html#n-gramming-1"><i class="fa fa-check"></i><b>3.2.1</b> N-Gramming</a></li>
+<li class="chapter" data-level="3.2.2" data-path="3-results.html"><a href="3-results.html#lda"><i class="fa fa-check"></i><b>3.2.2</b> LDA</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="3-results.html"><a href="3-results.html#restaurant-opinion-mining"><i class="fa fa-check"></i><b>3.3</b> Restaurant Opinion Mining</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="3-results.html"><a href="3-results.html#aspect-extraction-1"><i class="fa fa-check"></i><b>3.3.1</b> Aspect Extraction</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3-results.html"><a href="3-results.html#aspect-categorization-1"><i class="fa fa-check"></i><b>3.3.2</b> Aspect Categorization</a></li>
+<li class="chapter" data-level="3.3.3" data-path="3-results.html"><a href="3-results.html#sentiment-analysis-1"><i class="fa fa-check"></i><b>3.3.3</b> Sentiment Analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-conclusion.html"><a href="4-conclusion.html"><i class="fa fa-check"></i><b>4</b> Conclusion &amp; Future Work</a></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="A-lda-result-by-cuisine-category.html"><a href="A-lda-result-by-cuisine-category.html"><i class="fa fa-check"></i><b>A</b> LDA Result by Cuisine Category</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Aspect-based Opinion Mining with Yelp Restaurant Reviews</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="acknowledgements" class="section level1 unnumbered">
+<h1>Acknowledgements</h1>
+<p>I would like to thank Professor David Banks and Professor Cynthia Rudin for advising me on this project.<br />
+I am honored to have Professor David B. Dunson and Professor Rebecca C. Steorts on the committee for evaluating my thesis.<br />
+I am also grateful for the support from Dr. Mine Cetinkaya-Rundel, and the help from Matthew Kenney.</p>
+<!-- ## Preface {-} -->
+<!-- This is an example of a thesis setup to use the reed thesis document class -->
+<!-- (for LaTeX) and the R bookdown package, in general. -->
+<!-- ## Dedication {-} -->
+<!-- You can have a dedication here if you wish.  -->
+<!-- ## Abstract {-} -->
+
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="4-conclusion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="A-lda-result-by-cuisine-category.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": [["thesis.pdf", "PDF"], ["thesis.epub", "EPUB"], ["thesis.docx", "Word"]],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
