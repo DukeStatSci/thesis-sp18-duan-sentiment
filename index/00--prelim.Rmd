@@ -1,16 +1,18 @@
-# Preliminary Content {-}
+<!-- # Preliminary Content {-} -->
 
-## Acknowledgements {-}
+# Acknowledgements {-}
 
-I want to thank a few people.
+I would like to thank Professor David Banks and Professor Cynthia Rudin for advising me on this project.   
+I am honored to have Professor David B. Dunson and Professor Rebecca C. Steorts on the committee for evaluating my thesis.   
+I am also grateful for the support from Dr. Mine Cetinkaya-Rundel, and the help from Matthew Kenney.   
 
-## Preface {-}
+<!-- ## Preface {-} -->
 
-This is an example of a thesis setup to use the reed thesis document class
-(for LaTeX) and the R bookdown package, in general.
+<!-- This is an example of a thesis setup to use the reed thesis document class -->
+<!-- (for LaTeX) and the R bookdown package, in general. -->
 
-## Dedication {-}
+<!-- ## Dedication {-} -->
 
-You can have a dedication here if you wish. 
+<!-- You can have a dedication here if you wish.  -->
 
-`r if(!knitr:::is_latex_output()) '## Abstract {-}'`
+<!-- `r if(!knitr:::is_latex_output()) '## Abstract {-}'` -->
