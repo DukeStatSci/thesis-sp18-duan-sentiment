@@ -2,10 +2,6 @@
 
 `r if(!knitr:::is_latex_output()) '# (APPENDIX) Appendix {-}'` 
 
-<!--
-If you feel it necessary to include an appendix, it goes here.
--->
-
 
 # LDA Result by Cuisine Category   
 ```{r, echo=FALSE, results='asis'}

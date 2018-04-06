@@ -3,7 +3,8 @@ author: 'Tianlin Duan'
 date: 'May 2018'
 institution: 'Duke University'
 division: 'Trinity College of Arts and Sciences'
-advisor: 'David Banks / Cynthia Rudin'
+advisor: 'David Banks'
+altadvisor: 'Cynthia Rudin'
 committeememberone: 'David B. Dunson'
 committeemembertwo: 'Rebecca C. Steorts'
 dus: 'Mine Çetinkaya-Rundel'
@@ -44,11 +45,6 @@ lof: true
 #header-includes:
 #- \usepackage{tikz}
 ---  
-<style>
-p.caption {
-  font-size: 0.6em;
-}
-</style>
 
 <!--
 Above is the YAML (YAML Ain't Markup Language) header that includes a lot of metadata used to produce the document.  Be careful with spacing in this header!
